@@ -11,6 +11,7 @@ public class Shot : MonoBehaviour
     private bool shooted = false;
 
     [SerializeField] private float additionalSize;
+    [SerializeField] private bool inverse;
     [SerializeField] private float width;
 
     [SerializeField] private GameObject obj;
@@ -22,6 +23,8 @@ public class Shot : MonoBehaviour
     [SerializeField] private bool shake;
     [SerializeField] private float shakePower;
 
+    private SpriteRenderer spr;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         //Damage things against an enemy
@@ -31,6 +34,8 @@ public class Shot : MonoBehaviour
     {
         Damage += Config.WeaponDamage;
         preObj.transform.localScale = new Vector3(0, 0, 1);
+        spr = GetComponentInChildren<SpriteRenderer>();
+        spr.color = new Color(spr.color.r, spr.color.g, spr.color.b, 0);
     }
 
     public void Work(Transform _direction, Transform _position, LayerMask _collideLayer)
@@ -78,7 +83,10 @@ public class Shot : MonoBehaviour
 
         float acc = Config.WeaponAccuracy;
 
-        Vector3 _direction = -(transform.position - curDirection);
+        Vector3 _direction;
+
+        if (inverse) _direction = -(transform.position - curDirection);
+        else _direction = transform.position - curDirection;
         _direction += new Vector3(Random.Range(-acc, acc), Random.Range(-acc, acc), 0);
         Vector3 pos = Physics2D.Raycast(curDirection, _direction.normalized, Mathf.Infinity, collideLayer).point;
 
@@ -88,6 +96,8 @@ public class Shot : MonoBehaviour
 
         float distance = Vector2.Distance(pos, obj.transform.position);
         transform.localScale = new Vector2(distance + additionalSize, width);
+
+        spr.color = new Color(spr.color.r, spr.color.g, spr.color.b, 0);
 
         shooted = false;
     }
