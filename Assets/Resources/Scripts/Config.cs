@@ -7,6 +7,7 @@ public class Config
     // Game settings
     public static float Volume { get; set; } = 1.0f;
     public static bool PostProcessing { get; set; } = true;
+    public static float ShakePower { get; set; } = 1;
 
     // Map settings
     public static float MapSize { get; set; } = 1.0f;
@@ -16,10 +17,10 @@ public class Config
     //Weapon settings
     public static float SpeedMultiplier { get; set; } = 1.0f;
     public static float WeaponDamage { get; set; } = 1.0f;
-    public static float WeaponShootSpeed { get; set; } = 1.0f;
-    public static float WeaponAccuracy { get; set; } = 1.0f;
-    public static float WeaponAmmo { get; set; } = 1.0f;
-    public static float WeaponReloadSpeed { get; set; } = 1.0f;
+    public static float WeaponShootDelay { get; set; } = 0.25f;
+    public static float WeaponAccuracy { get; set; } = 0.1f;
+    public static int WeaponAmmo { get; set; } = 10;
+    public static float WeaponReloadTime { get; set; } = 1.0f;
 
 
 

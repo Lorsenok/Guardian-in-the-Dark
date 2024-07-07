@@ -9,7 +9,7 @@ public class CameraSetup : MonoBehaviour
 
     private Transform player;
 
-    private void FixedUpdate()
+    private void FixedUpdate() // I haven't use cinemachine follow bc its follow player is not convenient
     {
         if (player == null & playerManager.GetPlayerPosition() == null) return;
         else if (player == null) player = playerManager.GetPlayerPosition();

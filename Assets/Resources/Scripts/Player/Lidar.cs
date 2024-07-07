@@ -10,6 +10,8 @@ public class Lidar : MonoBehaviour
     [SerializeField] private float minDifference;
     [SerializeField] private float maxDifference;
     [SerializeField] private float maxDistance;
+    [SerializeField] private float divisionsQuantity;
+    [SerializeField] private float differenceChangeSpeed;
 
     [SerializeField] private LayerMask collideLayer;
     [SerializeField] private GameObject pointPrefab;
@@ -32,13 +34,21 @@ public class Lidar : MonoBehaviour
     private float delay = 0;
 
     private float currectDifference;
+    private float currectDifferenceSet;
     private float differenceDistance;
+
+    private void OnDisable()
+    {
+        scanner.gameObject.SetActive(false);
+    }
 
     private void Start()
     {
         differenceDistance = maxDifference - minDifference;
         currectDifference = minDifference + differenceDistance;
         curPointColor = startColorList[Random.Range(0, startColorList.Count-1)];
+        currectDifferenceSet = minDifference + differenceDistance / 2;
+        currectDifference = currectDifferenceSet;
     }
 
     Color curPointColor;
@@ -98,19 +108,20 @@ public class Lidar : MonoBehaviour
 
 
         //Scroll
-        currectDifference += -Input.GetAxis("Mouse ScrollWheel");
-        currectDifference = Mathf.Clamp(currectDifference, minDifference, maxDifference);
+        //currectDifferenceSet += -Input.GetAxis("Mouse ScrollWheel");
+        if (Input.GetAxis("Mouse ScrollWheel") > 0) currectDifferenceSet -= differenceDistance / divisionsQuantity;
+        if (Input.GetAxis("Mouse ScrollWheel") < 0) currectDifferenceSet += differenceDistance / divisionsQuantity;
+        currectDifferenceSet = Mathf.Clamp(currectDifferenceSet, minDifference, maxDifference);
+
+        currectDifference = Mathf.Lerp(currectDifference, currectDifferenceSet, Time.deltaTime * differenceChangeSpeed);
+
+        scanner.gameObject.SetActive(Input.GetMouseButton(0));
 
         //Scanner
         if (Input.GetMouseButton(0))
         {
-            scanner.gameObject.SetActive(true);
             scanner.localScale = new Vector2(maxDistance, currectDifference * scannerScaleYMultiplier);
             scanner.localPosition = new Vector2(-maxDistance/2, 0);
-        }
-        else
-        {
-            scanner.gameObject.SetActive(false);
         }
     }
 }
