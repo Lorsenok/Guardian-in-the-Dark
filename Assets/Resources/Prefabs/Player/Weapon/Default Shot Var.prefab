@@ -48,4 +48,4 @@ MonoBehaviour:
   collideLayer:
     serializedVersion: 2
     m_Bits: 55
-  TimeBeforeShoot: 0
+  TimeBeforeShoot: 0.01

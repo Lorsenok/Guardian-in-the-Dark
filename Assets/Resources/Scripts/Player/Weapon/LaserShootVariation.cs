@@ -10,7 +10,8 @@ public class LaserShootVariation : ShootVariation
 
     private void Update()
     {
-        if (Weapon.Instance.WeaponAmmo != 0) Weapon.Instance.WeaponAmmo = 1;
+        if (Weapon.Instance.CurrectWeaponAmmo != 0) Weapon.Instance.CurrectWeaponAmmo = 1;
+        Weapon.Instance.AdditionalReloadTime = AdditionalShootDelay;
     }
 
     public override float Shoot(Transform position, Transform direction)

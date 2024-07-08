@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     private Lidar lidar;
 
     [SerializeField] private float delaySet;
-    private float delay;
+    public float Delay { get; set; }
 
     [SerializeField] private Transform shootPosition;
     [SerializeField] private Transform shootDirection;
@@ -22,18 +22,18 @@ public class Weapon : MonoBehaviour
 
     private CinemachineImpulseSource weaponShake;
 
-    //Config
     public float SpeedMultiplier { get; set; }
     public float WeaponDamage { get; set; }
     public float WeaponShootDelay { get; set; }
     public float WeaponAccuracy { get; set; }
     public int WeaponAmmo { get; set; }
+    public float CurrectWeaponAmmo { get; set; }
     public float WeaponReloadTime { get; set; }
+    public float AdditionalReloadTime { get; set; } = 0;
+    public float CurrectWeaponReloadTime { get; set; } = -0.01f;
 
     //Currect values
-    private float currectWeaponAmmo;
     private float shootDelay;
-    private float reload;
     private bool isReloading = false;
 
     public static Weapon Instance;
@@ -53,25 +53,25 @@ public class Weapon : MonoBehaviour
         WeaponAmmo = Config.WeaponAmmo;
         WeaponReloadTime = Config.WeaponReloadTime;
 
-        currectWeaponAmmo = WeaponAmmo;
+        CurrectWeaponAmmo = WeaponAmmo;
     }
 
     public void Update()
     {
         if (!Controller.CanMove) return;
-        lidar.enabled = !IsHoldingWeapon & delay <= 0;
+        lidar.enabled = !IsHoldingWeapon & Delay <= 0;
 
-        if (Input.GetKeyDown(KeyCode.Q) & delay <= 0)
+        if (Input.GetKeyDown(KeyCode.Q) & Delay <= 0)
         {
-            delay = delaySet / SpeedMultiplier;
+            Delay = delaySet / SpeedMultiplier;
             IsHoldingWeapon = !IsHoldingWeapon;
         }
-        if (delay > 0) delay -= Time.deltaTime;
+        if (Delay > 0) Delay -= Time.deltaTime;
 
-        if (Input.GetMouseButton(0) && delay <= 0 && IsHoldingWeapon && shootDelay <= 0 && currectWeaponAmmo > 0 && !isReloading)
+        if (Input.GetMouseButton(0) && Delay <= 0 && IsHoldingWeapon && shootDelay <= 0 && CurrectWeaponAmmo > 0 && !isReloading)
         {
             shootDelay = WeaponShootDelay;
-            currectWeaponAmmo -= 1;
+            CurrectWeaponAmmo -= 1;
             CameraShakeManager.instance.Shake(weaponShake, WeaponDamage * shakePower);
             shootDelay += shootVariation.Shoot(shootPosition, shootDirection);
         }
@@ -79,17 +79,17 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (reload <= 0)
+            if (CurrectWeaponReloadTime <= -0.01f)
             {
-                reload = WeaponReloadTime / SpeedMultiplier;
+                CurrectWeaponReloadTime = (WeaponReloadTime + AdditionalReloadTime) / SpeedMultiplier;
                 isReloading = true;
             }
         }
-        if (reload <= 0 & isReloading)
+        if (CurrectWeaponReloadTime <= -0.01f & isReloading)
         {
-            currectWeaponAmmo = WeaponAmmo;
+            CurrectWeaponAmmo = WeaponAmmo;
             isReloading = false;
         }
-        if (reload > 0) reload -= Time.deltaTime;
+        if (CurrectWeaponReloadTime > -0.01f) CurrectWeaponReloadTime -= Time.deltaTime;
     }
 }

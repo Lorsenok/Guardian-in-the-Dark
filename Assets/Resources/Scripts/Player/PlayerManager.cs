@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour
 
     public Transform GetPlayerPosition()
     {
+        if (playerController == null) return null;
         return playerController.transform;
     }
 
@@ -32,7 +33,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if (HP <= 0)
+        if (HP <= -0.01f)
         {
             Death();
             return;
