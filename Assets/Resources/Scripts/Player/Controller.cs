@@ -7,6 +7,7 @@ public class Controller : MonoBehaviour
     public static bool CanMove { get; set; } = true;
 
     [SerializeField] private float speed;
+    [SerializeField] private float additionalRotate;
     private float speedMultiplier;
 
     private Rigidbody2D rg;
@@ -29,7 +30,7 @@ public class Controller : MonoBehaviour
     {
         Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rotateZ), Time.deltaTime * speed / 2f * speedMultiplier);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rotateZ + additionalRotate), Time.deltaTime * speed / 2f * speedMultiplier);
     }
 
     private void Update()

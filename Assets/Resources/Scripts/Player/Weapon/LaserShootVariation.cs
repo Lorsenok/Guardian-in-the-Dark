@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserShootVariation : ShootVariation
 {
-    [SerializeField] private float AdditionalDamage;
+    [SerializeField] private int AdditionalDamage;
     [SerializeField] private float AdditionalShootDelay;
     [SerializeField] private float TimeBeforeShoot;
 

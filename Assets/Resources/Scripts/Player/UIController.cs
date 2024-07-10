@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private PlayerManager pm;
 
     [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject weaponReloadBar;
@@ -19,12 +18,12 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
-        startHP = pm.HP;
+        startHP = PlayerManager.Instance.HP;
     }
 
     private void Update()
     {
-        healthBar.transform.localScale = new Vector2(1 / startHP * pm.HP, healthBar.transform.localScale.y);
+        healthBar.transform.localScale = new Vector2(1 / startHP * PlayerManager.Instance.HP, healthBar.transform.localScale.y);
 
         if (weapon == null) weapon = Weapon.Instance;
         if (weapon != null)

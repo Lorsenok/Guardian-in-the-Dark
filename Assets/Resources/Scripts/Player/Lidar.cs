@@ -30,6 +30,11 @@ public class Lidar : MonoBehaviour
     [Header("Scaner setup")]
     [SerializeField] private Transform scanner;
     [SerializeField] private float scannerScaleYMultiplier;
+    [SerializeField] private float scannerAppearSpeed;
+
+    public bool IsWorking { get; set; } = true;
+
+    private SpriteRenderer scannerSpr;
 
     private float delay = 0;
 
@@ -37,13 +42,10 @@ public class Lidar : MonoBehaviour
     private float currectDifferenceSet;
     private float differenceDistance;
 
-    private void OnDisable()
-    {
-        scanner.gameObject.SetActive(false);
-    }
-
     private void Start()
     {
+        scannerSpr = scanner.GetComponentInChildren<SpriteRenderer>();
+
         differenceDistance = maxDifference - minDifference;
         currectDifference = minDifference + differenceDistance;
         curPointColor = startColorList[Random.Range(0, startColorList.Count-1)];
@@ -51,12 +53,18 @@ public class Lidar : MonoBehaviour
         currectDifference = currectDifferenceSet;
     }
 
+    public RaycastHit2D CurrectRay { get; set; }
+
     Color curPointColor;
     private void SpawnRay()
     {
         Vector3 direction = -(transform.position - pointDirection.position);
         direction += new Vector3(Random.Range(-currectDifference, currectDifference), Random.Range(-currectDifference, currectDifference), 0);
-        Vector3 pos = Physics2D.Raycast(pointDirection.position, direction.normalized, Mathf.Infinity, collideLayer).point;
+        RaycastHit2D raycast = Physics2D.Raycast(pointDirection.position, direction.normalized, Mathf.Infinity, collideLayer);
+
+        CurrectRay = raycast;
+
+        Vector3 pos = raycast.point;
 
         if (pos == Vector3.zero | Vector2.Distance(pos, transform.position) > maxDistance) return;
 
@@ -74,6 +82,14 @@ public class Lidar : MonoBehaviour
         if (curPointColor.r > colorRGBMax) curPointColor.r = colorRGBMin;
         if (curPointColor.g > colorRGBMax) curPointColor.g = colorRGBMin;
         if (curPointColor.b > colorRGBMax) curPointColor.b = colorRGBMin;
+
+        raycast.collider.gameObject.TryGetComponent<Backlit>(out Backlit backlit);
+
+        if (backlit != null)
+        {
+            backlit.Light();
+            point.GetComponent<SpriteRenderer>().color = backlit.color;
+        }
 
         Vector3 pointPos = point.transform.position;
         
@@ -99,7 +115,7 @@ public class Lidar : MonoBehaviour
         if (!Controller.CanMove) return;
 
         //Shooting
-        if (delay <= 0 & Input.GetMouseButton(0))
+        if (delay <= 0 & Input.GetMouseButton(0) && IsWorking)
         {
             delay = speedS + currectDifference * speedDecreaser;
             SpawnRay();
@@ -108,14 +124,14 @@ public class Lidar : MonoBehaviour
 
 
         //Scroll
-        //currectDifferenceSet += -Input.GetAxis("Mouse ScrollWheel");
         if (Input.GetAxis("Mouse ScrollWheel") > 0) currectDifferenceSet -= differenceDistance / divisionsQuantity;
         if (Input.GetAxis("Mouse ScrollWheel") < 0) currectDifferenceSet += differenceDistance / divisionsQuantity;
         currectDifferenceSet = Mathf.Clamp(currectDifferenceSet, minDifference, maxDifference);
 
         currectDifference = Mathf.Lerp(currectDifference, currectDifferenceSet, Time.deltaTime * differenceChangeSpeed);
 
-        scanner.gameObject.SetActive(Input.GetMouseButton(0));
+        if (Input.GetMouseButton(0) & IsWorking) scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 1, Time.deltaTime * scannerAppearSpeed));
+        else scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 0, Time.deltaTime * scannerAppearSpeed));
 
         //Scanner
         if (Input.GetMouseButton(0))

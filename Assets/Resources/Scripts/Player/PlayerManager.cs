@@ -15,9 +15,20 @@ public class PlayerManager : MonoBehaviour
 
     private Controller playerController;
 
+    public static PlayerManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+        playerController = Instantiate(playerPrefab, playerSpawnOffset, Quaternion.identity).GetComponent<Controller>();
+    }
+
     private void Start()
     {
-        playerController = Instantiate(playerPrefab, playerSpawnOffset, Quaternion.identity).GetComponent<Controller>();
+        foreach (GameObject em in Config.EnemyManagers)
+        {
+            Instantiate(em, Vector3.zero, Quaternion.identity);
+        }
     }
 
     public Transform GetPlayerPosition()

@@ -47,5 +47,5 @@ MonoBehaviour:
   shotPrefab: {fileID: 5520693247054808393, guid: 797d2027bf1341444818a2387656b125, type: 3}
   collideLayer:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 183
   TimeBeforeShoot: 0.01

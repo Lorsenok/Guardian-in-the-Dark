@@ -56,17 +56,24 @@ public class Weapon : MonoBehaviour
         CurrectWeaponAmmo = WeaponAmmo;
     }
 
+    private bool switchOnce = false;
     public void Update()
     {
         if (!Controller.CanMove) return;
-        lidar.enabled = !IsHoldingWeapon & Delay <= 0;
+        lidar.IsWorking = !IsHoldingWeapon & Delay <= 0;
 
         if (Input.GetKeyDown(KeyCode.Q) & Delay <= 0)
         {
             Delay = delaySet / SpeedMultiplier;
-            IsHoldingWeapon = !IsHoldingWeapon;
+            switchOnce = true;
         }
         if (Delay > 0) Delay -= Time.deltaTime;
+
+        if (Delay <= 0 && switchOnce)
+        {
+            IsHoldingWeapon = !IsHoldingWeapon;
+            switchOnce = false;
+        }
 
         if (Input.GetMouseButton(0) && Delay <= 0 && IsHoldingWeapon && shootDelay <= 0 && CurrectWeaponAmmo > 0 && !isReloading)
         {

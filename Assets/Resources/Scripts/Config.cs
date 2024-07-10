@@ -11,12 +11,13 @@ public class Config
 
     // Map settings
     public static float MapSize { get; set; } = 1.0f;
+    public static float EnemySpawnRate { get; set; } = 10f;
+    public static List<GameObject> EnemyManagers { get; set; }
     //here also will be task
-    //here also will be enemies pull
 
     //Weapon settings
     public static float SpeedMultiplier { get; set; } = 1.0f;
-    public static float WeaponDamage { get; set; } = 1.0f;
+    public static int WeaponDamage { get; set; } = 1;
     public static float WeaponShootDelay { get; set; } = 0.25f;
     public static float WeaponAccuracy { get; set; } = 0.1f;
     public static int WeaponAmmo { get; set; } = 10;
@@ -24,5 +25,5 @@ public class Config
 
 
 
-    public int Money { get; set; } = 0 ;
+    public int Money { get; set; } = 0;
 }

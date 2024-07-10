@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  additionalRotate: 0
 --- !u!114 &8194793909913263527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +244,7 @@ MonoBehaviour:
   differenceChangeSpeed: 10
   collideLayer:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 247
   pointPrefab: {fileID: 9001468137860730297, guid: 3b5f36c793bb4dc4280719c1f8891566, type: 3}
   pointDirection: {fileID: 5809740845891231347}
   startColorList:
@@ -255,6 +256,7 @@ MonoBehaviour:
   rayWidth: 0.025
   scanner: {fileID: 7025742847361829055}
   scannerScaleYMultiplier: 36
+  scannerAppearSpeed: 5
 --- !u!114 &4185729177589176480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,8 +580,8 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 180
-  m_PointLightOuterAngle: 180
+  m_PointLightInnerAngle: 150
+  m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
   m_PointLightOuterRadius: 14
   m_ShapeLightParametricSides: 5
@@ -729,7 +731,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

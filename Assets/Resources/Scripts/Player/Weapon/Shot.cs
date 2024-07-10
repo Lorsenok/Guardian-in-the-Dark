@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Shot : MonoBehaviour
 {
-    public float Damage {  get; set; }
+    public int Damage {  get; set; }
     public float TimeBeforeShot { get; set; } = 0;
 
     private bool shooted = false;
@@ -13,6 +13,8 @@ public class Shot : MonoBehaviour
     [SerializeField] private float additionalSize;
     [SerializeField] private bool inverse;
     [SerializeField] private float width;
+
+    [SerializeField] private float colliderWorkTimeAfterShoot;
 
     [SerializeField] private GameObject obj;
     [SerializeField] private GameObject preObj;
@@ -25,9 +27,13 @@ public class Shot : MonoBehaviour
 
     private SpriteRenderer spr;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
-        //Damage things against an enemy
+        if (collision.TryGetComponent<IDamageable>(out IDamageable damageable) & TimeBeforeShot <= 0)
+        {
+            damageable.GetDamage(Damage);
+            GetComponent<BoxCollider2D>().size = Vector2.zero;
+        }
     }
 
     private void Start()
@@ -55,6 +61,17 @@ public class Shot : MonoBehaviour
     private void Update()
     {
         TimeBeforeShot -= Time.deltaTime;
+        if (obj == null) Destroy(gameObject);
+
+        if (!shooted)
+        {
+            if (colliderWorkTimeAfterShoot <= 0)
+            {
+                GetComponent<BoxCollider2D>().size = Vector2.zero;
+            }
+            colliderWorkTimeAfterShoot -= Time.deltaTime;
+        }
+
         if (!shooted || TimeBeforeShot > 0)
         {
             if (!once)
@@ -70,6 +87,7 @@ public class Shot : MonoBehaviour
                 preObj.transform.localScale = Vector3.Lerp(preObj.transform.localScale, preObjSizeGrown, preObjSizeGrownSpeed * Time.deltaTime);
                 obj.transform.localScale = Vector3.zero;
             }
+
             return;
         }
 
