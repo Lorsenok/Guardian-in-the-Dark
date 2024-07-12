@@ -21,7 +21,7 @@ public class UIController : MonoBehaviour
         startHP = PlayerManager.Instance.HP;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         healthBar.transform.localScale = new Vector2(1 / startHP * PlayerManager.Instance.HP, healthBar.transform.localScale.y);
 
@@ -30,8 +30,9 @@ public class UIController : MonoBehaviour
         {
             ammoText.text = "Ammo: " + weapon.CurrectWeaponAmmo.ToString();
             weaponReloadBar.transform.localScale = new Vector2(1 - 1 / (weapon.WeaponReloadTime + weapon.AdditionalReloadTime) * weapon.CurrectWeaponReloadTime, weaponReloadBar.transform.localScale.y);
-            if (weapon.CurrectWeaponAmmo <= 0 && weapon.CurrectWeaponReloadTime <= -0.01f) reloadText.text = "Press R to reload";
-            else reloadText.text = string.Empty;
+            if (weapon.CurrectWeaponAmmo <= 0 && weapon.CurrectWeaponReloadTime <= -0.01f) 
+                reloadText.color = Color.Lerp(reloadText.color, new Color(reloadText.color.r, reloadText.color.g, reloadText.color.b, 1), Time.deltaTime * 2);
+            else reloadText.color = Color.Lerp(reloadText.color, new Color(reloadText.color.r, reloadText.color.g, reloadText.color.b, 0), Time.deltaTime * 2);
         }
 
         if (!weapon.IsHoldingWeapon)
