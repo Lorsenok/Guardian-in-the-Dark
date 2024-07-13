@@ -92,6 +92,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (isDead)
         {
+            GetComponent<AIPath>().enabled = false;
+
             if (backlit.enabled)
             {
                 backlit.enabled = false;

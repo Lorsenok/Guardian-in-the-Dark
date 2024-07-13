@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.LightAnchor;
 
 public class Weapon : MonoBehaviour
 {
@@ -20,7 +21,14 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private float shakePower;
 
-    private CinemachineImpulseSource weaponShake;
+    [SerializeField] private GameObject lidar3DModel;
+    [SerializeField] private GameObject weapon3DModel;
+
+    [SerializeField] private Transform weaponStartPoint;
+    [SerializeField] private float weaponWidth;
+    [SerializeField] private LayerMask bordersLayerMask;
+
+    public CinemachineImpulseSource WeaponShake { get; private set; }
 
     public float SpeedMultiplier { get; set; }
     public float WeaponDamage { get; set; }
@@ -38,13 +46,13 @@ public class Weapon : MonoBehaviour
 
     public static Weapon Instance;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null) Instance = this;
 
         lidar = GetComponent<Lidar>();
         shootVariation = FindObjectOfType<ShootVariation>(); // FindObjectOfType imao
-        weaponShake = GetComponentInChildren<CinemachineImpulseSource>();
+        WeaponShake = GetComponentInChildren<CinemachineImpulseSource>();
 
         SpeedMultiplier = Config.SpeedMultiplier;
         WeaponDamage = Config.WeaponDamage;
@@ -61,6 +69,7 @@ public class Weapon : MonoBehaviour
     {
         if (!Controller.CanMove) return;
         lidar.IsWorking = !IsHoldingWeapon & Delay <= 0;
+        lidar3DModel.SetActive(lidar.IsWorking);
 
         if (Input.GetKeyDown(KeyCode.Q) & Delay <= 0)
         {
@@ -75,12 +84,30 @@ public class Weapon : MonoBehaviour
             switchOnce = false;
         }
 
-        if (Input.GetMouseButton(0) && Delay <= 0 && IsHoldingWeapon && shootDelay <= 0 && CurrectWeaponAmmo > 0 && !isReloading)
+        if (Delay <= 0 && IsHoldingWeapon)
         {
-            shootDelay = WeaponShootDelay;
-            CurrectWeaponAmmo -= 1;
-            CameraShakeManager.instance.Shake(weaponShake, WeaponDamage * shakePower);
-            shootDelay += shootVariation.Shoot(shootPosition, shootDirection);
+            weapon3DModel.SetActive(true);
+
+            Vector2 borderPos = Physics2D.Raycast(weaponStartPoint.position, -(transform.position - weaponStartPoint.position), weaponWidth, bordersLayerMask).point;
+            Vector3 curEulerAngle;
+
+            if (Vector2.Distance(borderPos, weaponStartPoint.position) <= weaponWidth && borderPos != Vector2.zero)
+                curEulerAngle = new Vector3(0, 0, 90f - 90f / weaponWidth * Vector2.Distance(borderPos, weaponStartPoint.position));
+            else curEulerAngle = Vector3.zero;
+
+            weaponStartPoint.localEulerAngles = Vector3.Lerp(weaponStartPoint.localEulerAngles, curEulerAngle, Time.deltaTime * 10);
+
+            if (Input.GetMouseButton(0) && shootDelay <= 0 && CurrectWeaponAmmo > 0 && !isReloading)
+            {
+                shootDelay = WeaponShootDelay;
+                CurrectWeaponAmmo -= 1;
+                CameraShakeManager.instance.Shake(WeaponShake, WeaponDamage * shakePower);
+                shootDelay += shootVariation.Shoot(shootPosition, shootDirection);
+            }
+        }
+        else
+        {
+            weapon3DModel.SetActive(false);
         }
         if (shootDelay > 0) shootDelay -= Time.deltaTime;
 

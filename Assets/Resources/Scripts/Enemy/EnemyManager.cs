@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("Setup")]
     [SerializeField] private GameObject enemy;
     [SerializeField] private float minDistance;
     [SerializeField, Range(0.001f, 1f)] private float spawnChance;
@@ -14,9 +16,18 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private float spawnTime;
 
+    [Header("Post Processing")]
+    [SerializeField] private float changeSpeed;
+    [SerializeField] private Color vignetteColor;
+
+    [Header("Shake")]
+    [SerializeField] private float shakeIntensity;
+
     private Lidar lidar;
 
     private bool isEnemyAlive = false;
+
+    private CinemachineImpulseSource shake;
 
     private void OnEnemySpawn()
     {
@@ -48,6 +59,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
+        shake = Weapon.Instance.WeaponShake;
         spawnTime += Config.EnemySpawnRate / spawnChance;
     }
 
@@ -64,6 +76,12 @@ public class EnemyManager : MonoBehaviour
 
         if (spawnTime > 0 & !isEnemyAlive) spawnTime -= Time.deltaTime;
         else if (!isEnemyAlive) SpawnEnemy();
+
+        if (isEnemyAlive)
+        {
+            PostProcessingController.Instance.VignetteSet(0.5f, vignetteColor, changeSpeed);
+            CameraShakeManager.instance.Shake(shake, shakeIntensity);
+        }
     }
 
     private void OnEnable()

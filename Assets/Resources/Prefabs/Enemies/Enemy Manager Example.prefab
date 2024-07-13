@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1081323697528450623}
   - component: {fileID: 4453010591913844071}
   m_Layer: 0
-  m_Name: Default Enemy Manager
+  m_Name: Enemy Manager Example
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 2963423860285719101, guid: cf1007089213e084fa1baa49bd2a1907, type: 3}
-  minDistance: 4
+  minDistance: 5
   spawnChance: 0.3
   spawnTime: 0
+  changeSpeed: 1
+  vignetteColor: {r: 1, g: 0, b: 0, a: 0}
+  shakeIntensity: 0.02
