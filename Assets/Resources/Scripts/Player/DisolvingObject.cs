@@ -12,7 +12,7 @@ public class DisolvingObject : MonoBehaviour
     private void Start()
     {
         startTime = aliveTime;
-        spr = GetComponent<SpriteRenderer>();
+        spr = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()

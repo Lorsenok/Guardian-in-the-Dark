@@ -46,7 +46,7 @@ public class Weapon : MonoBehaviour
 
     public static Weapon Instance;
 
-    private void Awake()
+    private void Start()
     {
         if (Instance == null) Instance = this;
 
@@ -67,7 +67,12 @@ public class Weapon : MonoBehaviour
     private bool switchOnce = false;
     public void Update()
     {
-        if (!Controller.CanMove) return;
+        if (!Controller.CanMove)
+        {
+            lidar3DModel.SetActive(false);
+            weapon3DModel.SetActive(false);
+            return;
+        }
         lidar.IsWorking = !IsHoldingWeapon & Delay <= 0;
         lidar3DModel.SetActive(lidar.IsWorking);
 

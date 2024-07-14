@@ -12,6 +12,7 @@ public class Lidar : MonoBehaviour
     [SerializeField] private float maxDistance;
     [SerializeField] private float divisionsQuantity;
     [SerializeField] private float differenceChangeSpeed;
+    [SerializeField] private float differenceMultiplier;
 
     [SerializeField] private LayerMask collideLayer;
     [SerializeField] private GameObject pointPrefab;
@@ -33,6 +34,7 @@ public class Lidar : MonoBehaviour
     [SerializeField] private float scannerAppearSpeed;
 
     public bool IsWorking { get; set; } = true;
+    public float TimeSinceLastRay { get; set; } = 0f;
 
     private SpriteRenderer scannerSpr;
 
@@ -48,7 +50,7 @@ public class Lidar : MonoBehaviour
 
         differenceDistance = maxDifference - minDifference;
         currectDifference = minDifference + differenceDistance;
-        curPointColor = startColorList[Random.Range(0, startColorList.Count-1)];
+        curPointColor = startColorList[Random.Range(0, startColorList.Count)];
         currectDifferenceSet = minDifference + differenceDistance / 2;
         currectDifference = currectDifferenceSet;
     }
@@ -58,8 +60,11 @@ public class Lidar : MonoBehaviour
     Color curPointColor;
     private void SpawnRay()
     {
+        TimeSinceLastRay = 0f;
+
         Vector3 direction = -(transform.position - pointDirection.position);
-        direction += new Vector3(Random.Range(-currectDifference, currectDifference), Random.Range(-currectDifference, currectDifference), 0);
+        float diff = currectDifference * differenceMultiplier;
+        direction += new Vector3(Random.Range(-diff, diff), Random.Range(-diff, diff), 0);
         RaycastHit2D raycast = Physics2D.Raycast(pointDirection.position, direction.normalized, Mathf.Infinity, collideLayer);
 
         CurrectRay = raycast;
@@ -73,28 +78,37 @@ public class Lidar : MonoBehaviour
         GameObject point = Instantiate(pointPrefab, pos, Quaternion.identity);
         point.GetComponent<SpriteRenderer>().color = curPointColor;
         
-        int rgbChoose = Random.Range(1, 3);
+        if (curPointColor != Color.white)
+        {
+            int rgbChoose = Random.Range(1, 3);
 
-        if (rgbChoose == 1) curPointColor.r += colorChangeSpeed;
-        if (rgbChoose == 2) curPointColor.g += colorChangeSpeed;
-        if (rgbChoose == 3) curPointColor.b += colorChangeSpeed;
+            if (rgbChoose == 1) curPointColor.r += colorChangeSpeed;
+            if (rgbChoose == 2) curPointColor.g += colorChangeSpeed;
+            if (rgbChoose == 3) curPointColor.b += colorChangeSpeed;
 
-        if (curPointColor.r > colorRGBMax) curPointColor.r = colorRGBMin;
-        if (curPointColor.g > colorRGBMax) curPointColor.g = colorRGBMin;
-        if (curPointColor.b > colorRGBMax) curPointColor.b = colorRGBMin;
+            if (curPointColor.r > colorRGBMax) curPointColor.r = colorRGBMin;
+            if (curPointColor.g > colorRGBMax) curPointColor.g = colorRGBMin;
+            if (curPointColor.b > colorRGBMax) curPointColor.b = colorRGBMin;
+        }
 
-        raycast.collider.gameObject.TryGetComponent<Backlit>(out Backlit backlit);
+        raycast.collider.gameObject.TryGetComponent(out Backlit backlit);
+        raycast.collider.gameObject.TryGetComponent(out Backlit3D backlit3d);
 
         if (backlit != null)
         {
             backlit.Light();
             point.GetComponent<SpriteRenderer>().color = backlit.color;
         }
+        if (backlit3d != null)
+        {
+            backlit3d.Light();
+            point.GetComponent<SpriteRenderer>().color = backlit3d.color;
+        }
 
         Vector3 pointPos = point.transform.position;
         
         Transform rayToPointStart = Instantiate(pointRay, pointDirection.position, Quaternion.identity).transform;
-        Transform rayToPoint = rayToPointStart.GetComponentInChildren<DisolvingObject>().transform;
+        Transform rayToPoint = rayToPointStart.GetComponentInChildren<SpriteRenderer>().transform;
 
 
         //Rotate ray to point
@@ -113,6 +127,8 @@ public class Lidar : MonoBehaviour
     private void Update()
     {
         if (!Controller.CanMove) return;
+
+        TimeSinceLastRay += Time.deltaTime;
 
         //Shooting
         if (delay <= 0 & Input.GetMouseButton(0) && IsWorking)

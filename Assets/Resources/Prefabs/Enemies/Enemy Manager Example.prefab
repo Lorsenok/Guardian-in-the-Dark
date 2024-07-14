@@ -46,8 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2963423860285719101, guid: cf1007089213e084fa1baa49bd2a1907, type: 3}
   minDistance: 5
+  maxDistance: 7
   spawnChance: 0.3
   spawnTime: 0
+  vignetteSet: 0.5
   changeSpeed: 1
   vignetteColor: {r: 1, g: 0, b: 0, a: 0}
   shakeIntensity: 0.02

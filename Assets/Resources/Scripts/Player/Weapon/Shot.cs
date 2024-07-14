@@ -25,6 +25,13 @@ public class Shot : MonoBehaviour
     [SerializeField] private bool shake;
     [SerializeField] private float shakePower;
 
+    [SerializeField] private Transform particlesSpawner;
+    [SerializeField] private GameObject particles;
+    [SerializeField] private float particlesDistance;
+    [SerializeField] private GameObject bloodParticles;
+    [SerializeField] private float bloodParticlesDistance;
+    [SerializeField] private float particlesZ;
+
     private SpriteRenderer spr;
 
     public void OnTriggerStay2D(Collider2D collision)
@@ -33,6 +40,8 @@ public class Shot : MonoBehaviour
         {
             damageable.GetDamage(Damage);
             GetComponent<BoxCollider2D>().size = Vector2.zero;
+            particlesSpawner.localPosition = new Vector3(bloodParticlesDistance, 0, particlesZ);
+            Instantiate(bloodParticles, particlesSpawner.position, Quaternion.identity);
         }
     }
 
@@ -116,6 +125,9 @@ public class Shot : MonoBehaviour
         transform.localScale = new Vector2(distance + additionalSize, width);
 
         spr.color = new Color(spr.color.r, spr.color.g, spr.color.b, 0);
+
+        particlesSpawner.localPosition = new Vector3(particlesDistance, 0, particlesZ);
+        Instantiate(particles, particlesSpawner.position, Quaternion.identity);
 
         shooted = false;
     }

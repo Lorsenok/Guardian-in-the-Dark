@@ -47,3 +47,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 1537089990809303965, guid: cf549e9b71195b34f9496121a1d7a20e, type: 3}
   playerSpawnOffset: {x: 0, y: 0}
   hpLossSpeed: 5
+  disolveSpeed: 0.2
+  playerMaterial: {fileID: 2100000, guid: 5bacc76f42c074d49a4149292f1e78ec, type: 2}
+  dissapearTime: 1.2
+  bloodParticles: {fileID: 4683349287761498842, guid: 19c1d23b0552c0048957f4390ada937d, type: 3}
+  particlesZ: -12.5

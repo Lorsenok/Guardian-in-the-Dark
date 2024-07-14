@@ -16,19 +16,22 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float hp;
     [SerializeField] protected float speed;
+    protected float currectSpeed;
     [SerializeField] protected float acceleration;
+    [SerializeField] protected float speedAcceleration;
     [SerializeField] protected float timeBeforeAgr;
     [SerializeField] protected float timeBeforeDeath;
+
+    [SerializeField] protected Material material;
 
     public static Action OnEnemyDestroyed;
 
     protected bool isDead = false;
 
     protected Rigidbody2D rg;
-    protected Material material;
     protected AIPath follow;
     protected AIDestinationSetter destinationSetter;
-    protected Backlit backlit;
+    protected Backlit3D backlit;
 
     protected Transform player;
 
@@ -48,6 +51,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public virtual void GetDamage(int damage)
     {
         hp -= damage;
+        currectSpeed = 0;
     }
 
     public virtual void Die()
@@ -58,33 +62,36 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public virtual void Follow(Transform player)
     {
-        /*
-        Vector3 _diference = player.position - transform.position;
-        float _rotateZ = Mathf.Atan2(_diference.y, _diference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, _rotateZ);
+        currectSpeed = Mathf.Clamp(Mathf.Lerp(currectSpeed, speed, speedAcceleration * Time.deltaTime), 0.0f, speed);
 
-        rg.position = Vector2.MoveTowards(rg.position, player.position, speed * Time.deltaTime);
-        */
-
-        if (!follow.enabled)
-        {
-            follow.enabled = true;
-            destinationSetter.enabled = true;
-            destinationSetter.target = player;
-            follow.maxSpeed = speed;
-            follow.maxAcceleration = acceleration;
-        }
+        follow.enabled = true;
+        destinationSetter.enabled = true;
+        destinationSetter.target = player;
+        follow.maxSpeed = currectSpeed;
+        follow.maxAcceleration = acceleration;
     }
 
     public virtual void Start()
     {
+        currectSpeed = speed;
+
         rg = GetComponent<Rigidbody2D>();
-        material = GetComponent<SpriteRenderer>().material;
         follow = GetComponent<AIPath>();
         follow.enabled = false;
         destinationSetter = GetComponent<AIDestinationSetter>();
         destinationSetter.enabled = false;
-        backlit = GetComponent<Backlit>();
+        backlit = GetComponent<Backlit3D>();
+
+        material.SetFloat("_Disolve", 0);
+        material.SetFloat("_Smoothness", 0.5f);
+
+        player = PlayerManager.Instance.GetPlayerPosition();
+
+        if (player == null) return;
+
+        Vector3 _diference = player.position - transform.position;
+        float _rotateZ = Mathf.Atan2(_diference.y, _diference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, _rotateZ);
     }
 
     protected float timeBeforeDeathStart;
@@ -100,7 +107,7 @@ public class Enemy : MonoBehaviour, IDamageable
             }
             else
             {
-                backlit.Lighting.intensity = Mathf.Lerp(backlit.Lighting.intensity, 1, Time.deltaTime * 10);
+                backlit.Lighting.intensity = Mathf.Lerp(backlit.Lighting.intensity, 0, Time.deltaTime * 10);
             }
 
             if (timeBeforeDeath <= 0)
@@ -109,6 +116,7 @@ public class Enemy : MonoBehaviour, IDamageable
                 Destroy(gameObject);
             }
             material.SetFloat("_Disolve", 1.1f - 1.1f / timeBeforeDeathStart * timeBeforeDeath);
+            material.SetFloat("_Smoothness", 0.5f - 0.5f / timeBeforeDeathStart * timeBeforeDeath);
             timeBeforeDeath -= Time.deltaTime;
 
             return;

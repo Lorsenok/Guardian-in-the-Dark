@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private GameObject enemy;
     [SerializeField] private float minDistance;
+    [SerializeField] private float maxDistance;
     [SerializeField, Range(0.001f, 1f)] private float spawnChance;
 
     public static Action OnEnemySpawned;
@@ -17,6 +18,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float spawnTime;
 
     [Header("Post Processing")]
+    [SerializeField] private float vignetteSet;
     [SerializeField] private float changeSpeed;
     [SerializeField] private Color vignetteColor;
 
@@ -41,11 +43,11 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        if (lidar.enabled)
+        if (lidar.IsWorking && lidar.TimeSinceLastRay < 1f)
         {
             Vector2 position = (player.position + new Vector3(lidar.CurrectRay.point.x, lidar.CurrectRay.point.y, 0)) / 2;
 
-            if (Input.GetMouseButton(0) & Vector2.Distance(position, player.position) > minDistance)
+            if (Input.GetMouseButton(0) && Vector2.Distance(position, player.position) >= minDistance && Vector2.Distance(position, player.position) <= maxDistance)
             {
                 Instantiate(enemy, position, Quaternion.identity);
                 spawnTime += Config.EnemySpawnRate / spawnChance;
@@ -79,7 +81,7 @@ public class EnemyManager : MonoBehaviour
 
         if (isEnemyAlive)
         {
-            PostProcessingController.Instance.VignetteSet(0.5f, vignetteColor, changeSpeed);
+            PostProcessingController.Instance.VignetteSet(vignetteSet, vignetteColor, changeSpeed);
             CameraShakeManager.instance.Shake(shake, shakeIntensity);
         }
     }

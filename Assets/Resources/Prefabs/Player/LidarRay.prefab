@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5987948639959214001}
   - component: {fileID: 8586490140987227243}
-  - component: {fileID: 774231685757395437}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -85,19 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &774231685757395437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621419626421933200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda31aead9197274bb49fa4daace5751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aliveTime: 0.05
 --- !u!1 &3491430043341417116
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2079462505233005915}
+  - component: {fileID: 1969888982548042621}
   m_Layer: 0
   m_Name: LidarRay
   m_TagString: Untagged
@@ -130,3 +117,16 @@ Transform:
   - {fileID: 5987948639959214001}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1969888982548042621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491430043341417116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda31aead9197274bb49fa4daace5751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aliveTime: 0.05

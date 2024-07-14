@@ -32,6 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2377818019442390124}
   - {fileID: 5670216535200653236}
   - {fileID: 113967660298933204}
   m_Father: {fileID: 0}
@@ -58,6 +59,12 @@ MonoBehaviour:
   preObjSizeGrownSpeed: 3
   shake: 1
   shakePower: 5
+  particlesSpawner: {fileID: 2377818019442390124}
+  particles: {fileID: 8006679710114775704, guid: c940d34baa58f234592f165c81c494f8, type: 3}
+  particlesDistance: 0.85
+  bloodParticles: {fileID: 4683349287761498842, guid: 65a973e731f1bd14094d895c6af037c1, type: 3}
+  bloodParticlesDistance: 0.7
+  particlesZ: 0
 --- !u!114 &8741038774463873049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +163,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &5712803484916565531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2377818019442390124}
+  m_Layer: 0
+  m_Name: Particles Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2377818019442390124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712803484916565531}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6254982469961839083}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7643461924427099423
 GameObject:
   m_ObjectHideFlags: 0
