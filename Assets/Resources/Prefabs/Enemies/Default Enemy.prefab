@@ -45,7 +45,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 0.01
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -281,7 +281,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 0.01
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -555,7 +555,6 @@ MonoBehaviour:
   timeBeforeAgr: 0.6
   timeBeforeDeath: 3
   material: {fileID: 2100000, guid: 960758a999df58345a6b79413e25ab8d, type: 2}
-  forceFromPlayer: 5
 --- !u!114 &1294991760373373768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,7 +682,7 @@ MonoBehaviour:
   - {x: 0.10780239, y: -0.507094, z: 0}
   m_ShapePathHash: 1889948295
   m_Mesh: {fileID: 0}
-  m_InstanceId: 82370
+  m_InstanceId: 30952
   m_LocalBounds:
     m_Center: {x: 0.0041071177, y: -0.0055286884, z: 0}
     m_Extent: {x: 0.51450145, y: 0.51839674, z: 0}
@@ -728,8 +727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light3d: {fileID: 7949821144174977555}
-  set: 0.01
-  speed: 5
+  set: 0.04
+  speed: 0.05
 --- !u!114 &4996116084508741823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,8 +742,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light3d: {fileID: 3632381743192841432}
-  set: 0.01
-  speed: 0.5
+  set: 0.04
+  speed: 0.05
 --- !u!1001 &1450848233928139767
 PrefabInstance:
   m_ObjectHideFlags: 0
