@@ -1,3 +1,4 @@
+using Cinemachine;
 using Pathfinding;
 using Pathfinding.Examples;
 using System;
@@ -14,6 +15,8 @@ public interface IDamageable
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public EnemyManager em { get; set; }
+
     [SerializeField] protected float hp;
     [SerializeField] protected float speed;
     protected float currectSpeed;
@@ -22,7 +25,11 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected float timeBeforeAgr;
     [SerializeField] protected float timeBeforeDeath;
 
-    [SerializeField] protected Material material;
+    [SerializeField] protected Material[] materials;
+
+    [SerializeField] private float additionalAngle;
+
+    [SerializeField] private float shakePower;
 
     public static Action OnEnemyDestroyed;
 
@@ -42,9 +49,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform == player)
+        if (collision.transform == player && PlayerManager.Instance.HP > 0)
         {
             PlayerManager.Instance.HP = 0;
+            CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), shakePower);
         }
     }
 
@@ -58,6 +66,13 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         isDead = true;
         timeBeforeDeathStart = timeBeforeDeath;
+    }
+
+    protected void RotateTowardsPlayer()
+    {
+        Vector3 _diference = player.position - transform.position;
+        float _rotateZ = Mathf.Atan2(_diference.y, _diference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, _rotateZ + additionalAngle);
     }
 
     public virtual void Follow(Transform player)
@@ -82,16 +97,15 @@ public class Enemy : MonoBehaviour, IDamageable
         destinationSetter.enabled = false;
         backlit = GetComponent<Backlit3D>();
 
-        material.SetFloat("_Disolve", 0);
-        material.SetFloat("_Smoothness", 0.5f);
+        foreach (Material mat in materials)
+        {
+            mat.SetFloat("_Disolve", 0);
+            mat.SetFloat("_Smoothness", 0.5f);
+        }
 
         player = PlayerManager.Instance.GetPlayerPosition();
 
-        if (player == null) return;
-
-        Vector3 _diference = player.position - transform.position;
-        float _rotateZ = Mathf.Atan2(_diference.y, _diference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, _rotateZ);
+        if (player != null) RotateTowardsPlayer();
     }
 
     protected float timeBeforeDeathStart;
@@ -112,11 +126,15 @@ public class Enemy : MonoBehaviour, IDamageable
 
             if (timeBeforeDeath <= 0)
             {
-                material.SetFloat("_Disolve", 0);
+                foreach (Material mat in materials) 
+                    mat.SetFloat("_Disolve", 0);
                 Destroy(gameObject);
             }
-            material.SetFloat("_Disolve", 1.1f - 1.1f / timeBeforeDeathStart * timeBeforeDeath);
-            material.SetFloat("_Smoothness", 0.5f - 0.5f / timeBeforeDeathStart * timeBeforeDeath);
+            foreach (Material mat in materials)
+            {
+                mat.SetFloat("_Disolve", 1.1f - 1.1f / timeBeforeDeathStart * timeBeforeDeath);
+                mat.SetFloat("_Smoothness", 0.5f - 0.5f / timeBeforeDeathStart * timeBeforeDeath);
+            }
             timeBeforeDeath -= Time.deltaTime;
 
             return;

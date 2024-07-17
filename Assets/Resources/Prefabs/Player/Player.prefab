@@ -282,7 +282,7 @@ MonoBehaviour:
   weaponWidth: 2
   bordersLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
 --- !u!50 &3115258818511747206
 Rigidbody2D:
   serializedVersion: 4

@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 8575704767037704492}
   - component: {fileID: 294619814262240970}
   - component: {fileID: 4996116084508741823}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Default Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,10 @@ MonoBehaviour:
   speedAcceleration: 0.3
   timeBeforeAgr: 0.6
   timeBeforeDeath: 3
-  material: {fileID: 2100000, guid: 960758a999df58345a6b79413e25ab8d, type: 2}
+  materials:
+  - {fileID: 2100000, guid: 960758a999df58345a6b79413e25ab8d, type: 2}
+  additionalAngle: -90
+  shakePower: 6
 --- !u!114 &1294991760373373768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +685,7 @@ MonoBehaviour:
   - {x: 0.10780239, y: -0.507094, z: 0}
   m_ShapePathHash: 1889948295
   m_Mesh: {fileID: 0}
-  m_InstanceId: 30952
+  m_InstanceId: 32876
   m_LocalBounds:
     m_Center: {x: 0.0041071177, y: -0.0055286884, z: 0}
     m_Extent: {x: 0.51450145, y: 0.51839674, z: 0}

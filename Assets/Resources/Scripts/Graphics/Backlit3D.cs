@@ -26,7 +26,7 @@ public class Backlit3D : MonoBehaviour
     public void Light()
     {
         lightTime += lightTimeSet / divisions;
-        Mathf.Clamp(lightTime, 0f, lightTimeSet);
+        lightTime = Mathf.Clamp(lightTime, 0f, lightTimeSet);
     }
 
     private void Start()

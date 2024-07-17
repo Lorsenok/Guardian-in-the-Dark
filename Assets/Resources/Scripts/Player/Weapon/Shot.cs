@@ -29,7 +29,6 @@ public class Shot : MonoBehaviour
     [SerializeField] private GameObject particles;
     [SerializeField] private float particlesDistance;
     [SerializeField] private GameObject bloodParticles;
-    [SerializeField] private float bloodParticlesDistance;
     [SerializeField] private float particlesZ;
 
     private SpriteRenderer spr;
@@ -40,8 +39,7 @@ public class Shot : MonoBehaviour
         {
             damageable.GetDamage(Damage);
             GetComponent<BoxCollider2D>().size = Vector2.zero;
-            particlesSpawner.localPosition = new Vector3(bloodParticlesDistance, 0, particlesZ);
-            Instantiate(bloodParticles, particlesSpawner.position, Quaternion.identity);
+            Instantiate(bloodParticles, collision.transform.position, Quaternion.identity);
         }
     }
 

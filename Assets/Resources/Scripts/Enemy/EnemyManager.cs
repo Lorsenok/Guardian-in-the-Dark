@@ -27,18 +27,18 @@ public class EnemyManager : MonoBehaviour
 
     private Lidar lidar;
 
-    private bool isEnemyAlive = false;
+    public bool IsEnemyAlive { get; set; } = false;
 
     private CinemachineImpulseSource shake;
 
-    private void OnEnemySpawn()
+    public void OnEnemySpawn()
     {
         spawnTime += (Config.EnemySpawnRate / spawnChance) / 2;
     }
 
-    private void OnEnemyDestroyed()
+    public void OnEnemyDestroyed()
     {
-        isEnemyAlive = false;
+        IsEnemyAlive = false;
     }
 
     private void SpawnEnemy()
@@ -49,12 +49,12 @@ public class EnemyManager : MonoBehaviour
 
             if (Input.GetMouseButton(0) && Vector2.Distance(position, player.position) >= minDistance && Vector2.Distance(position, player.position) <= maxDistance)
             {
-                Instantiate(enemy, position, Quaternion.identity);
+                Instantiate(enemy, position, Quaternion.identity).GetComponent<Enemy>().em = this;
                 spawnTime += Config.EnemySpawnRate / spawnChance;
                 OnEnemySpawned -= OnEnemySpawn;
                 OnEnemySpawned?.Invoke();
                 OnEnemySpawned += OnEnemySpawn;
-                isEnemyAlive = true;
+                IsEnemyAlive = true;
             }
         }
     }
@@ -76,10 +76,10 @@ public class EnemyManager : MonoBehaviour
             lidar = player.gameObject.GetComponent<Lidar>();
         }
 
-        if (spawnTime > 0 & !isEnemyAlive) spawnTime -= Time.deltaTime;
-        else if (!isEnemyAlive) SpawnEnemy();
+        if (spawnTime > 0 & !IsEnemyAlive) spawnTime -= Time.deltaTime;
+        else if (!IsEnemyAlive) SpawnEnemy();
 
-        if (isEnemyAlive)
+        if (IsEnemyAlive)
         {
             PostProcessingController.Instance.VignetteSet(vignetteSet, vignetteColor, changeSpeed);
             CameraShakeManager.instance.Shake(shake, shakeIntensity);
@@ -95,6 +95,7 @@ public class EnemyManager : MonoBehaviour
     private void OnDisable()
     {
         OnEnemySpawned -= OnEnemySpawn;
+        Enemy.OnEnemyDestroyed -= OnEnemyDestroyed;
     }
 
 }
