@@ -93,7 +93,6 @@ MonoBehaviour:
   particles: {fileID: 8006679710114775704, guid: de67b935e85a3be42a6f7108d590c493, type: 3}
   particlesDistance: 0.85
   bloodParticles: {fileID: 4683349287761498842, guid: 47c8538cf7905404089144e6e302a933, type: 3}
-  bloodParticlesDistance: 0.7
   particlesZ: 0
 --- !u!61 &1376092475176534820
 BoxCollider2D:

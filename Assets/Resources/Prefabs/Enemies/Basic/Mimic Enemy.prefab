@@ -559,10 +559,11 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 960758a999df58345a6b79413e25ab8d, type: 2}
   additionalAngle: -90
-  shakePower: 6
+  ShakePower: 8
   mainModel: {fileID: 1793306874071162534}
   mimicModel: {fileID: 4141255741129044151}
   dialogue: {fileID: 988823970376761805}
+  rotateSpeed: 4
   transformationSpeed: 3
 --- !u!114 &1294991760373373768
 MonoBehaviour:
@@ -691,7 +692,7 @@ MonoBehaviour:
   - {x: 0.10780239, y: -0.507094, z: 0}
   m_ShapePathHash: 1889948295
   m_Mesh: {fileID: 0}
-  m_InstanceId: 48158
+  m_InstanceId: 31980
   m_LocalBounds:
     m_Center: {x: 0.0041071177, y: -0.0055286884, z: 0}
     m_Extent: {x: 0.51450145, y: 0.51839674, z: 0}

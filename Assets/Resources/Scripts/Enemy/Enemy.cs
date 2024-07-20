@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] private float additionalAngle;
 
-    [SerializeField] private float shakePower;
+    public float ShakePower;
 
     public static Action OnEnemyDestroyed;
 
@@ -47,12 +47,12 @@ public class Enemy : MonoBehaviour, IDamageable
         OnEnemyDestroyed?.Invoke();
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform == player && PlayerManager.Instance.HP > 0)
         {
             PlayerManager.Instance.HP = 0;
-            CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), shakePower);
+            CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), ShakePower);
         }
     }
 
@@ -68,11 +68,18 @@ public class Enemy : MonoBehaviour, IDamageable
         timeBeforeDeathStart = timeBeforeDeath;
     }
 
-    protected void RotateTowardsPlayer()
+    protected void RotateTowardsPosition(Vector3 position)
     {
         Vector3 _diference = player.position - transform.position;
         float _rotateZ = Mathf.Atan2(_diference.y, _diference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, _rotateZ + additionalAngle);
+    }
+
+    protected void SmoothRotateTowardsPosition(float speed, Vector3 pos)
+    {
+        Vector3 _diference = pos - transform.position;
+        float _rotateZ = Mathf.Atan2(_diference.y, _diference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, _rotateZ + additionalAngle), speed * Time.deltaTime);
     }
 
     public virtual void Follow(Transform player)
@@ -105,7 +112,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         player = PlayerManager.Instance.GetPlayerPosition();
 
-        if (player != null) RotateTowardsPlayer();
+        if (player != null) RotateTowardsPosition(player.position);
     }
 
     protected float timeBeforeDeathStart;

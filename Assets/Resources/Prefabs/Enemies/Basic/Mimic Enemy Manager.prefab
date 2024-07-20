@@ -49,7 +49,8 @@ MonoBehaviour:
   maxDistance: 5
   spawnChance: 0.3
   spawnTime: 0
-  vignetteSet: 0.5
   changeSpeed: 1
+  vignetteSet: 0.5
   vignetteColor: {r: 1, g: 0, b: 0, a: 0}
+  chromaticAberrationSet: 1
   shakeIntensity: 0.02

@@ -18,9 +18,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float spawnTime;
 
     [Header("Post Processing")]
-    [SerializeField] private float vignetteSet;
     [SerializeField] private float changeSpeed;
+    [SerializeField] private float vignetteSet;
     [SerializeField] private Color vignetteColor;
+    [SerializeField] private float chromaticAberrationSet;
 
     [Header("Shake")]
     [SerializeField] private float shakeIntensity;
@@ -82,6 +83,7 @@ public class EnemyManager : MonoBehaviour
         if (IsEnemyAlive)
         {
             PostProcessingController.Instance.VignetteSet(vignetteSet, vignetteColor, changeSpeed);
+            PostProcessingController.Instance.ChromaticAberrationSet(chromaticAberrationSet, changeSpeed);
             CameraShakeManager.instance.Shake(shake, shakeIntensity);
         }
     }
