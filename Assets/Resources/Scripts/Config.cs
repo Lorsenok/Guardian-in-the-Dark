@@ -19,7 +19,7 @@ public class Config
     public static float SpeedMultiplier { get; set; } = 1.0f;
     public static int WeaponDamage { get; set; } = 1;
     public static float WeaponShootDelay { get; set; } = 0.25f;
-    public static float WeaponAccuracy { get; set; } = 0.1f;
+    public static float WeaponSpread { get; set; } = 0.1f;
     public static int WeaponAmmo { get; set; } = 10;
     public static float WeaponReloadTime { get; set; } = 1.0f;
 

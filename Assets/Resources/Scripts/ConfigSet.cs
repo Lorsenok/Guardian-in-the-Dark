@@ -21,7 +21,7 @@ public class ConfigSet : MonoBehaviour
     [SerializeField] float SpeedMultiplier = 1.0f;
     [SerializeField] int WeaponDamage = 1;
     [SerializeField] float WeaponShootDelay = 0.25f;
-    [SerializeField] float WeaponAccuracy = 0.1f;
+    [SerializeField] float WeaponSpread = 0.1f;
     [SerializeField] int WeaponAmmo = 10;
     [SerializeField] float WeaponReloadTime = 1.0f;
 
@@ -36,7 +36,7 @@ public class ConfigSet : MonoBehaviour
         Config.SpeedMultiplier = SpeedMultiplier;
         Config.WeaponDamage = WeaponDamage;
         Config.WeaponShootDelay = WeaponShootDelay;
-        Config.WeaponAccuracy = WeaponAccuracy;
+        Config.WeaponSpread = WeaponSpread;
         Config.WeaponAmmo = WeaponAmmo;
         Config.WeaponReloadTime = WeaponReloadTime;
     }

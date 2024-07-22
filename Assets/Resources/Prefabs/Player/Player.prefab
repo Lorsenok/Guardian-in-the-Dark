@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  acceleration: 1
   additionalRotate: 0
 --- !u!114 &8194793909913263527
 MonoBehaviour:
@@ -272,6 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsHoldingWeapon: 0
+  accuracy: 3
+  spreadDecrease: 8
+  minSpread: 0
+  maxSpread: 5
   delaySet: 1
   shootPosition: {fileID: 2163180274231787098}
   shootDirection: {fileID: 4343031306484503691}

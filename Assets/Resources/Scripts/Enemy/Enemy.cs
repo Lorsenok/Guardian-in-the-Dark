@@ -42,6 +42,11 @@ public class Enemy : MonoBehaviour, IDamageable
 
     protected Transform player;
 
+    protected void Shake(float power)
+    {
+        CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), power);
+    }
+
     private void OnDestroy()
     {
         OnEnemyDestroyed?.Invoke();
@@ -52,7 +57,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (collision.transform == player && PlayerManager.Instance.HP > 0)
         {
             PlayerManager.Instance.HP = 0;
-            CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), ShakePower);
+            Shake(ShakePower);
         }
     }
 

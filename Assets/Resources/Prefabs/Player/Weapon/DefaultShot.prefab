@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   additionalSize: 1
   inverse: 1
-  width: 0.065
+  width: 0.075
   colliderWorkTimeAfterShoot: 0.3
   obj: {fileID: 7643461924427099423}
   preObj: {fileID: 740595329866949763}

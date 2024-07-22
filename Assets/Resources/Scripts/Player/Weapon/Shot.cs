@@ -106,7 +106,7 @@ public class Shot : MonoBehaviour
             once = true;
         }
 
-        float acc = Config.WeaponAccuracy;
+        float acc = Config.WeaponSpread * Weapon.Instance.CurrectSpread;
 
         Vector3 _direction;
 

@@ -46,7 +46,7 @@ public class WormEnemy : Enemy
         base.OnCollisionEnter2D(collision);
         if (collision.gameObject.layer != gameObject.layer)
         {
-            CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), collideShakePower);
+            Shake(collideShakePower);
         }
     }
 

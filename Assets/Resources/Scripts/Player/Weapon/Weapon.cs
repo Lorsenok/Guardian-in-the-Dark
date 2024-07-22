@@ -13,6 +13,11 @@ public class Weapon : MonoBehaviour
 
     private Lidar lidar;
 
+    [SerializeField] private float accuracy;
+    [SerializeField] private float spreadDecrease;
+    [SerializeField] private float minSpread;
+    [SerializeField] private float maxSpread;
+
     [SerializeField] private float delaySet;
     public float Delay { get; set; }
 
@@ -33,14 +38,14 @@ public class Weapon : MonoBehaviour
     public float SpeedMultiplier { get; set; }
     public float WeaponDamage { get; set; }
     public float WeaponShootDelay { get; set; }
-    public float WeaponAccuracy { get; set; }
     public int WeaponAmmo { get; set; }
     public float CurrectWeaponAmmo { get; set; }
     public float WeaponReloadTime { get; set; }
     public float AdditionalReloadTime { get; set; } = 0;
     public float CurrectWeaponReloadTime { get; set; } = -0.01f;
 
-    //Currect values
+    public float CurrectSpread { get; set; } = 0f;
+
     private float shootDelay;
     private bool isReloading = false;
 
@@ -57,7 +62,6 @@ public class Weapon : MonoBehaviour
         SpeedMultiplier = Config.SpeedMultiplier;
         WeaponDamage = Config.WeaponDamage;
         WeaponShootDelay = Config.WeaponShootDelay;
-        WeaponAccuracy = Config.WeaponAccuracy;
         WeaponAmmo = Config.WeaponAmmo;
         WeaponReloadTime = Config.WeaponReloadTime;
 
@@ -108,6 +112,7 @@ public class Weapon : MonoBehaviour
                 CurrectWeaponAmmo -= 1;
                 CameraShakeManager.instance.Shake(WeaponShake, WeaponDamage * shakePower);
                 shootDelay += shootVariation.Shoot(shootPosition, shootDirection);
+                CurrectSpread += accuracy;
             }
         }
         else
@@ -118,6 +123,7 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            CurrectSpread = minSpread;
             if (CurrectWeaponReloadTime <= -0.01f)
             {
                 CurrectWeaponReloadTime = (WeaponReloadTime + AdditionalReloadTime) / SpeedMultiplier;
@@ -130,5 +136,8 @@ public class Weapon : MonoBehaviour
             isReloading = false;
         }
         if (CurrectWeaponReloadTime > -0.01f) CurrectWeaponReloadTime -= Time.deltaTime;
+
+        CurrectSpread -= Time.deltaTime * spreadDecrease;
+        CurrectSpread = Mathf.Clamp(CurrectSpread, minSpread, maxSpread);
     }
 }

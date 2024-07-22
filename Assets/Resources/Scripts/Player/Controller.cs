@@ -7,6 +7,9 @@ public class Controller : MonoBehaviour
     public static bool CanMove { get; set; } = true;
 
     [SerializeField] private float speed;
+    [SerializeField] private float acceleration;
+    public float CurrectSpeed { get; set; }
+
     [SerializeField] private float additionalRotate;
     private float speedMultiplier;
 
@@ -15,6 +18,7 @@ public class Controller : MonoBehaviour
     private void Start()
     {
         speedMultiplier = Config.SpeedMultiplier;
+        CurrectSpeed = speed;
 
         rg = GetComponent<Rigidbody2D>();
     }
@@ -23,7 +27,7 @@ public class Controller : MonoBehaviour
     {
         Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector2 normalizedMovement = new Vector2(Mathf.Abs(movement.x), Mathf.Abs(movement.y)).normalized;
-        rg.velocity = movement * normalizedMovement * speed * speedMultiplier;
+        rg.velocity = movement * normalizedMovement * CurrectSpeed * speedMultiplier;
     }
 
     private void Rotate()
@@ -36,6 +40,7 @@ public class Controller : MonoBehaviour
     private void Update()
     {
         if (!CanMove) return;
+        CurrectSpeed = Mathf.Lerp(CurrectSpeed, speed, Time.deltaTime * acceleration);
         Rotate();
     }
 
