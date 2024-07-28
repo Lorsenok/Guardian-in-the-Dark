@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WormSection : MonoBehaviour
+public class WingedEnemyWing : MonoBehaviour
 {
-    public Enemy Enemy { get; set; }
+    [SerializeField] private Enemy Enemy;
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform == PlayerManager.Instance.GetPlayerPosition() && PlayerManager.Instance.HP > 0)
         {

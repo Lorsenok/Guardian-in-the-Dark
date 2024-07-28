@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DisolvingObject : MonoBehaviour
 {
+    [SerializeField] private bool opacity = true;
     [SerializeField] private float aliveTime;
     private float startTime;
 
@@ -22,7 +23,8 @@ public class DisolvingObject : MonoBehaviour
             Destroy(gameObject);
         }
 
-        spr.color = new Color(spr.color.r, spr.color.g, spr.color.b, aliveTime / startTime);
+        if (opacity) spr.color = new Color(spr.color.r, spr.color.g, spr.color.b, aliveTime / startTime);
+        else spr.color = new Color(spr.color.r, spr.color.g, spr.color.b, 1);
 
         aliveTime -= Time.deltaTime;
     }

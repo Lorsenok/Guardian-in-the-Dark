@@ -11,8 +11,6 @@ public class StunnerEnemy : Enemy
     private bool hasStunnedPlayer = false;
     private Controller controller;
 
-    [SerializeField] private Light[] lights;
-
     public override void GetDamage(int damage)
     {
         hp -= damage;
@@ -23,19 +21,6 @@ public class StunnerEnemy : Enemy
     {
         base.Start();
         controller = player.GetComponentInChildren<Controller>();
-    }
-
-    public override void Die()
-    {
-        base.Die();
-        foreach (LightSet3D light in GetComponentsInChildren<LightSet3D>())
-        {
-            light.enabled = false;
-        }
-        foreach (Light l in lights)
-        {
-            l.intensity = Mathf.Lerp(l.intensity, 0, Time.deltaTime);
-        }
     }
 
     public override void Update()

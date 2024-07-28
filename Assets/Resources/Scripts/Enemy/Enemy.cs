@@ -4,6 +4,7 @@ using Pathfinding.Examples;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected float timeBeforeAgr;
     [SerializeField] protected float timeBeforeDeath;
 
+    [SerializeField] private Light[] lights;
     [SerializeField] protected Material[] materials;
 
     [SerializeField] private float additionalAngle;
@@ -147,6 +149,19 @@ public class Enemy : MonoBehaviour, IDamageable
                 mat.SetFloat("_Disolve", 1.1f - 1.1f / timeBeforeDeathStart * timeBeforeDeath);
                 mat.SetFloat("_Smoothness", 0.5f - 0.5f / timeBeforeDeathStart * timeBeforeDeath);
             }
+
+            foreach (LightSet3D light in GetComponentsInChildren<LightSet3D>())
+            {
+                light.enabled = false;
+            }
+            if (lights != null)
+            {
+                foreach (Light l in lights)
+                {
+                    l.intensity = Mathf.Lerp(l.intensity, 0, Time.deltaTime);
+                }
+            }
+
             timeBeforeDeath -= Time.deltaTime;
 
             return;

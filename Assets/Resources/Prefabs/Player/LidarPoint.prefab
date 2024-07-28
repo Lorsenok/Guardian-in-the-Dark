@@ -97,4 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda31aead9197274bb49fa4daace5751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aliveTime: 60
+  opacity: 1
+  aliveTime: 120

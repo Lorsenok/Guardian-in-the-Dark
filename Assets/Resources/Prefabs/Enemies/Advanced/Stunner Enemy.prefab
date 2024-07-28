@@ -556,6 +556,9 @@ MonoBehaviour:
   speedAcceleration: 0.1
   timeBeforeAgr: 0.6
   timeBeforeDeath: 3
+  lights:
+  - {fileID: 5504980173327487906}
+  - {fileID: 2163115152560963514}
   materials:
   - {fileID: 2100000, guid: dc499b66fb14c1f4daa1f6ee88066a98, type: 2}
   additionalAngle: -90
@@ -689,7 +692,7 @@ MonoBehaviour:
   - {x: 0.10780239, y: -0.507094, z: 0}
   m_ShapePathHash: 1889948295
   m_Mesh: {fileID: 0}
-  m_InstanceId: 33874
+  m_InstanceId: 44740
   m_LocalBounds:
     m_Center: {x: 0.0041071177, y: -0.0055286884, z: 0}
     m_Extent: {x: 0.51450145, y: 0.51839674, z: 0}
