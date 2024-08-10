@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WingedEnemyWing : MonoBehaviour
+public sealed class WingedEnemyWing : MonoBehaviour
 {
     [SerializeField] private Enemy Enemy;
 

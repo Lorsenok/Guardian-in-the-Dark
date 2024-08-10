@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WormSection : MonoBehaviour
+public sealed class WormSection : MonoBehaviour
 {
     public Enemy Enemy { get; set; }
 

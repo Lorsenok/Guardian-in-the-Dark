@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public sealed class EnemyManager : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] private GameObject enemy;
     [SerializeField] private float minDistance;
     [SerializeField] private float maxDistance;
     [SerializeField, Range(0.001f, 1f)] private float spawnChance;
+
+    [SerializeField] private float additionalHPLose = 2.5f;
 
     public static Action OnEnemySpawned;
 
@@ -40,6 +42,7 @@ public class EnemyManager : MonoBehaviour
     public void OnEnemyDestroyed()
     {
         IsEnemyAlive = false;
+        PlayerManager.Instance.AdditionalHPLossSpeed = 0;
     }
 
     private void SpawnEnemy()
@@ -82,6 +85,7 @@ public class EnemyManager : MonoBehaviour
 
         if (IsEnemyAlive)
         {
+            PlayerManager.Instance.AdditionalHPLossSpeed = additionalHPLose;
             PostProcessingController.Instance.VignetteSet(vignetteSet, vignetteColor, changeSpeed);
             PostProcessingController.Instance.ChromaticAberrationSet(chromaticAberrationSet, changeSpeed);
             CameraShakeManager.instance.Shake(shake, shakeIntensity);

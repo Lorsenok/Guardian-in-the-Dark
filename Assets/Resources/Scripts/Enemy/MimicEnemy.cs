@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MimicEnemy : Enemy
+public sealed class MimicEnemy : Enemy
 {
     [Header("Mimic")]
     [SerializeField] private GameObject mainModel;

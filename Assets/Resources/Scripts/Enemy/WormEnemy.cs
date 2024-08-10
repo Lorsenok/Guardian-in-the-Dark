@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WormEnemy : Enemy
+public sealed class WormEnemy : Enemy
 {
     [Header("Worm")]
     [SerializeField] private float force;

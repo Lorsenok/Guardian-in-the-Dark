@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StunnerEnemy : Enemy
+public sealed class StunnerEnemy : Enemy
 {
     [Header("Stunner")]
     [SerializeField] private float speedSet;

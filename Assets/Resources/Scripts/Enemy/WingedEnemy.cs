@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WingedEnemy : Enemy
+public sealed class WingedEnemy : Enemy
 {
     [Header("Winged")]
     [SerializeField] private float attackTime;
