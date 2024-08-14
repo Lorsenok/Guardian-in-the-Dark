@@ -32,10 +32,13 @@ public sealed class EnemyManager : MonoBehaviour
 
     public bool IsEnemyAlive { get; set; } = false;
 
+    public static Enemy LastEnemy { get; private set; }
+
     private CinemachineImpulseSource shake;
 
     public void OnEnemySpawn()
     {
+        IsEnemyAlive = true;
         spawnTime += (Config.EnemySpawnRate / spawnChance) / 2;
     }
 
@@ -53,7 +56,8 @@ public sealed class EnemyManager : MonoBehaviour
 
             if (Input.GetMouseButton(0) && Vector2.Distance(position, player.position) >= minDistance && Vector2.Distance(position, player.position) <= maxDistance)
             {
-                Instantiate(enemy, position, Quaternion.identity).GetComponent<Enemy>().em = this;
+                LastEnemy = Instantiate(enemy, position, Quaternion.identity).GetComponent<Enemy>();
+                LastEnemy.em = this;
                 spawnTime += Config.EnemySpawnRate / spawnChance;
                 OnEnemySpawned -= OnEnemySpawn;
                 OnEnemySpawned?.Invoke();

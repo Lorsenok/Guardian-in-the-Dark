@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private Vector2 playerSpawnOffset;
+    [SerializeField] private Vector2 playerSpawnPosition;
 
     [SerializeField] private float hpLossSpeed;
 
@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        playerController = Instantiate(playerPrefab, playerSpawnOffset, Quaternion.identity).GetComponent<Controller>();
+        playerController = Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity).GetComponent<Controller>();
     }
 
     private void Start()

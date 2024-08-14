@@ -246,7 +246,7 @@ MonoBehaviour:
   differenceMultiplier: 1.8
   collideLayer:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 243
   pointPrefab: {fileID: 9001468137860730297, guid: 3b5f36c793bb4dc4280719c1f8891566, type: 3}
   pointDirection: {fileID: 5809740845891231347}
   startColorList:

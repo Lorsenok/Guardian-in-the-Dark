@@ -11,7 +11,7 @@ using UnityEngine.Rendering.Universal;
 public interface IDamageable
 {
     void GetDamage(int damage);
-    void Die();
+    void Die(bool fromWeapon = true);
 }
 
 public class Enemy : MonoBehaviour, IDamageable
@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public static Action OnEnemyDestroyed;
 
     protected bool isDead = false;
+    private bool isDeadFromWeapon = true;
 
     protected Rigidbody2D rg;
     protected AIPath follow;
@@ -69,10 +70,22 @@ public class Enemy : MonoBehaviour, IDamageable
         currectSpeed = 0;
     }
 
-    public virtual void Die()
+    public virtual void Die(bool fromWeapon = true)
     {
         isDead = true;
         timeBeforeDeathStart = timeBeforeDeath;
+        isDeadFromWeapon = fromWeapon;
+
+        backlit.enabled = false;
+        lightSet = GetComponentsInChildren<LightSet3D>();
+        follow.enabled = false;
+
+        startLightingIntensity = backlit.Lighting.intensity;
+
+        foreach (LightSet3D light in lightSet)
+        {
+            light.enabled = false;
+        }
     }
 
     protected void RotateTowardsPosition(Vector3 position)
@@ -123,37 +136,29 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     protected float timeBeforeDeathStart;
+
+    private LightSet3D[] lightSet;
+
+    private float startLightingIntensity;
+
     public virtual void Update()
     {
         if (isDead)
         {
-            GetComponent<AIPath>().enabled = false;
+            backlit.Lighting.intensity = startLightingIntensity / timeBeforeDeathStart * timeBeforeDeath;
 
-            if (backlit.enabled)
+            if (timeBeforeDeath <= -0.35f)
             {
-                backlit.enabled = false;
-            }
-            else
-            {
-                backlit.Lighting.intensity = Mathf.Lerp(backlit.Lighting.intensity, 0, Time.deltaTime * 10);
-            }
-
-            if (timeBeforeDeath <= 0)
-            {
-                foreach (Material mat in materials) 
+                foreach (Material mat in materials)
                     mat.SetFloat("_Disolve", 0);
                 Destroy(gameObject);
             }
             foreach (Material mat in materials)
             {
-                mat.SetFloat("_Disolve", 1.1f - 1.1f / timeBeforeDeathStart * timeBeforeDeath);
-                mat.SetFloat("_Smoothness", 0.5f - 0.5f / timeBeforeDeathStart * timeBeforeDeath);
+                if (isDeadFromWeapon) mat.SetFloat("_Disolve", 1.1f - 1.1f / timeBeforeDeathStart * timeBeforeDeath);
+                mat.SetFloat("_Smoothness", 0.5f / timeBeforeDeathStart * timeBeforeDeath);
             }
 
-            foreach (LightSet3D light in GetComponentsInChildren<LightSet3D>())
-            {
-                light.enabled = false;
-            }
             if (lights != null)
             {
                 foreach (Light l in lights)
@@ -163,6 +168,12 @@ public class Enemy : MonoBehaviour, IDamageable
             }
 
             timeBeforeDeath -= Time.deltaTime;
+
+            if (!isDeadFromWeapon)
+            {
+                Vector3 dir = (transform.position - player.position).normalized;
+                rg.velocity += new Vector2(dir.x, dir.y) * Time.deltaTime;
+            }
 
             return;
         }
