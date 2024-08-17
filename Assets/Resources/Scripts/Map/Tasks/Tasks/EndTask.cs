@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndTask : Task
+public sealed class EndTask : Task
 {
     public override bool Check()
     {

@@ -27,11 +27,14 @@ public class TaskManager : MonoBehaviour
     {
         Task curTask = null;
 
-        foreach (Task task in tasks)
+        if (tasks.Count > 0)
         {
-            if (task.Check())
+            foreach (Task task in tasks)
             {
-                curTask = task;
+                if (task.Check())
+                {
+                    curTask = task;
+                }
             }
         }
 

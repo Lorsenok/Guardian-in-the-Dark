@@ -15,6 +15,7 @@ public class Backlit3D : MonoBehaviour
     [SerializeField] private float lightTimeSet;
     [SerializeField] private float intensity;
     [SerializeField] private float divisions;
+    [SerializeField] private bool coloringByLight;
     private float lightTime;
 
     private float startSmoothness;
@@ -40,8 +41,17 @@ public class Backlit3D : MonoBehaviour
     private float curLight;
     private void Update()
     {
-        material.color = Color.Lerp(material.color, colorSet, Time.deltaTime * appearSpeed);
-        material.SetFloat("_Smoothness", Mathf.Lerp(material.GetFloat("_Smoothness"), startSmoothness, appearSpeed));
+        if (!coloringByLight)
+        {
+            material.color = Color.Lerp(material.color, colorSet, Time.deltaTime * appearSpeed);
+            material.SetFloat("_Smoothness", Mathf.Lerp(material.GetFloat("_Smoothness"), startSmoothness, appearSpeed));
+        }
+        else
+        {
+            material.color = Color.Lerp(material.color, colorSet / lightTimeSet * lightTime, Time.deltaTime * appearSpeed);
+            material.SetFloat("_Smoothness", Mathf.Lerp(material.GetFloat("_Smoothness"), startSmoothness / lightTimeSet * lightTime, Time.deltaTime * appearSpeed));
+        }
+
         if (lightTime > 0) lightTime -= Time.deltaTime * dissapearSpeed;
 
         curLight = 1 / lightTimeSet * lightTime;
