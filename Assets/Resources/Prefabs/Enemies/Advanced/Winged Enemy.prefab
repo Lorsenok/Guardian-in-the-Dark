@@ -1034,6 +1034,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f3c861a019841bd499bc103b7b7c1d5d, type: 2}
   - {fileID: 2100000, guid: bc4ac23c87bb01847acbe8d03f7a5059, type: 2}
   additionalAngle: -90
+  fallSpeed: 0.5
   ShakePower: 6
   attackTime: 0.5
   attackForce: 8

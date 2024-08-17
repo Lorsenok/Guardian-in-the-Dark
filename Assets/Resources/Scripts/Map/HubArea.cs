@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class HubArea : MonoBehaviour
 {
+    public static bool IsOnPlayer { get; private set; } = false;
+
     private float curHP;
-    private bool onPlayer = false;
     private bool isEnemyAlive = false;
 
     private void OnEnable()
@@ -27,7 +28,7 @@ public class HubArea : MonoBehaviour
     {
         if (collision.GetComponent<Controller>())
         {
-            onPlayer = true;
+            IsOnPlayer = true;
             curHP = PlayerManager.Instance.HP;
         }
     }
@@ -36,13 +37,13 @@ public class HubArea : MonoBehaviour
     {
         if (collision.GetComponent<Controller>())
         {
-            onPlayer = false;
+            IsOnPlayer = false;
         }
     }
 
     private void Update()
     {
-        if (onPlayer)
+        if (IsOnPlayer)
         {
             PlayerManager.Instance.HP = curHP;
 

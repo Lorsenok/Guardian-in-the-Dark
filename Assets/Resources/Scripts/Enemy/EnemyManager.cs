@@ -24,6 +24,7 @@ public sealed class EnemyManager : MonoBehaviour
     [SerializeField] private float vignetteSet;
     [SerializeField] private Color vignetteColor;
     [SerializeField] private float chromaticAberrationSet;
+    [SerializeField] private float bloomSet = 100;
 
     [Header("Shake")]
     [SerializeField] private float shakeIntensity;
@@ -92,6 +93,7 @@ public sealed class EnemyManager : MonoBehaviour
             PlayerManager.Instance.AdditionalHPLossSpeed = additionalHPLose;
             PostProcessingController.Instance.VignetteSet(vignetteSet, vignetteColor, changeSpeed);
             PostProcessingController.Instance.ChromaticAberrationSet(chromaticAberrationSet, changeSpeed);
+            PostProcessingController.Instance.BloomSet(bloomSet, changeSpeed);
             CameraShakeManager.instance.Shake(shake, shakeIntensity);
         }
     }

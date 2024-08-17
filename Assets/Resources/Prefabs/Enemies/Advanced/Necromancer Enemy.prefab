@@ -562,6 +562,7 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 025adc3df5593bd44b081994135b8f40, type: 2}
   additionalAngle: -90
+  fallSpeed: 0.5
   ShakePower: 6
   minDistance: 6
   maxDistance: 12

@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 15
-  speed: 2.75
+  speed: 2.6
   acceleration: 0.6
   speedAcceleration: 0.1
   timeBeforeAgr: 0.6
@@ -562,6 +562,7 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: dc499b66fb14c1f4daa1f6ee88066a98, type: 2}
   additionalAngle: -90
+  fallSpeed: 0.5
   ShakePower: 3
   speedSet: 0.5
   startShakePower: 6

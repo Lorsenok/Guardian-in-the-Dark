@@ -26,10 +26,12 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected float timeBeforeAgr;
     [SerializeField] protected float timeBeforeDeath;
 
-    [SerializeField] private Light[] lights;
+    [SerializeField] protected Light[] lights;
     [SerializeField] protected Material[] materials;
 
-    [SerializeField] private float additionalAngle;
+    [SerializeField] protected float additionalAngle;
+
+    [SerializeField] protected float fallSpeed;
 
     public float ShakePower;
 
@@ -174,6 +176,8 @@ public class Enemy : MonoBehaviour, IDamageable
                 Vector3 dir = (transform.position - player.position).normalized;
                 rg.velocity += new Vector2(dir.x, dir.y) * Time.deltaTime;
             }
+
+            transform.position += new Vector3(0, 0, fallSpeed * Time.deltaTime);
 
             return;
         }

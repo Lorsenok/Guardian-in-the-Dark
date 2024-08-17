@@ -54,4 +54,5 @@ MonoBehaviour:
   vignetteSet: 0.5
   vignetteColor: {r: 0.72569805, g: 0, b: 0.8490566, a: 0}
   chromaticAberrationSet: 1
+  bloomSet: 100
   shakeIntensity: 0.02

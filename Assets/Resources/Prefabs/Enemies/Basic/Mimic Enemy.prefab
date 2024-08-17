@@ -562,6 +562,7 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 960758a999df58345a6b79413e25ab8d, type: 2}
   additionalAngle: -90
+  fallSpeed: 0.5
   ShakePower: 8
   mainModel: {fileID: 1793306874071162534}
   mimicModel: {fileID: 4141255741129044151}

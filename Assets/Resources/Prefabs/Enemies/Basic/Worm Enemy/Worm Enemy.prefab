@@ -402,12 +402,14 @@ MonoBehaviour:
   speedAcceleration: 0.2
   timeBeforeAgr: 0.6
   timeBeforeDeath: 3
+  lights: []
   materials:
   - {fileID: 2100000, guid: 501260c8a3637dc4db2eba162e6eaa1e, type: 2}
   - {fileID: 2100000, guid: d2c82a99c52a0094999e8038fc5400aa, type: 2}
   - {fileID: 2100000, guid: e86f5cfda198740439fb862d8a6e9388, type: 2}
   - {fileID: 2100000, guid: 726304b8052df1142a43ae1a9794ba17, type: 2}
   additionalAngle: -90
+  fallSpeed: 0
   ShakePower: 12
   force: 40
   impulseDelay: 2
