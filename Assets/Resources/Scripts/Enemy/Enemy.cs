@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour, IDamageable
         lightSet = GetComponentsInChildren<LightSet3D>();
         follow.enabled = false;
 
-        startLightingIntensity = backlit.Lighting.intensity;
+        if (backlit != null) startLightingIntensity = backlit.Lighting.intensity;
 
         foreach (LightSet3D light in lightSet)
         {

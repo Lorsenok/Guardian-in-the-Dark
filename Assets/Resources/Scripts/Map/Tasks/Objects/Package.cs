@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Package : MonoBehaviour
+public sealed class Package : UsableObject
 {
     public static Package Instance { get; private set; }
 
@@ -29,26 +29,6 @@ public class Package : MonoBehaviour
     private Color startTextColor;
 
     public bool HasTaken { get; private set; } = false;
-
-    private bool canBeTaked = false;
-
-    private Controller player;
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<Controller>(out player))
-        {
-            canBeTaked = true;
-        }
-    }
-
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<Controller>(out player))
-        {
-            canBeTaked = false;
-        }
-    }
      
     private void OnDisable()
     {

@@ -13,7 +13,6 @@ public class Config
     public static float MapSize { get; set; } = 1.0f;
     public static float EnemySpawnRate { get; set; } = 10f;
     public static List<GameObject> EnemyManagers { get; set; }
-    //here also will be task
 
     //Weapon settings
     public static float SpeedMultiplier { get; set; } = 1.0f;

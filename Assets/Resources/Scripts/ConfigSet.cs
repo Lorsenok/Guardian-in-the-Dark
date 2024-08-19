@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConfigSet : MonoBehaviour
 {
-    //DELETE THIS SHIT BEFORE CREATING MENU xd
+    //DELETE THIS SHIT AFTER CREATING MENU xd
 
     [Header("Game Settings")]
     [SerializeField] float Volume = 1.0f;
@@ -15,7 +15,6 @@ public class ConfigSet : MonoBehaviour
     [SerializeField] float MapSize = 1.0f;
     [SerializeField] float EnemySpawnRate = 60f;
     [SerializeField] List<GameObject> EnemyManagers;
-    //here also will be task
 
     //Weapon settings
     [SerializeField] float SpeedMultiplier = 1.0f;

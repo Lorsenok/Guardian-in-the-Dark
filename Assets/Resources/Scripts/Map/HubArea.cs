@@ -19,7 +19,7 @@ public class HubArea : MonoBehaviour
         EnemyManager.OnEnemySpawned -= OnEnemySpawn;
     }
 
-    public void OnEnemySpawn()
+    private void OnEnemySpawn()
     {
         isEnemyAlive = true;
     }
@@ -43,6 +43,8 @@ public class HubArea : MonoBehaviour
 
     private void Update()
     {
+        if (EnemyManager.LastEnemy == null) isEnemyAlive = false;
+
         if (IsOnPlayer)
         {
             PlayerManager.Instance.HP = curHP;

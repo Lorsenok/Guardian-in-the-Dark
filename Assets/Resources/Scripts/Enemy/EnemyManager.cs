@@ -85,8 +85,11 @@ public sealed class EnemyManager : MonoBehaviour
             lidar = player.gameObject.GetComponent<Lidar>();
         }
 
-        if (spawnTime > 0 & !IsEnemyAlive) spawnTime -= Time.deltaTime;
-        else if (!IsEnemyAlive) SpawnEnemy();
+        if (!HubArea.IsOnPlayer)
+        {
+            if (spawnTime > 0 & !IsEnemyAlive) spawnTime -= Time.deltaTime;
+            else if (!IsEnemyAlive) SpawnEnemy();
+        }
 
         if (IsEnemyAlive)
         {

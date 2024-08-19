@@ -64,11 +64,11 @@ public class PlayerManager : MonoBehaviour
 
         foreach (Light l in playerController.GetComponentsInChildren<Light>())
         {
-            l.intensity -= Time.deltaTime * disolveSpeed;
+            l.intensity -= Mathf.Lerp(l.intensity, 0, Time.deltaTime * disolveSpeed);
         }
         foreach (Light2D l in playerController.GetComponentsInChildren<Light2D>())
         {
-            l.intensity -= Time.deltaTime * disolveSpeed;
+            l.intensity -= Mathf.Lerp(l.intensity, 0, Time.deltaTime * disolveSpeed);
         }
 
         if (playerMaterial.GetFloat("_Disolve") >= dissapearTime)
