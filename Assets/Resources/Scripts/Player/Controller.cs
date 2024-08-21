@@ -39,7 +39,11 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        if (!CanMove) return;
+        if (!CanMove)
+        {
+            rg.velocity = Vector2.zero;
+            return;
+        }
         CurrectSpeed = Mathf.Lerp(CurrectSpeed, speed, Time.deltaTime * acceleration);
         Rotate();
     }

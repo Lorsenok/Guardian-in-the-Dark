@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class CameraSetup : MonoBehaviour
 {
+    public static CameraSetup Instance { get; private set; }
+
     [SerializeField] private float speed;
 
+    public Camera Camera2D { get; private set; }
+    public Camera Camera3D { get; private set; }
+
+    [SerializeField] private Camera camera2D;
+    [SerializeField] private Camera camera3D;
+
     private Transform player;
+
+    private void Awake()
+    {
+        Instance = this;
+
+        Camera2D = camera2D;
+        Camera3D = camera3D;
+    }
 
     private void FixedUpdate() // I haven't use cinemachine follow bc its follow player is not convenient
     {

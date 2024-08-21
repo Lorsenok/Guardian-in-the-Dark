@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7491963422461522601}
   - component: {fileID: 8262073259789760337}
   - component: {fileID: 6860316068704260328}
+  - component: {fileID: 6048511154200308912}
   - component: {fileID: 5091054830597412831}
   m_Layer: 0
   m_Name: Package
@@ -150,9 +151,26 @@ MonoBehaviour:
   lightTimeSet: 1
   intensity: 5
   divisions: 1
-  coloringByLight: 1
+  isColoringByLight: 0
   Lighting: {fileID: 82434006229055630}
   material: {fileID: 2100000, guid: c8f18e789a8f57c4ca4077225393dee9, type: 2}
+  additionalMaterials: []
+--- !u!114 &6048511154200308912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914717438125049624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ea89a8582ed844ba4f6096d087cb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 1, b: 0, a: 0}
+  speed: 5
+  lightTimeSet: 999
+  Lighting: {fileID: 6451260104037560525}
 --- !u!114 &5091054830597412831
 MonoBehaviour:
   m_ObjectHideFlags: 0

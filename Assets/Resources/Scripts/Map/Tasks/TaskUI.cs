@@ -21,6 +21,7 @@ public class TaskUI : MonoBehaviour
     [SerializeField] private float updateShowTimeSet;
     private float updateShowTime;
 
+    [SerializeField] private Transform[] additionalPanels;
 
     [Header("Visuals")]
     [SerializeField] private float textDissapearDelaySet;
@@ -160,6 +161,14 @@ public class TaskUI : MonoBehaviour
             isOnUpdateEnd = false;
 
             if (showAtEnd) updateShowTime = updateShowTimeSet * 1.5f;
+        }
+
+        if (additionalPanels != null)
+        {
+            foreach (Transform panel in  additionalPanels)
+            {
+                panel.position = new(transform.position.x, panel.position.y);
+            }
         }
     }
 }
