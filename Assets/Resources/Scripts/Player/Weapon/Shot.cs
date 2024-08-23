@@ -31,11 +31,14 @@ public class Shot : MonoBehaviour
     [SerializeField] private GameObject bloodParticles;
     [SerializeField] private float particlesZ;
 
+    [SerializeField] private bool stopPlayer = false;
+    [SerializeField] private float stopPlayerSpeed;
+
     private SpriteRenderer spr;
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<IDamageable>(out IDamageable damageable) & TimeBeforeShot <= 0)
+        if (collision.TryGetComponent(out IDamageable damageable) & TimeBeforeShot <= 0)
         {
             damageable.GetDamage(Damage);
             GetComponent<BoxCollider2D>().size = Vector2.zero;
@@ -81,6 +84,11 @@ public class Shot : MonoBehaviour
 
         if (!shooted || TimeBeforeShot > 0)
         {
+            if (stopPlayer && TimeBeforeShot > 0)
+            {
+                Controller.Instance.CurrectSpeed = stopPlayerSpeed;
+            }
+
             if (!once)
             {
                 transform.position = position.position;
@@ -106,7 +114,7 @@ public class Shot : MonoBehaviour
             once = true;
         }
 
-        float acc = Config.WeaponSpread * Weapon.Instance.CurrectSpread;
+        float acc = Config.WeaponSpread * Weapon.Instance.LastSpread;
 
         Vector3 _direction;
 

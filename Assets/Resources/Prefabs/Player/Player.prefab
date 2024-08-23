@@ -106,8 +106,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318493045300488484}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1075996, y: 0, z: 11.1793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1302998, y: 0.01, z: 31.1793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -273,8 +273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsHoldingWeapon: 0
-  accuracy: 3
-  spreadDecrease: 8
+  accuracy: 5
+  spreadDecrease: 2.5
   minSpread: 0
   maxSpread: 5
   delaySet: 1
@@ -906,7 +906,7 @@ Transform:
   m_GameObject: {fileID: 4470455464715307783}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.59, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1223,7 +1223,7 @@ Transform:
   m_GameObject: {fileID: 7465872040920677479}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4075997, y: 0, z: 11.1793}
+  m_LocalPosition: {x: 1.4303, y: 0.01, z: 31.1793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

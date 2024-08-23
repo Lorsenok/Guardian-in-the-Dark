@@ -9,7 +9,6 @@ public sealed class StunnerEnemy : Enemy
     [SerializeField] private float startShakePower;
 
     private bool hasStunnedPlayer = false;
-    private Controller controller;
 
     public override void GetDamage(int damage)
     {
@@ -20,7 +19,6 @@ public sealed class StunnerEnemy : Enemy
     public override void Start()
     {
         base.Start();
-        controller = player.GetComponentInChildren<Controller>();
     }
 
     public override void Update()
@@ -33,7 +31,6 @@ public sealed class StunnerEnemy : Enemy
             Shake(startShakePower);
         }
 
-        controller.CurrectSpeed = speedSet;
-
+        Controller.Instance.CurrectSpeed = speedSet;
     }
 }

@@ -2,7 +2,6 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.LightAnchor;
 
 public class Weapon : MonoBehaviour
 {
@@ -44,16 +43,17 @@ public class Weapon : MonoBehaviour
     public float AdditionalReloadTime { get; set; } = 0;
     public float CurrectWeaponReloadTime { get; set; } = -0.01f;
 
-    public float CurrectSpread { get; set; } = 0f;
+    public float CurrectSpread { get; private set; } = 0f;
+    public float LastSpread { get; private set; } = 0f;
 
     private float shootDelay;
     private bool isReloading = false;
 
-    public static Weapon Instance;
+    public static Weapon Instance { get; private set; }
 
     private void Start()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
 
         lidar = GetComponent<Lidar>();
         shootVariation = FindObjectOfType<ShootVariation>(); // FindObjectOfType imao
@@ -112,6 +112,7 @@ public class Weapon : MonoBehaviour
                 CurrectWeaponAmmo -= 1;
                 CameraShakeManager.instance.Shake(WeaponShake, WeaponDamage * shakePower);
                 shootDelay += shootVariation.Shoot(shootPosition, shootDirection);
+                LastSpread = CurrectSpread;
                 CurrectSpread += accuracy;
             }
         }

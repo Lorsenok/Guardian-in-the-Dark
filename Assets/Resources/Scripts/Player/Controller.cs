@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    public static Controller Instance { get; private set; }
+
     public static bool CanMove { get; set; } = true;
 
     [SerializeField] private float speed;
@@ -21,6 +23,8 @@ public class Controller : MonoBehaviour
         CurrectSpeed = speed;
 
         rg = GetComponent<Rigidbody2D>();
+
+        Instance = this;
     }
 
     private void Move() // It looks a little bit strange, maybe i need to fix it then

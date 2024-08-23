@@ -51,20 +51,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   additionalSize: 1
   inverse: 1
-  width: 0.065
+  width: 0.1
   colliderWorkTimeAfterShoot: 0.3
   obj: {fileID: 7643461924427099423}
   preObj: {fileID: 8840603071776883450}
   preObjSizeGrown: {x: 1, y: 1}
   preObjSizeGrownSpeed: 3
   shake: 1
-  shakePower: 5
+  shakePower: 10
   particlesSpawner: {fileID: 2377818019442390124}
   particles: {fileID: 8006679710114775704, guid: c940d34baa58f234592f165c81c494f8, type: 3}
   particlesDistance: 0.85
   bloodParticles: {fileID: 4683349287761498842, guid: 65a973e731f1bd14094d895c6af037c1, type: 3}
-  bloodParticlesDistance: 0.7
   particlesZ: 0
+  stopPlayer: 1
+  stopPlayerSpeed: 2
 --- !u!114 &8741038774463873049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda31aead9197274bb49fa4daace5751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  opacity: 1
   aliveTime: 10
 --- !u!1 &8840603071776883450
 GameObject:
