@@ -16,7 +16,7 @@ public interface IDamageable
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public EnemyManager em { get; set; }
+    public EnemyManager Em { get; set; }
 
     [SerializeField] protected float hp;
     [SerializeField] protected float speed;
@@ -35,7 +35,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public float ShakePower;
 
-    public static Action OnEnemyDestroyed;
+    public static Action OnEnemyDestroyed { get; set; }
+    public static Action OnEnemyDied { get; set; }
 
     protected bool isDead = false;
     private bool isDeadFromWeapon = true;
@@ -153,6 +154,7 @@ public class Enemy : MonoBehaviour, IDamageable
             {
                 foreach (Material mat in materials)
                     mat.SetFloat("_Disolve", 0);
+                if (isDeadFromWeapon) OnEnemyDied?.Invoke();
                 Destroy(gameObject);
             }
             foreach (Material mat in materials)

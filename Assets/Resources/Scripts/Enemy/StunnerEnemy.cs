@@ -13,7 +13,7 @@ public sealed class StunnerEnemy : Enemy
     public override void GetDamage(int damage)
     {
         hp -= damage;
-        currectSpeed /= 2 * damage * damage;
+        currectSpeed /= 2 * damage;
     }
 
     public override void Start()
@@ -30,7 +30,10 @@ public sealed class StunnerEnemy : Enemy
             hasStunnedPlayer = true;
             Shake(startShakePower);
         }
+    }
 
+    public void LateUpdate()
+    {
         Controller.Instance.CurrectSpeed = speedSet;
     }
 }

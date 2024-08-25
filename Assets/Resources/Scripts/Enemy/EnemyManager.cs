@@ -58,7 +58,7 @@ public sealed class EnemyManager : MonoBehaviour
             if (Input.GetMouseButton(0) && Vector2.Distance(position, player.position) >= minDistance && Vector2.Distance(position, player.position) <= maxDistance)
             {
                 LastEnemy = Instantiate(enemy, position, Quaternion.identity).GetComponent<Enemy>();
-                LastEnemy.em = this;
+                LastEnemy.Em = this;
                 spawnTime += Config.EnemySpawnRate / spawnChance;
                 OnEnemySpawned -= OnEnemySpawn;
                 OnEnemySpawned?.Invoke();

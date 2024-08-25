@@ -38,4 +38,9 @@ public static class ProjMath
             ? (1 - EaseOutBounce(1 - 2 * x)) / 2 
             : (1 + EaseOutBounce(2 * x - 1)) / 2;
     }
+
+    public static float EaseOutQuint(float x)
+    {
+        return 1 - Mathf.Pow(1 - x, 5);
+    }
 }

@@ -549,9 +549,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 6
-  speed: 8
-  acceleration: 1.5
-  speedAcceleration: 0.2
+  speed: 9
+  acceleration: 2.25
+  speedAcceleration: 0.35
   timeBeforeAgr: 0.6
   timeBeforeDeath: 3
   lights:
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 0}
   colorSet: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
-  speed: 2
+  speed: 6
   appearSpeed: 16
   dissapearSpeed: 3
   lightTimeSet: 5

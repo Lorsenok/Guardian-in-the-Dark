@@ -9,7 +9,7 @@ public class Backlit3D : MonoBehaviour
 
     private bool hasBeenToched = false;
 
-    [SerializeField] private Color colorSet;
+    public Color colorSet;
 
     [SerializeField] private float speed;
     [SerializeField] private float appearSpeed;

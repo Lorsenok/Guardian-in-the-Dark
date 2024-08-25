@@ -31,7 +31,7 @@ public sealed class MimicEnemy : Enemy
         {
             mainModel.transform.localScale = Vector3.Lerp(mainModel.transform.localScale, new Vector3(0.5f, 0.5f, 0.5f), Time.deltaTime * transformationSpeed);
             mimicModel.transform.localScale = Vector3.Lerp(mimicModel.transform.localScale, new Vector3(0, 0, 0), Time.deltaTime * transformationSpeed);
-            em.IsEnemyAlive = true;
+            Em.IsEnemyAlive = true;
             follow.enabled = true;
         }
 
@@ -43,7 +43,7 @@ public sealed class MimicEnemy : Enemy
             }
             else
             {
-                em.IsEnemyAlive = false;
+                Em.IsEnemyAlive = false;
                 follow.enabled = false;
                 SmoothRotateTowardsPosition(rotateSpeed, player.position);
                 return;
