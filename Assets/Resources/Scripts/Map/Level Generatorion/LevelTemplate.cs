@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelTemplate : MonoBehaviour
 {
+    public static Action OnJointSpawn;
+    public static Action OnJointWork;
+
     public bool Destroyable { get; set; } = true;
 
     public int SpawnCount;
@@ -38,11 +42,26 @@ public class LevelTemplate : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < Joints.Length; i++)
+        {
+            OnJointSpawn.Invoke();
+        }
+
         spawnTime = LevelSetup.Instance.SpawnTime;
     }
 
-    public LevelTemplate Spawn(LevelJoint joint, LevelTemplate lastTemplate)
+    private void OnDestroy()
     {
+        for (int i = 0; i < Joints.Length; i++)
+        {
+            OnJointWork.Invoke();
+        }
+    }
+
+    public LevelTemplate Spawn(LevelJoint joint)
+    {
+        OnJointWork.Invoke();
+
         if (LevelSetup.Instance.CheckTemplateVariation(joint))
         {
             hasWorked = true;
@@ -63,7 +82,7 @@ public class LevelTemplate : MonoBehaviour
 
         foreach (LevelJoint joint in Joints)
         {
-            Spawn(joint, this);
+            Spawn(joint);
         }
     }
 }

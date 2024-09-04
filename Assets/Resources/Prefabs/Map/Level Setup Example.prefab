@@ -55,3 +55,5 @@ MonoBehaviour:
   maxSpawnCount: 999
   defaultSpawnCount: 1
   SpawnTime: 0.1
+  enableObjects:
+  - {fileID: 0}

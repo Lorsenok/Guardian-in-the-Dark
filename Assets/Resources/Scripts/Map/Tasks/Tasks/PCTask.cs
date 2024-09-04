@@ -6,6 +6,9 @@ using UnityEngine;
 
 public sealed class PCTask : Task
 {
+    [SerializeField] private GameObject pcPrefab;
+    [SerializeField] private GameObject papersPrefab;
+
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField, Range(1, 10)] private int codeLength;
 
@@ -22,7 +25,7 @@ public sealed class PCTask : Task
         return code == _code;
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         char[] simbols = new char[codeLength];
 
@@ -33,7 +36,15 @@ public sealed class PCTask : Task
 
         code = new(simbols);
 
+        TaskObjectSpawner.Spawn(pcPrefab);
+
+        for (int i = 0; i < codeLength; i++)
+        {
+            TaskObjectSpawner.Spawn(papersPrefab);
+        }
+
         Papers.OnTake += AddSymbol;
+        PC.CodeLength = codeLength;
     }
 
     private void OnDisable()

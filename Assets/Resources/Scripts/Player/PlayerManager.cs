@@ -9,9 +9,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Vector2 playerSpawnPosition;
 
+    [SerializeField] private float hp;
     [SerializeField] private float hpLossSpeed;
 
     [SerializeField] private float disolveSpeed;
+    [SerializeField] private float lightDisolveSpeed;
 
     public float HP { get; set; } = 1000;
 
@@ -31,6 +33,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        HP = hp;
         Instance = this;
         playerController = Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity).GetComponent<Controller>();
     }
@@ -64,11 +67,11 @@ public class PlayerManager : MonoBehaviour
 
         foreach (Light l in playerController.GetComponentsInChildren<Light>())
         {
-            l.intensity -= Mathf.Lerp(l.intensity, 0, Time.deltaTime * disolveSpeed);
+            l.intensity = Mathf.Lerp(l.intensity, 0f, Time.deltaTime * lightDisolveSpeed);
         }
         foreach (Light2D l in playerController.GetComponentsInChildren<Light2D>())
         {
-            l.intensity -= Mathf.Lerp(l.intensity, 0, Time.deltaTime * disolveSpeed);
+            l.intensity = Mathf.Lerp(l.intensity, 0f, Time.deltaTime * lightDisolveSpeed);
         }
 
         if (playerMaterial.GetFloat("_Disolve") >= dissapearTime)
@@ -93,6 +96,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        if (HP <= -0.01f) HP = -0.01f;
+
         if (end)
         {
             playerController.transform.position = startPosition;

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GeneratorTask : Task
 {
+    [SerializeField] private GameObject generatorPrefab;
+    [SerializeField] private int generatorsQuantity;
+    private List<GameObject> generators = new List<GameObject>();
+
     private int count = 0;
 
     private void OnGeneratorUsed()
@@ -13,7 +17,13 @@ public class GeneratorTask : Task
 
     private void Start()
     {
-        count = FindObjectsOfType<Generator>().Length; // I need to replace Find somehow lol
+        for (int i = 0; i < generatorsQuantity; i++)
+        {
+            generators.Add(TaskObjectSpawner.Spawn(generatorPrefab));
+        }
+
+        count = generators.Count; 
+
         Generator.OnUse += OnGeneratorUsed;
     }
 

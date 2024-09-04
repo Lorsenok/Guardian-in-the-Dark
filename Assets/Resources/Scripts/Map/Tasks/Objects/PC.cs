@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class PC : UsableObject
 {
     public static bool HasUsed { get; private set; } = false;
+    public static int CodeLength { get; set; }
 
     private bool isOpen = false;
 
@@ -91,7 +92,7 @@ public class PC : UsableObject
             Controller.CanMove = !isOpen;
         }
 
-        if (HasUsed)
+        if (HasUsed || PlayerManager.Instance.HP <= -0.01f)
         {
             isOpen = false;
         }
@@ -105,6 +106,8 @@ public class PC : UsableObject
 
         if (isOpen)
         {
+            inputField.characterLimit = CodeLength;
+
             fade.color = new Color(0, 0, 0, ProjMath.EaseInCubic(time));
 
             volumePC.weight = Mathf.Lerp(volumePC.weight, volumeWeightSet, Time.deltaTime * volumeChangeSpeed);

@@ -16,9 +16,24 @@ public class LevelSetup : MonoBehaviour
     [SerializeField] private int defaultSpawnCount;
     public float SpawnTime = 1.0f;
 
+    [Header("After Setup")]
+    [SerializeField] private GameObject[] enableObjects;
+
     private GameObject lastTemplate;
 
     private int curSpawnID = 0;
+
+    private int curJoints = 0;
+
+    private void OnJointSpawn()
+    {
+        curJoints++;
+    }
+
+    private void OnJointWork()
+    {
+        curJoints--;
+    }
 
     public bool CheckTemplateVariation(LevelJoint joint)
     {
@@ -81,6 +96,9 @@ public class LevelSetup : MonoBehaviour
         }
 
         Instance = this;
+
+        LevelTemplate.OnJointSpawn += OnJointSpawn;
+        LevelTemplate.OnJointWork += OnJointWork;
     }
 
     private void Start()
@@ -95,5 +113,21 @@ public class LevelSetup : MonoBehaviour
         }
 
         Instantiate(hub);
+    }
+
+    private void Update()
+    {
+        if (curJoints <= 0)
+        {
+            if (enableObjects != null)
+            {
+                foreach (GameObject obj in enableObjects)
+                {
+                    obj.SetActive(true);
+                }
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

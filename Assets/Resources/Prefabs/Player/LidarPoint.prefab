@@ -98,4 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   opacity: 1
-  aliveTime: 120
+  aliveTime: 300

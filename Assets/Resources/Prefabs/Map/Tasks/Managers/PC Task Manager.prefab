@@ -235,6 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Hack PC
+  pcPrefab: {fileID: 5156851187670308515, guid: 589d10d37f47dff49809c5f57a881cac, type: 3}
+  papersPrefab: {fileID: 2920103459692652259, guid: f7549079200ec3f4eb43dc8c2c3d4474, type: 3}
   text: {fileID: 7570778257042885063}
   codeLength: 4
 --- !u!114 &6342062570434476483

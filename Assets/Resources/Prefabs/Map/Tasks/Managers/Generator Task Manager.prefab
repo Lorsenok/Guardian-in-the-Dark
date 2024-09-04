@@ -63,6 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Fix all generators
+  generatorPrefab: {fileID: 2920103459692652259, guid: 1a07c037afd17b5478e652347e31969b, type: 3}
+  generatorsQuantity: 5
 --- !u!114 &6342062570434476483
 MonoBehaviour:
   m_ObjectHideFlags: 0

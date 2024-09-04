@@ -23,12 +23,10 @@ public sealed class Package : UsableObject
     [SerializeField] private float distance;
     [SerializeField] private float minDistanceToSpot;
 
-    [SerializeField] private float playerSpeedSet;
-
     private Color startDestinationColor;
     private Color startTextColor;
 
-    public bool HasTaken { get; private set; } = false;
+    private bool hasTaken = false;
      
     private void OnDisable()
     {
@@ -51,7 +49,7 @@ public sealed class Package : UsableObject
 
     private void Update()
     {
-        text.color = canBeTaked && !HasTaken ? Color.Lerp(text.color, startTextColor, Time.deltaTime * textColorChangeSpeed) : Color.Lerp(text.color, new(0, 0, 0, 0), Time.deltaTime * textColorChangeSpeed);
+        text.color = canBeTaked && !hasTaken ? Color.Lerp(text.color, startTextColor, Time.deltaTime * textColorChangeSpeed) : Color.Lerp(text.color, new(0, 0, 0, 0), Time.deltaTime * textColorChangeSpeed);
 
         if (Vector2.Distance(transform.position, spot.position) < minDistanceToSpot)
         {
@@ -60,10 +58,10 @@ public sealed class Package : UsableObject
             return;
         }
 
-        if (canBeTaked | HasTaken && Input.GetKeyDown(KeyCode.E))
+        if (canBeTaked | hasTaken && Input.GetKeyDown(KeyCode.E))
         {
-            HasTaken = !HasTaken;
-            if (HasTaken) OnTake?.Invoke();
+            hasTaken = !hasTaken;
+            if (hasTaken) OnTake?.Invoke();
         }
 
         if (player == null)
@@ -72,15 +70,13 @@ public sealed class Package : UsableObject
             return;
         }
 
-        if (HasTaken)
+        if (hasTaken)
         {
             destinationSpr.color = Color.Lerp(destinationSpr.color, startDestinationColor, Time.deltaTime * destinationAlphaChangeSpeed);
 
             Vector3 diference = spot.position - transform.position;
             float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
             destinationPos.rotation = Quaternion.Euler(0f, 0f, rotateZ);
-
-            player.CurrectSpeed = playerSpeedSet;
 
             if (Vector2.Distance(player.transform.position, transform.position) > distance)
             {

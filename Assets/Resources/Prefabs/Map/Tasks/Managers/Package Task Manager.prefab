@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Deliver Package
+  packagePrefab: {fileID: 914717438125049624, guid: 455aac1048dd0414bb57cae150883e3f, type: 3}
+  packageSpotPrefab: {fileID: 3970912832531280556, guid: 8f2cb6440ea654b45a0cb0483d7bd836, type: 3}
 --- !u!1001 &8266196475401306299
 PrefabInstance:
   m_ObjectHideFlags: 0

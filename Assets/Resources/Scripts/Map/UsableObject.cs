@@ -10,17 +10,19 @@ public class UsableObject : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Controller>(out player))
+        if (collision.gameObject.TryGetComponent<Controller>(out Controller _player))
         {
             canBeTaked = true;
+            player = _player;
         }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Controller>(out player))
+        if (collision.gameObject.TryGetComponent<Controller>(out Controller _player))
         {
             canBeTaked = false;
+            player = _player;
         }
     }
 }
