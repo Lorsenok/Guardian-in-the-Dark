@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5685020673780664799}
   - component: {fileID: 6014023424010681235}
   - component: {fileID: 2812559454448074467}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 226295216628498396}
   - component: {fileID: 561807006732393107}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnCount: 2
-  SpawnID: 0
   Joints:
   - {fileID: 2766479719574203002}
   - {fileID: 1538654107208175979}
@@ -323,7 +322,7 @@ GameObject:
   - component: {fileID: 2242493529739369135}
   - component: {fileID: 1716856029240880003}
   - component: {fileID: 3596887791046110611}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +452,7 @@ GameObject:
   - component: {fileID: 3371315935859133175}
   - component: {fileID: 3133678294145939309}
   - component: {fileID: 6830130235260120734}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6942971850908202652}
   - component: {fileID: 6781648536074536627}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +628,7 @@ GameObject:
   - component: {fileID: 6558384672427111612}
   - component: {fileID: 1948913713236577755}
   - component: {fileID: 4334136144471897456}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +758,7 @@ GameObject:
   - component: {fileID: 8242676476665554179}
   - component: {fileID: 2954477627285833011}
   - component: {fileID: 8308568703146308129}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -888,7 +887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7816226143685015023}
   - component: {fileID: 2766479719574203002}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3981635782317716618}
   - component: {fileID: 1538654107208175979}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,7 +979,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8671675589478900006}
   - component: {fileID: 4424340987061873326}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1027,7 +1026,7 @@ GameObject:
   - component: {fileID: 8595255019946678090}
   - component: {fileID: 7193357574075588001}
   - component: {fileID: 3823494689634939653}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

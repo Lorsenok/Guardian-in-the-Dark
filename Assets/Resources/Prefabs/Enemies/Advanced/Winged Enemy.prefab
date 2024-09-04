@@ -461,15 +461,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 0}
-  colorSet: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
+  colorSet: {r: 1, g: 1, b: 1, a: 0}
   speed: 2
   appearSpeed: 16
   dissapearSpeed: 4
   lightTimeSet: 5
   intensity: 5
   divisions: 5
+  isColoringByLight: 1
   Lighting: {fileID: 8429957256250880679}
   material: {fileID: 2100000, guid: bc4ac23c87bb01847acbe8d03f7a5059, type: 2}
+  additionalMaterials: []
 --- !u!1 &4779416943292605815
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,15 +579,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 0}
-  colorSet: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
+  colorSet: {r: 1, g: 1, b: 1, a: 0}
   speed: 2
   appearSpeed: 16
   dissapearSpeed: 4
   lightTimeSet: 5
   intensity: 5
   divisions: 5
+  isColoringByLight: 1
   Lighting: {fileID: 7405390717819821071}
   material: {fileID: 2100000, guid: c40d6ab035e108a46a9ab9fedce241fe, type: 2}
+  additionalMaterials: []
 --- !u!1 &6628689938600640876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,15 +1063,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 0}
-  colorSet: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
+  colorSet: {r: 1, g: 1, b: 1, a: 0}
   speed: 2
   appearSpeed: 16
   dissapearSpeed: 4
   lightTimeSet: 5
   intensity: 5
-  divisions: 5
+  divisions: 3
+  isColoringByLight: 1
   Lighting: {fileID: 1761679137834291639}
   material: {fileID: 2100000, guid: 960758a999df58345a6b79413e25ab8d, type: 2}
+  additionalMaterials: []
 --- !u!50 &9136046562905264922
 Rigidbody2D:
   serializedVersion: 4
@@ -1173,7 +1179,7 @@ MonoBehaviour:
   - {x: 0.10780239, y: -0.507094, z: 0}
   m_ShapePathHash: 1889948295
   m_Mesh: {fileID: 0}
-  m_InstanceId: 45800
+  m_InstanceId: 49250
   m_LocalBounds:
     m_Center: {x: 0.0041071177, y: -0.0055286884, z: 0}
     m_Extent: {x: 0.51450145, y: 0.51839674, z: 0}
@@ -1431,6 +1437,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9076263501173021421}
     m_Modifications:
+    - target: {fileID: 6916073991174751535, guid: a5462cfdcf3fd6a45bee7c3ef9ec6629, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c40d6ab035e108a46a9ab9fedce241fe, type: 2}
     - target: {fileID: -8679921383154817045, guid: 8192ce0b8569d2e4586dbb5241fde41b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -1491,10 +1501,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right Wing
       objectReference: {fileID: 0}
-    - target: {fileID: 6916073991174751535, guid: a5462cfdcf3fd6a45bee7c3ef9ec6629, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c40d6ab035e108a46a9ab9fedce241fe, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

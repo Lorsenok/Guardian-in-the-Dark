@@ -54,7 +54,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnCount: 2
-  SpawnID: 0
   Joints:
   - {fileID: 8434255409053163824}
   - {fileID: 817814181983095442}
@@ -142,7 +141,7 @@ GameObject:
   - component: {fileID: 6036683959359875840}
   - component: {fileID: 3513808597047417614}
   - component: {fileID: 3816997971155138394}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +271,7 @@ GameObject:
   - component: {fileID: 5321048424343332186}
   - component: {fileID: 3652292546096570122}
   - component: {fileID: 6448845217279529166}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +401,7 @@ GameObject:
   - component: {fileID: 5499539452914551964}
   - component: {fileID: 5204610552285294850}
   - component: {fileID: 393306457447539005}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +531,7 @@ GameObject:
   - component: {fileID: 3326656990490862582}
   - component: {fileID: 4343067080912843772}
   - component: {fileID: 1879736951959479019}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2598056040001173768}
   - component: {fileID: 817814181983095442}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be92a395647b05409b3a53347a429c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Templates: {fileID: 11400000, guid: 66c53c6c884dc4e4aae16babed1bbf37, type: 2}
+  Templates: {fileID: 11400000, guid: 35768269cc9be3e458f1e6cdc9936fdb, type: 2}
   Direction: {x: 1, y: 0}
 --- !u!1 &5713557721758354864
 GameObject:
@@ -708,7 +707,7 @@ GameObject:
   - component: {fileID: 6314853866985859802}
   - component: {fileID: 8390931849419465340}
   - component: {fileID: 1925910019560061442}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,7 +836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 516168427406046107}
   - component: {fileID: 8434255409053163824}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -551,8 +551,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 15
-  speed: 2.6
-  acceleration: 0.6
+  speed: 2.3
+  acceleration: 0.4
   speedAcceleration: 0.1
   timeBeforeAgr: 0.6
   timeBeforeDeath: 3
@@ -579,13 +579,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 0}
-  colorSet: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
+  colorSet: {r: 1, g: 1, b: 1, a: 0}
   speed: 2
-  appearSpeed: 16
-  dissapearSpeed: 7
+  appearSpeed: 32
+  dissapearSpeed: 4.5
   lightTimeSet: 5
   intensity: 5
-  divisions: 5
+  divisions: 3
   isColoringByLight: 1
   Lighting: {fileID: 1761679137834291639}
   material: {fileID: 2100000, guid: 960758a999df58345a6b79413e25ab8d, type: 2}
@@ -695,7 +695,7 @@ MonoBehaviour:
   - {x: 0.10780239, y: -0.507094, z: 0}
   m_ShapePathHash: 1889948295
   m_Mesh: {fileID: 0}
-  m_InstanceId: 44740
+  m_InstanceId: 61196
   m_LocalBounds:
     m_Center: {x: 0.0041071177, y: -0.0055286884, z: 0}
     m_Extent: {x: 0.51450145, y: 0.51839674, z: 0}

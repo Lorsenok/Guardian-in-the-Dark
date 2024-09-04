@@ -54,7 +54,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnCount: 0
-  SpawnID: 0
   Joints:
   - {fileID: 8902152134219940115}
   - {fileID: 1017195988135968561}
@@ -142,7 +141,7 @@ GameObject:
   - component: {fileID: 542168462605773602}
   - component: {fileID: 7705491403856500924}
   - component: {fileID: 926448883471372955}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +271,7 @@ GameObject:
   - component: {fileID: 808361133852139604}
   - component: {fileID: 3879222852518600118}
   - component: {fileID: 1508784195583847025}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +401,7 @@ GameObject:
   - component: {fileID: 2285948903689376996}
   - component: {fileID: 1373312884629956834}
   - component: {fileID: 588523702036271269}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +531,7 @@ GameObject:
   - component: {fileID: 1414940115587225581}
   - component: {fileID: 2388078775488105023}
   - component: {fileID: 6970526093940576968}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5245162951924317432}
   - component: {fileID: 8902152134219940115}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +707,7 @@ GameObject:
   - component: {fileID: 5556080177328616378}
   - component: {fileID: 5639905540594278931}
   - component: {fileID: 4406075854938729880}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,7 +836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2417081353460697699}
   - component: {fileID: 1017195988135968561}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,5 +870,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be92a395647b05409b3a53347a429c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Templates: {fileID: 11400000, guid: 66c53c6c884dc4e4aae16babed1bbf37, type: 2}
+  Templates: {fileID: 11400000, guid: 5c955c3e1930d5347a87c85122e58293, type: 2}
   Direction: {x: 0, y: 1}

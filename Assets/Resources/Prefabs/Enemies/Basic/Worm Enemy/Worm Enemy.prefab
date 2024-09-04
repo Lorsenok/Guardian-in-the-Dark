@@ -442,9 +442,11 @@ MonoBehaviour:
   dissapearSpeed: 7
   lightTimeSet: 5
   intensity: 5
-  divisions: 6
+  divisions: 3
+  isColoringByLight: 1
   Lighting: {fileID: 1761679137834291639}
   material: {fileID: 2100000, guid: 501260c8a3637dc4db2eba162e6eaa1e, type: 2}
+  additionalMaterials: []
 --- !u!50 &9136046562905264922
 Rigidbody2D:
   serializedVersion: 4

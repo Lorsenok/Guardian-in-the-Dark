@@ -53,8 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac211d19179b754e931695b0ae15e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnCount: 2
-  SpawnID: 0
+  SpawnCount: 0
   Joints:
   - {fileID: 8902152134219940115}
   - {fileID: 1575872508701529058}
@@ -142,7 +141,7 @@ GameObject:
   - component: {fileID: 5479758989018625184}
   - component: {fileID: 2676900391617579192}
   - component: {fileID: 91898216148539404}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +271,7 @@ GameObject:
   - component: {fileID: 4426102893430975175}
   - component: {fileID: 63762245411097310}
   - component: {fileID: 8904458840419069316}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +401,7 @@ GameObject:
   - component: {fileID: 2704939069728082767}
   - component: {fileID: 2062672067531043045}
   - component: {fileID: 5391473768757959541}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +531,7 @@ GameObject:
   - component: {fileID: 1882085071967241900}
   - component: {fileID: 571038186630349832}
   - component: {fileID: 7325855441205205386}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 817833156000652016}
   - component: {fileID: 1575872508701529058}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +707,7 @@ GameObject:
   - component: {fileID: 2285948903689376996}
   - component: {fileID: 1373312884629956834}
   - component: {fileID: 588523702036271269}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,7 +836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5245162951924317432}
   - component: {fileID: 8902152134219940115}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

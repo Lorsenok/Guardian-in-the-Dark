@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6512752052840900518}
   - component: {fileID: 3635277744759141022}
   - component: {fileID: 8790899458286513909}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,8 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac211d19179b754e931695b0ae15e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnCount: 1
-  SpawnID: 0
+  SpawnCount: 0
   Joints:
   - {fileID: 885078387447772385}
   Direction: {x: 0, y: 1}
@@ -271,7 +270,7 @@ GameObject:
   - component: {fileID: 5499539452914551964}
   - component: {fileID: 5204610552285294850}
   - component: {fileID: 393306457447539005}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +400,7 @@ GameObject:
   - component: {fileID: 5739701602088793324}
   - component: {fileID: 4657761702968672024}
   - component: {fileID: 4226667854963277544}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +530,7 @@ GameObject:
   - component: {fileID: 6314853866985859802}
   - component: {fileID: 8390931849419465340}
   - component: {fileID: 1925910019560061442}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 452528642121826479}
   - component: {fileID: 885078387447772385}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,7 +706,7 @@ GameObject:
   - component: {fileID: 6409258608879028531}
   - component: {fileID: 3340133216176477921}
   - component: {fileID: 6234064291803599683}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,7 +836,7 @@ GameObject:
   - component: {fileID: 2588165947380839223}
   - component: {fileID: 7465577704745884034}
   - component: {fileID: 5007184476284254291}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

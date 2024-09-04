@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5685020673780664799}
   - component: {fileID: 6014023424010681235}
   - component: {fileID: 2812559454448074467}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,8 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac211d19179b754e931695b0ae15e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnCount: 2
-  SpawnID: 0
+  SpawnCount: 1
   Joints:
   - {fileID: 2766479719574203002}
   - {fileID: 1538654107208175979}
@@ -273,7 +272,7 @@ GameObject:
   - component: {fileID: 2242493529739369135}
   - component: {fileID: 1716856029240880003}
   - component: {fileID: 3596887791046110611}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6942971850908202652}
   - component: {fileID: 6781648536074536627}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +448,7 @@ GameObject:
   - component: {fileID: 8242676476665554179}
   - component: {fileID: 2954477627285833011}
   - component: {fileID: 8308568703146308129}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +578,7 @@ GameObject:
   - component: {fileID: 1257541956478203525}
   - component: {fileID: 6520515602272406998}
   - component: {fileID: 3302405184793966437}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7816226143685015023}
   - component: {fileID: 2766479719574203002}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -754,7 +753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3981635782317716618}
   - component: {fileID: 1538654107208175979}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

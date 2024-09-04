@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5685020673780664799}
   - component: {fileID: 6014023424010681235}
   - component: {fileID: 2812559454448074467}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,8 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac211d19179b754e931695b0ae15e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnCount: 1
-  SpawnID: 0
+  SpawnCount: 0
   Joints:
   - {fileID: 8902152134219940115}
   - {fileID: 8492078526938267944}
@@ -273,7 +272,7 @@ GameObject:
   - component: {fileID: 6261638625347116821}
   - component: {fileID: 4395370030501428869}
   - component: {fileID: 3750122831763663867}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +402,7 @@ GameObject:
   - component: {fileID: 1594171265085388456}
   - component: {fileID: 6757293565789129512}
   - component: {fileID: 3207377329061899873}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3680251806320450324}
   - component: {fileID: 8492078526938267944}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be92a395647b05409b3a53347a429c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Templates: {fileID: 11400000, guid: 66c53c6c884dc4e4aae16babed1bbf37, type: 2}
+  Templates: {fileID: 11400000, guid: 35768269cc9be3e458f1e6cdc9936fdb, type: 2}
   Direction: {x: 0, y: 1}
 --- !u!1 &5726587412017791962
 GameObject:
@@ -579,7 +578,7 @@ GameObject:
   - component: {fileID: 2285948903689376996}
   - component: {fileID: 1373312884629956834}
   - component: {fileID: 588523702036271269}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5245162951924317432}
   - component: {fileID: 8902152134219940115}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be92a395647b05409b3a53347a429c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Templates: {fileID: 11400000, guid: 66c53c6c884dc4e4aae16babed1bbf37, type: 2}
+  Templates: {fileID: 11400000, guid: 35768269cc9be3e458f1e6cdc9936fdb, type: 2}
   Direction: {x: 1, y: 0}
 --- !u!1 &7183098670998976408
 GameObject:
@@ -755,7 +754,7 @@ GameObject:
   - component: {fileID: 8694754386453242360}
   - component: {fileID: 3285084978918424831}
   - component: {fileID: 3364605937718317065}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +884,7 @@ GameObject:
   - component: {fileID: 3396104474845003818}
   - component: {fileID: 6563334411753301937}
   - component: {fileID: 4484000493163645005}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}

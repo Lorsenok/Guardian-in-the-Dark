@@ -582,15 +582,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 0}
-  colorSet: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
+  colorSet: {r: 1, g: 1, b: 1, a: 0}
   speed: 2
   appearSpeed: 16
   dissapearSpeed: 7
   lightTimeSet: 5
   intensity: 5
   divisions: 5
+  isColoringByLight: 1
   Lighting: {fileID: 1761679137834291639}
   material: {fileID: 2100000, guid: 960758a999df58345a6b79413e25ab8d, type: 2}
+  additionalMaterials: []
 --- !u!50 &9136046562905264922
 Rigidbody2D:
   serializedVersion: 4

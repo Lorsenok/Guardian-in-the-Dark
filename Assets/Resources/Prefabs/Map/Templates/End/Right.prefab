@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnCount: 1000
-  SpawnID: 0
   Joints: []
   Direction: {x: 1, y: 0}
 --- !u!50 &-553581684112107100
@@ -134,7 +133,7 @@ GameObject:
   - component: {fileID: 1257541956478203525}
   - component: {fileID: 6520515602272406998}
   - component: {fileID: 3302405184793966437}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}

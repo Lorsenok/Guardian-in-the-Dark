@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 6036683959359875840}
   - component: {fileID: 3513808597047417614}
   - component: {fileID: 3816997971155138394}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,8 +155,8 @@ Transform:
   m_GameObject: {fileID: 2318030441146192577}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: 9.5, z: 0}
-  m_LocalScale: {x: 6.000003, y: 1.0001961, z: 1}
+  m_LocalPosition: {x: 1.5000005, y: 9.5, z: 0}
+  m_LocalScale: {x: 3.0000014, y: 1.0001961, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8883594314821694419}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 5321048424343332186}
   - component: {fileID: 3652292546096570122}
   - component: {fileID: 6448845217279529166}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 5499539452914551964}
   - component: {fileID: 5204610552285294850}
   - component: {fileID: 393306457447539005}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 3326656990490862582}
   - component: {fileID: 4343067080912843772}
   - component: {fileID: 1879736951959479019}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,8 +545,8 @@ Transform:
   m_GameObject: {fileID: 4163937422110382091}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 7, z: 0}
-  m_LocalScale: {x: 1.0000358, y: 6.0001273, z: 1}
+  m_LocalPosition: {x: -3.5, y: 5.5, z: 0}
+  m_LocalScale: {x: 1.0000358, y: 9.000302, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8883594314821694419}
@@ -659,7 +659,7 @@ GameObject:
   - component: {fileID: 6314853866985859802}
   - component: {fileID: 8390931849419465340}
   - component: {fileID: 1925910019560061442}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,7 +788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 516168427406046107}
   - component: {fileID: 8434255409053163824}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Joint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,7 +804,7 @@ Transform:
   m_GameObject: {fileID: 8832704183425433172}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 2.5, z: 0}
+  m_LocalPosition: {x: -1.5, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -822,5 +822,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be92a395647b05409b3a53347a429c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Templates: {fileID: 11400000, guid: 66c53c6c884dc4e4aae16babed1bbf37, type: 2}
-  Direction: {x: -1, y: 0}
+  Templates: {fileID: 11400000, guid: 93b3f8569677694458bd479b41e491f8, type: 2}
+  Direction: {x: 0, y: 1}
