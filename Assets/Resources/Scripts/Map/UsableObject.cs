@@ -8,7 +8,7 @@ public class UsableObject : MonoBehaviour
 
     protected Controller player;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<Controller>(out Controller _player))
         {
@@ -17,7 +17,7 @@ public class UsableObject : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    public virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<Controller>(out Controller _player))
         {

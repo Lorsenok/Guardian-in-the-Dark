@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class HubArea : MonoBehaviour
 {
+    public static GameObject Instance { get; private set; }
+
     public static bool IsOnPlayer { get; private set; } = false;
 
     private float curHP;
     private bool isEnemyAlive = false;
+
+    private void Awake()
+    {
+        Instance = gameObject;
+    }
 
     private void OnEnable()
     {

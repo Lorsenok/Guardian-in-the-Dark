@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Move trolley to hub
+  trolleyPrefab: {fileID: 2920103459692652259, guid: 2c4d44b7f98fd004db751f4b3e78b839, type: 3}
 --- !u!114 &6342062570434476483
 MonoBehaviour:
   m_ObjectHideFlags: 0

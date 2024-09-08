@@ -6,26 +6,21 @@ public class Rails : MonoBehaviour
 {
     public bool IsWork { get; set; } = true;
 
-    public Vector2 Direction { get; private set; }
-    public bool Rotate { get; private set; }
-    public float Rotation { get; private set; }
-
-    [SerializeField] private Vector2 direction;
-    [SerializeField] private bool rotate = false;
-    [SerializeField] private float rotation = 0f;
+    public Rails LastRails { get; set; }
+    public Vector2 Direction { get; set; } = Vector2.zero;
 
     [SerializeField] private Color colorSet;
     [SerializeField] private float coloringSpeed;
     [SerializeField] private SpriteRenderer spr;
+    [SerializeField] private bool isRotate;
 
     private Color startColor;
 
+    private Vector2 startDirection;
+
     private void Start()
     {
-        Direction = direction;
-        Rotation = rotation;
-        Rotate = rotate;
-
+        startDirection = Direction;
         startColor = spr.color;
     }
 
@@ -51,6 +46,14 @@ public class Rails : MonoBehaviour
     {
         spr.color = Color.Lerp(spr.color, IsWork ? startColor : colorSet, Time.deltaTime * coloringSpeed);
 
-        Direction = IsWork ? direction : Vector3.zero;
+        Direction = IsWork ? startDirection : Vector3.zero;
+
+        if (isRotate)
+        {
+            spr.flipY = LastRails.Direction.y > 0 & Direction.x <= 0 
+                || LastRails.Direction.x < 0 & Direction.y <= 0 
+                || LastRails.Direction.x > 0 & Direction.y > 0 
+                || LastRails.Direction.y < 0 & Direction.x > 0;
+        }
     }
 }

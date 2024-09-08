@@ -5,6 +5,10 @@ using UnityEngine;
 
 public sealed class Trolley : UsableObject
 {
+    [SerializeField] private GameObject railsSpawnerPrefab;
+
+    private bool atOnceSpawnOnTemplate = false;
+
     public bool IsWork { get; set; } = true;
 
     private Vector2 direction;
@@ -21,6 +25,7 @@ public sealed class Trolley : UsableObject
 
 
     [Header("Visuals")]
+    [SerializeField] private float additionalRotation;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Transform canvas;
     [SerializeField] private float textColoringSpeed;
@@ -41,13 +46,17 @@ public sealed class Trolley : UsableObject
     {
         if (!curRails.Contains(rails) && rails.IsWork)
         {
+            if (!rails.IsWork)
+            {
+                Debug.Log("+");
+                curRails.Clear();
+                curSpeed = 0f;
+
+                return;
+            }
+
             curRails.Add(rails);
             direction += rails.Direction;
-        }
-
-        if (rails.Rotate)
-        {
-            curRotation = rails.Rotation;
         }
     }
 
@@ -65,6 +74,19 @@ public sealed class Trolley : UsableObject
         textStartColor = text.color;
         text.color = new Color(0, 0, 0, 0);
         startTextRotation = canvas.transform.localRotation;
+
+        Instantiate(railsSpawnerPrefab, transform.position, railsSpawnerPrefab.transform.rotation);
+    }
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+        
+        if (!atOnceSpawnOnTemplate && collision.gameObject.TryGetComponent(out LevelTemplate template))
+        {
+            atOnceSpawnOnTemplate = true;
+            transform.rotation = Quaternion.Euler(0, 0, ProjMath.RotateTowardsPosition(transform.position, transform.position + new Vector3(template.Direction.x, template.Direction.y, 0) * -1) + additionalRotation);
+        }
     }
 
     private void Update()
@@ -83,6 +105,8 @@ public sealed class Trolley : UsableObject
 
             return;
         }
+
+        curRotation = ProjMath.RotateTowardsPosition(transform.position, transform.position + (Vector3)direction) + additionalRotation;
 
         transform.position += (Vector3)direction * curSpeed;
 

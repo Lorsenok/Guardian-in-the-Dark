@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TrolleyTask : Task
 {
+    [SerializeField] private GameObject trolleyPrefab;
+
     private bool end = false;
 
     private void OnEnd()
@@ -14,6 +16,8 @@ public class TrolleyTask : Task
     private void OnEnable()
     {
         RailsEnd.OnEnd += OnEnd;
+
+        TaskObjectSpawner.Spawn(trolleyPrefab);
     }
 
     private void OnDisable()

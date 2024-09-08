@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4931767849499803082}
   - component: {fileID: 6902325559181012198}
   m_Layer: 8
-  m_Name: RotateRail
+  m_Name: Rails Rotate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,12 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd86d87f384102b47989936a7a67fe87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
-  rotate: 1
-  rotation: 0
   colorSet: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   coloringSpeed: 5
   spr: {fileID: 4986234439732361398}
+  isRotate: 1
 --- !u!114 &6902325559181012198
 MonoBehaviour:
   m_ObjectHideFlags: 0

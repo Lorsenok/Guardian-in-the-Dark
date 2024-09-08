@@ -40,6 +40,24 @@ public class LevelTemplate : MonoBehaviour
         }
     }
 
+    public List<AdditionalTaskObjectSpawner> TaskObjectSpawners { get; private set; } = new();
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out AdditionalTaskObjectSpawner spawner))
+        {
+            if (!TaskObjectSpawners.Contains(spawner)) TaskObjectSpawners.Add(spawner);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out AdditionalTaskObjectSpawner spawner))
+        {
+            if (TaskObjectSpawners.Contains(spawner)) TaskObjectSpawners.Remove(spawner);
+        }
+    }
+
     private void Start()
     {
         for (int i = 0; i < Joints.Length; i++)

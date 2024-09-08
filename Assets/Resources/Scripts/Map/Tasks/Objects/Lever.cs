@@ -7,7 +7,7 @@ public class Lever : UsableObject
 {
     private bool hasWorked = false;
 
-    [SerializeField] private Rails rails;
+    public List<Rails> Rails { get; set; } = new();
 
 
     [Header("Visuals")]
@@ -22,7 +22,10 @@ public class Lever : UsableObject
 
     private void Start()
     {
-        rails.IsWork = false;
+        foreach (Rails r in Rails)
+        {
+            r.IsWork = false;
+        }
         startTextColor = text.color;
     }
 
@@ -34,7 +37,10 @@ public class Lever : UsableObject
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                rails.IsWork = true;
+                foreach (Rails r in Rails)
+                {
+                    r.IsWork = true;
+                }
                 hasWorked = true;
             }
         }

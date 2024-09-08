@@ -191,7 +191,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0047836304, y: -0.0047835708}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -328,11 +328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed33095cb4e28145a82eb77aabef525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.15
-  accelerationSpeed: 0.15
+  railsSpawnerPrefab: {fileID: 4921737469583209873, guid: 5211fcf7b5c6ea441b84e67c9a24f7ee, type: 3}
+  speed: 0.11
+  accelerationSpeed: 0.12
   deccelerationSpeed: 5
-  rotationSpeed: 2.5
+  rotationSpeed: 7
   timeBeforeDestroy: 0.6
+  additionalRotation: 90
   text: {fileID: 1120120798378429801}
   canvas: {fileID: 3031656620577430746}
   textColoringSpeed: 5

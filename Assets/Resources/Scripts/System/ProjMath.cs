@@ -43,4 +43,10 @@ public static class ProjMath
     {
         return 1 - Mathf.Pow(1 - x, 5);
     }
+
+    public static float RotateTowardsPosition(Vector3 startPosition, Vector3 position)
+    {
+        Vector3 diference = position - startPosition;
+        return Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
+    }
 }

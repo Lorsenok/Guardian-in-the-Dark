@@ -36,9 +36,8 @@ public class Controller : MonoBehaviour
 
     private void Rotate()
     {
-        Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rotateZ + additionalRotate), Time.deltaTime * speed / 2f * speedMultiplier);
+        float rotation = ProjMath.RotateTowardsPosition(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rotation + additionalRotate), Time.deltaTime * speed / 2f * speedMultiplier);
     }
 
     private void Update()
