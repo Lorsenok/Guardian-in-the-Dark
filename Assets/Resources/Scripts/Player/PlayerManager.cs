@@ -6,6 +6,9 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject[] otherUI;
+
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Vector2 playerSpawnPosition;
 
@@ -96,6 +99,12 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) menu.SetActive(!menu.activeSelf);
+        foreach (GameObject obj in otherUI)
+        {
+            obj.SetActive(!menu.activeSelf);
+        }
+
         if (HP <= -0.01f) HP = -0.01f;
 
         if (end)

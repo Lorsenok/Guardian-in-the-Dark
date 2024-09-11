@@ -7,6 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class PostProcessingController : MonoBehaviour
 {
     public static PostProcessingController Instance;
+    public bool IsVolumeChanging { get; set; } = false; 
 
     [SerializeField] private float changeToNormalSpeed;
 

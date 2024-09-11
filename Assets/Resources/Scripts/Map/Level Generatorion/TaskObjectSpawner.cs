@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TaskObjectSpawner : MonoBehaviour
 {
-    public static List<Transform> Spawners = new List<Transform>();
+    public static List<Transform> Spawners { get; set; } = new List<Transform>();
 
     public static GameObject Spawn(GameObject obj)
     {

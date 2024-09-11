@@ -49,4 +49,9 @@ public static class ProjMath
         Vector3 diference = position - startPosition;
         return Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
     }
+
+    public static float SinTime(float m = 1f)
+    {
+        return Mathf.Sin(Time.timeSinceLevelLoad) * m * (Mathf.Sin(Time.time) * m > 0 ? 1f : -1f);
+    }
 }

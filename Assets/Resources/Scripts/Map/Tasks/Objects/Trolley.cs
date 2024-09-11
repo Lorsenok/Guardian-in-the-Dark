@@ -48,7 +48,6 @@ public sealed class Trolley : UsableObject
         {
             if (!rails.IsWork)
             {
-                Debug.Log("+");
                 curRails.Clear();
                 curSpeed = 0f;
 

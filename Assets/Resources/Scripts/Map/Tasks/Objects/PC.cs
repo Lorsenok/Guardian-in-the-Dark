@@ -111,7 +111,7 @@ public class PC : UsableObject
             fade.color = new Color(0, 0, 0, ProjMath.EaseInCubic(time));
 
             volumePC.weight = Mathf.Lerp(volumePC.weight, volumeWeightSet, Time.deltaTime * volumeChangeSpeed);
-            defaultVolume.weight = Mathf.Lerp(defaultVolume.weight, 0, Time.deltaTime * volumeChangeSpeed);
+            if (!PostProcessingController.Instance.IsVolumeChanging) defaultVolume.weight = Mathf.Lerp(defaultVolume.weight, 0, Time.deltaTime * volumeChangeSpeed);
 
             if (fade.color.a > 0.95f)
             {
@@ -150,7 +150,7 @@ public class PC : UsableObject
 
             fade.color = new Color(0, 0, 0, Mathf.Lerp(fade.color.a, 0, Time.deltaTime * fadeChangeSpeed));
 
-            volumePC.weight = Mathf.Lerp(volumePC.weight, 0, Time.deltaTime * volumeChangeSpeed);
+            if (!PostProcessingController.Instance.IsVolumeChanging) volumePC.weight = Mathf.Lerp(volumePC.weight, 0, Time.deltaTime * volumeChangeSpeed);
             defaultVolume.weight = Mathf.Lerp(defaultVolume.weight, startDefaultVolumeWeight, Time.deltaTime * volumeChangeSpeed);
             background.color = new Color(background.color.r, background.color.g, background.color.b, Mathf.Lerp(background.color.a, 0, Time.deltaTime * backgroundDisappearSpeed));
         }
