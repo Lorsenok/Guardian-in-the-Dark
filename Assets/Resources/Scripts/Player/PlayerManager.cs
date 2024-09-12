@@ -7,7 +7,6 @@ using UnityEngine.Rendering.Universal;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
-    [SerializeField] private GameObject[] otherUI;
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Vector2 playerSpawnPosition;
@@ -24,7 +23,7 @@ public class PlayerManager : MonoBehaviour
 
     private Controller playerController;
 
-    public static PlayerManager Instance;
+    public static PlayerManager Instance { get; set; }
 
     [SerializeField] private Material playerMaterial;
     [SerializeField] private float dissapearTime;
@@ -33,6 +32,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float particlesZ;
 
     private bool end = false;
+
+    public bool IsMenuClosed { get; set; } = true;
+    private Vector3 startMenuPos;
+    [SerializeField] private float menuSpeed;
+    [SerializeField] private Vector2 menuCloseDistance;
 
     private void Awake()
     {
@@ -47,6 +51,8 @@ public class PlayerManager : MonoBehaviour
         {
             Instantiate(em, Vector3.zero, Quaternion.identity);
         }
+
+        startMenuPos = menu.transform.localPosition;
     }
 
     public Transform GetPlayerPosition()
@@ -97,13 +103,11 @@ public class PlayerManager : MonoBehaviour
         playerMaterial.SetFloat("_Smoothness", 0.5f);
     }
 
-    private void Update()
+    private void Update() 
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) menu.SetActive(!menu.activeSelf);
-        foreach (GameObject obj in otherUI)
-        {
-            obj.SetActive(!menu.activeSelf);
-        }
+        if (Input.GetKeyDown(KeyCode.Escape)) IsMenuClosed = !IsMenuClosed;
+        
+        menu.transform.localPosition = Vector3.Lerp(menu.transform.localPosition, startMenuPos + (IsMenuClosed ? menuCloseDistance : Vector3.zero), Time.deltaTime * menuSpeed);
 
         if (HP <= -0.01f) HP = -0.01f;
 

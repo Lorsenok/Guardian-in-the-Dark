@@ -76,7 +76,7 @@ public class GameButton : MonoBehaviour
                     break;
 
                 case ButtonFunction.MenuClose:
-                    GetComponentInParent<MenuManager>().gameObject.SetActive(false);
+                    PlayerManager.Instance.IsMenuClosed = true;
                     break;
             }
         }

@@ -52,8 +52,10 @@ public sealed class PCTask : Task
         Papers.OnTake -= AddSymbol;
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
+
         char[] symbols = new char[codeLength];
 
         for (int i = 0; i < curCodeSym; i++)

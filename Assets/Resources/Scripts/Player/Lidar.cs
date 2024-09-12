@@ -18,6 +18,8 @@ public class Lidar : MonoBehaviour
     [SerializeField] private GameObject pointPrefab;
     [SerializeField] private Transform pointDirection;
 
+    [SerializeField] private float minDistance;
+
     [Header("Points Color")]
     [SerializeField] private List<Color> startColorList;
     [SerializeField] private float colorChangeSpeed;
@@ -77,6 +79,12 @@ public class Lidar : MonoBehaviour
         //Spawn point and ray
         GameObject point = Instantiate(pointPrefab, pos, Quaternion.identity);
         point.GetComponent<SpriteRenderer>().color = curPointColor;
+
+        if (Vector2.Distance(point.transform.position, pointDirection.position) < minDistance)
+        {
+            Destroy(point);
+            return;
+        }
         
         if (curPointColor != Color.white)
         {
@@ -131,7 +139,7 @@ public class Lidar : MonoBehaviour
         TimeSinceLastRay += Time.deltaTime;
 
         //Shooting
-        if (delay <= 0 & Input.GetMouseButton(0) && IsWorking)
+        if (delay <= 0 & Input.GetMouseButton(0) && IsWorking && PlayerManager.Instance.IsMenuClosed)
         {
             delay = speedS + currectDifference * speedDecreaser;
             SpawnRay();
@@ -146,8 +154,10 @@ public class Lidar : MonoBehaviour
 
         currectDifference = Mathf.Lerp(currectDifference, currectDifferenceSet, Time.deltaTime * differenceChangeSpeed);
 
-        if (Input.GetMouseButton(0) & IsWorking) scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 1, Time.deltaTime * scannerAppearSpeed));
-        else scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 0, Time.deltaTime * scannerAppearSpeed));
+        if (Input.GetMouseButton(0) && IsWorking && PlayerManager.Instance.IsMenuClosed)
+            scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 1, Time.deltaTime * scannerAppearSpeed));
+        else 
+            scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 0, Time.deltaTime * scannerAppearSpeed));
 
         //Scanner
         if (Input.GetMouseButton(0))

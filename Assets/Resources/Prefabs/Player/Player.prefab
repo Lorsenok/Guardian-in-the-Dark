@@ -249,6 +249,7 @@ MonoBehaviour:
     m_Bits: 499
   pointPrefab: {fileID: 9001468137860730297, guid: 3b5f36c793bb4dc4280719c1f8891566, type: 3}
   pointDirection: {fileID: 5809740845891231347}
+  minDistance: 0.1
   startColorList:
   - {r: 0.19607843, g: 0.5019608, b: 0.69803923, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}

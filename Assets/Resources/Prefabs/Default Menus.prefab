@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7804876574642064292}
   - component: {fileID: 7951478774710423724}
   - component: {fileID: 8249663920463824800}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4327945053887121222}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Default Menus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4920641647906930106}
   - component: {fileID: 562401468516593617}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 8692625858773807770}
   - component: {fileID: 3083219954370948416}
   - component: {fileID: 7759129713538325008}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

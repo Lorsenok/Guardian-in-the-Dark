@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4564529874880394809}
+  - component: {fileID: 1548935627050088818}
   - component: {fileID: 1365403801340567260}
   - component: {fileID: 1532967475687574499}
-  - component: {fileID: 1548935627050088818}
   m_Layer: 5
   m_Name: Fade
   m_TagString: Untagged
@@ -38,6 +38,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1548935627050088818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668411982217808382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baefe8c544393cb43ad245b718483615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 1532967475687574499}
+  _speed: 0.7
 --- !u!222 &1365403801340567260
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -76,20 +90,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1548935627050088818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668411982217808382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baefe8c544393cb43ad245b718483615, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _image: {fileID: 1532967475687574499}
-  _speed: 0.7
 --- !u!1 &5064113216200378228
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 999
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!114 &1079613615520836147
 MonoBehaviour:
