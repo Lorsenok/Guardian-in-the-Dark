@@ -11,7 +11,7 @@ public class TaskManager : MonoBehaviour
 
     private bool isEnd = false;
 
-    [SerializeField] private float showTaskTime;
+    [SerializeField] private float additionalStartShowTime = 5f;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class TaskManager : MonoBehaviour
             if (task == endTask) continue;
             tasks.Add(task);
         }
-        grid.UpdateTasks(tasks, atOnce:true);
+        grid.UpdateTasks(tasks, atOnce:true, additionalShowTime:additionalStartShowTime);
     }
 
     private void Update()

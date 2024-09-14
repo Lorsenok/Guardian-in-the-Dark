@@ -20,11 +20,6 @@ public class TrolleyTask : Task
         TaskObjectSpawner.Spawn(trolleyPrefab);
     }
 
-    private void OnDisable()
-    {
-        RailsEnd.OnEnd -= OnEnd;
-    }
-
     public override bool Check()
     {
         return end;

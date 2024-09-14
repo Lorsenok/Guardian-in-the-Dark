@@ -171,10 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -647,63 +647,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8837748936725424014, guid: b65502e46d05d3447a3f7e6fe55564a3, type: 3}
   m_PrefabInstance: {fileID: 5427210694648644524}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &768622212
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 768622214}
-  - component: {fileID: 768622213}
-  m_Layer: 0
-  m_Name: Config Setup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &768622213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768622212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5f28bda7f9a1404797c66efb7dbff6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Volume: 1
-  PostProcessing: 1
-  ShakePower: 1
-  MapSize: 1
-  EnemySpawnRate: 10
-  EnemyManagers:
-  - {fileID: 3052656559874876729, guid: fb438bdf4ae7a7947b6c44ea882ce7b0, type: 3}
-  SpeedMultiplier: 1
-  WeaponDamage: 1
-  WeaponShootDelay: 0.25
-  WeaponSpread: 0.05
-  WeaponAmmo: 10
-  WeaponReloadTime: 4
---- !u!4 &768622214
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768622212}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &771495941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1026,7 +969,7 @@ MonoBehaviour:
   - {fileID: 6479004462105509994, guid: 6b9c6ac79e9e6c0438a3dd5f336f2e59, type: 3}
   - {fileID: 6479004462105509994, guid: 89fad51a83d99fe4a999be9da1c030de, type: 3}
   - {fileID: 6479004462105509994, guid: 3bceef2d60267fa47aecaadc74f17d54, type: 3}
-  debugObject: {fileID: 0}
+  debugObject: {fileID: 6479004462105509994, guid: 6b9c6ac79e9e6c0438a3dd5f336f2e59, type: 3}
 --- !u!4 &1135550319
 Transform:
   m_ObjectHideFlags: 0
@@ -2334,7 +2277,6 @@ SceneRoots:
   - {fileID: 4504701024149650876}
   - {fileID: 6180232508830586707}
   - {fileID: 1389577236}
-  - {fileID: 768622214}
   - {fileID: 1954957302}
   - {fileID: 1513482978}
   - {fileID: 1135550319}

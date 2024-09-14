@@ -21,7 +21,7 @@ public class Papers : UsableObject
 
     [SerializeField] private GameObject particles;
 
-    public static Action OnTake;
+    public static Action OnTake { get; set; }
 
     private bool hasTaken = false;
 

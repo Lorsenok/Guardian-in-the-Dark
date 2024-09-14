@@ -24,5 +24,5 @@ public class Config
 
 
 
-    public int Money { get; set; } = 0;
+    public static int Money { get; set; } = 0;
 }

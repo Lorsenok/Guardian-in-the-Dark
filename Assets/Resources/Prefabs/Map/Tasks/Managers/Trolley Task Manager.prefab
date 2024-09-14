@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 2572931808610062702}
   endTask: {fileID: 6342062570434476483}
-  showTaskTime: 10
+  additionalStartShowTime: 5
 --- !u!114 &-4389592538743061830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cb05458b572e04d91ae273067d51f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Move trolley to hub
   trolleyPrefab: {fileID: 2920103459692652259, guid: 2c4d44b7f98fd004db751f4b3e78b839, type: 3}
 --- !u!114 &6342062570434476483
@@ -76,7 +77,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ef70e3d5c56f94e831494282790679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Go back to hub
+  completeObject: {fileID: 7530990305564420235, guid: 3cde00bbcbe9c3e40b568eb3439be5ec, type: 3}
+  sceneID: 0
 --- !u!1001 &8266196475401306299
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b948e177bddffba4f8311f1ae4abd1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Fix all generators
   generatorPrefab: {fileID: 2920103459692652259, guid: 1a07c037afd17b5478e652347e31969b, type: 3}
   generatorsQuantity: 5
@@ -77,7 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ef70e3d5c56f94e831494282790679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Go back to hub
+  completeObject: {fileID: 7530990305564420235, guid: 3cde00bbcbe9c3e40b568eb3439be5ec, type: 3}
 --- !u!1001 &8266196475401306299
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public enum ButtonFunction
 
 public class GameButton : MonoBehaviour
 {
-
+    public static bool CanBeToched { get; set; } = true;
 
     [Header("Tech")]
     [SerializeField] private int mouseButton;
@@ -53,6 +53,11 @@ public class GameButton : MonoBehaviour
 
     private void Update()
     {
+        if (!CanBeToched)
+        {
+            isMousePointing = false;
+        }
+
         transform.localPosition = Vector3.Lerp(transform.localPosition, isMousePointing ? startPos + moveDirection * moveDistance / (Input.GetMouseButton(mouseButton) ? 2 : 1) : startPos, Time.deltaTime * moveSpeed);
 
         animator.SetBool(IsPointing, isMousePointing && !Input.GetMouseButton(mouseButton));

@@ -46,10 +46,10 @@ public class TaskUI : MonoBehaviour
         textDissapearDelay = textDissapearDelaySet;
     }
 
-    public void UpdateTasks(List<Task> tasks, bool atOnce = false, bool showAtEnd = false)
+    public void UpdateTasks(List<Task> tasks, bool atOnce = false, bool showAtEnd = false, float additionalShowTime = 0f)
     {
         this.showAtEnd = showAtEnd;
-        updateShowTime = updateShowTimeSet;
+        updateShowTime = updateShowTimeSet + additionalShowTime;
 
         isOnUpdate = true;
         isOnUpdateEnd = false;

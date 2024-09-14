@@ -7,6 +7,8 @@ public sealed class PackageTask : Task
     [SerializeField] private GameObject packagePrefab;
     [SerializeField] private GameObject packageSpotPrefab;
 
+    [SerializeField] private PackageTaskFind find;
+
     private bool hasDelivered = false;
 
     private void OnDelivered()
@@ -14,15 +16,13 @@ public sealed class PackageTask : Task
         hasDelivered = true;
     }
 
-    private void Awake()
+    private void Start()
     {
         TaskObjectSpawner.Spawn(packageSpotPrefab);
         TaskObjectSpawner.Spawn(packagePrefab);
-    }
 
-    private void Start()
-    {
         Package.Instance.OnDelivered += OnDelivered;
+        find.Work();
     }
 
     public override bool Check()

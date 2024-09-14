@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6b98bfcbaf59d49a11b618dd9b82c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Kill 1 enemy
   enemiesCount: 1
 --- !u!114 &7233316980521406055
@@ -78,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6b98bfcbaf59d49a11b618dd9b82c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Kill 2 enemies
   enemiesCount: 2
 --- !u!114 &7765873352321225288
@@ -92,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6b98bfcbaf59d49a11b618dd9b82c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Kill 3 enemies
   enemiesCount: 3
 --- !u!114 &6342062570434476483
@@ -106,7 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ef70e3d5c56f94e831494282790679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Go back to hub
+  completeObject: {fileID: 7530990305564420235, guid: 3cde00bbcbe9c3e40b568eb3439be5ec, type: 3}
 --- !u!1001 &8266196475401306299
 PrefabInstance:
   m_ObjectHideFlags: 0

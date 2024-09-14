@@ -61,7 +61,7 @@ public sealed class Package : UsableObject
         if (canBeTaked | hasTaken && Input.GetKeyDown(KeyCode.E))
         {
             hasTaken = !hasTaken;
-            if (hasTaken) OnTake?.Invoke();
+            OnTake?.Invoke();
         }
 
         if (player == null)

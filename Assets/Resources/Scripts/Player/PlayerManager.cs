@@ -31,6 +31,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject bloodParticles;
     [SerializeField] private float particlesZ;
 
+    [SerializeField] private float dieTime;
+    [SerializeField] private string dieSceneIndex;
+    private bool hasDied = false;
+
     private bool end = false;
 
     public bool IsMenuClosed { get; set; } = true;
@@ -114,6 +118,14 @@ public class PlayerManager : MonoBehaviour
         if (end)
         {
             playerController.transform.position = startPosition;
+
+            dieTime -= Time.deltaTime;
+            if (dieTime <= 0 && !hasDied)
+            {
+                hasDied = true;
+                SceneSwitcher.Instance.ChangeScene(dieSceneIndex);
+            } 
+
             return;
         }
 

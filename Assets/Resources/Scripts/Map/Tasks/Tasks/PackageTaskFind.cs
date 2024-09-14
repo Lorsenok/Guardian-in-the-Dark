@@ -11,14 +11,9 @@ public class PackageTaskFind : Task
         hasTaked = true;
     }
 
-    private void Start()
+    public void Work()
     {
         Package.Instance.OnTake += OnTaked;
-    }
-
-    private void OnDisable()
-    {
-        Package.Instance.OnTake -= OnTaked;
     }
 
     public override bool Check()

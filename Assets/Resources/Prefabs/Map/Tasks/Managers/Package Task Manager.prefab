@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 2572931808610062702}
   endTask: {fileID: 6342062570434476483}
-  showTaskTime: 10
+  additionalStartShowTime: 5
 --- !u!114 &6342062570434476483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +63,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ef70e3d5c56f94e831494282790679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Go back to hub
+  completeObject: {fileID: 7530990305564420235, guid: 3cde00bbcbe9c3e40b568eb3439be5ec, type: 3}
+  sceneID: 0
 --- !u!114 &627971578764397802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335d0de98afe7ab4b9492cfb4914dc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Find Package
 --- !u!114 &9159494721062087872
 MonoBehaviour:
@@ -89,9 +93,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3486a39e0e31b41ae34e1a301498f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AdditionalLoadingTime: 5
   Name: Deliver Package
   packagePrefab: {fileID: 914717438125049624, guid: 455aac1048dd0414bb57cae150883e3f, type: 3}
   packageSpotPrefab: {fileID: 3970912832531280556, guid: 8f2cb6440ea654b45a0cb0483d7bd836, type: 3}
+  find: {fileID: 627971578764397802}
 --- !u!1001 &8266196475401306299
 PrefabInstance:
   m_ObjectHideFlags: 0

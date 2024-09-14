@@ -38,9 +38,10 @@ public class ConfigSet : MonoBehaviour
         Config.WeaponSpread = WeaponSpread;
         Config.WeaponAmmo = WeaponAmmo;
         Config.WeaponReloadTime = WeaponReloadTime;
+        Config.Money = Money;
     }
 
-    public int Money { get; set; } = 0;
+    [SerializeField] int Money = 0;
 
     /*
         _        _

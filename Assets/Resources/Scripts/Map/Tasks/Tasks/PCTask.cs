@@ -47,11 +47,6 @@ public sealed class PCTask : Task
         PC.CodeLength = codeLength;
     }
 
-    private void OnDisable()
-    {
-        Papers.OnTake -= AddSymbol;
-    }
-
     public override void Update()
     {
         base.Update();

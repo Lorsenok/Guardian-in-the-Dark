@@ -52,6 +52,6 @@ public static class ProjMath
 
     public static float SinTime(float m = 1f)
     {
-        return Mathf.Sin(Time.timeSinceLevelLoad) * m * (Mathf.Sin(Time.time) * m > 0 ? 1f : -1f);
+        return Mathf.Sin(Time.timeSinceLevelLoad) * m * (Mathf.Sin(Time.timeSinceLevelLoad) * m > 0 ? 1f : -1f);
     }
 }

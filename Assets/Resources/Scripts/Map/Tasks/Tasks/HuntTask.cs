@@ -15,10 +15,6 @@ public class HuntTask : Task
     {
         Enemy.OnEnemyDied += OnEnemyDie;
     }
-    private void OnDisable()
-    {
-        Enemy.OnEnemyDied += OnEnemyDie;
-    }
 
     public override bool Check()
     {

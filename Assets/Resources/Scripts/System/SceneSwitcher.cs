@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SceneSwitcher : MonoBehaviour
 {
     public static SceneSwitcher Instance { get; private set; }
+    public static List<GameObject> SpawnObjectsOnStart { get; set; } = new List<GameObject>();
 
     [SerializeField] private Image _image;
     [SerializeField] private float _speed = 0.7f;
@@ -19,6 +20,13 @@ public class SceneSwitcher : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        foreach (GameObject obj in SpawnObjectsOnStart)
+        {
+            Instantiate(obj);
+        }
+
+        SpawnObjectsOnStart.Clear();
     }
 
     public void ChangeScene(int index)

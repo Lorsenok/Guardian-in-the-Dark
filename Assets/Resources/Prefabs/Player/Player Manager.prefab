@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 0}
-  otherUI: []
   playerPrefab: {fileID: 1537089990809303965, guid: cf549e9b71195b34f9496121a1d7a20e, type: 3}
   playerSpawnPosition: {x: 0, y: 0}
   hp: 1200
@@ -56,5 +55,7 @@ MonoBehaviour:
   dissapearTime: 1.2
   bloodParticles: {fileID: 4683349287761498842, guid: 19c1d23b0552c0048957f4390ada937d, type: 3}
   particlesZ: -12.5
+  dieTime: 3
+  dieSceneIndex: Die
   menuSpeed: 5
   menuCloseDistance: {x: -15, y: 0}
