@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSetup : MonoBehaviour
 {
@@ -12,18 +13,25 @@ public class LevelSetup : MonoBehaviour
     public LevelTemplatesVariation EndTemplates;
 
     [Header("Setup")]
+    [SerializeField] private int spawnedTamplatesRateMin;
     [SerializeField] private int maxSpawnCount = 999;
-    [SerializeField] private int defaultSpawnCount;
     public float SpawnTime = 1.0f;
 
     [Header("After Setup")]
     [SerializeField] private GameObject[] enableObjects;
+    [SerializeField] private float startTimeForTemplatesSpawn = 1f;
 
     private GameObject lastTemplate;
 
     private int curSpawnID = 0;
 
     private int curJoints = 0;
+
+    private void CheckLastID()
+    {
+        Debug.Log("Spawned templates rate: " + (curSpawnID + 1).ToString());
+        if (curSpawnID < spawnedTamplatesRateMin && curSpawnID > 0) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     private void OnJointSpawn()
     {
@@ -99,6 +107,8 @@ public class LevelSetup : MonoBehaviour
 
         LevelTemplate.OnJointSpawn += OnJointSpawn;
         LevelTemplate.OnJointWork += OnJointWork;
+
+        Task.OnComplete += CheckLastID;
     }
 
     private void Start()
@@ -108,7 +118,7 @@ public class LevelSetup : MonoBehaviour
             foreach (GameObject obj in l.Templates)
             {
                 obj.TryGetComponent(out LevelTemplate temp);
-                if (temp.SpawnCount < maxSpawnCount) temp.SpawnCount = defaultSpawnCount;
+                if (temp.SpawnCount < maxSpawnCount) temp.SpawnCount = Config.MapSize;
             }
         }
 
@@ -117,7 +127,9 @@ public class LevelSetup : MonoBehaviour
 
     private void Update()
     {
-        if (curJoints <= 0)
+        if (startTimeForTemplatesSpawn > 0 && Time.deltaTime < 1f) startTimeForTemplatesSpawn -= Time.deltaTime;
+
+        if (curJoints <= 0 && startTimeForTemplatesSpawn <= 0)
         {
             if (enableObjects != null)
             {

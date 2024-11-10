@@ -108,7 +108,7 @@ public class Shot : MonoBehaviour
 
         if (!once)
         {
-            if (shake) CameraShakeManager.instance.Shake(GetComponent<CinemachineImpulseSource>(), shakePower);
+            if (shake) CameraShakeManager.Instance.Shake(GetComponent<CinemachineImpulseSource>(), shakePower);
             preObj.SetActive(false);
             obj.transform.localScale = new Vector3(1, 1, 1);
             once = true;

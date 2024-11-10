@@ -47,7 +47,8 @@ MonoBehaviour:
   enemy: {fileID: 8704038940415561809, guid: ec3d08dd33257d14faa0e463bafe39e6, type: 3}
   minDistance: 4
   maxDistance: 5
-  spawnChance: 0.3
+  spawnChance: 6
+  spawnTimeM: 1
   additionalHPLose: 25
   spawnTime: 0
   changeSpeed: 1
@@ -55,4 +56,6 @@ MonoBehaviour:
   vignetteColor: {r: 0.72569805, g: 0, b: 0.8490566, a: 0}
   chromaticAberrationSet: 1
   bloomSet: 100
+  digitalGlitchSet: 0
+  analogGlitchSet: 0.45
   shakeIntensity: 0.02

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class MoneyGiver : MonoBehaviour
 {
-    [SerializeField] private int money;
-    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI textObj;
+    [SerializeField] private string text;
 
     private void Start()
     {
@@ -17,8 +17,9 @@ public class MoneyGiver : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            textObj.text = text + Config.CurrectCompleteAward.ToString();
             GameButton.CanBeToched = true;
-            Config.Money += money;
+            Config.Money += Config.CurrectCompleteAward;
             Destroy(gameObject);
         }
     }

@@ -89,7 +89,7 @@ public sealed class WormEnemy : Enemy
         if (curImpulseDelay <= 0)
         {
             startRotation = transform.rotation;
-            RotateTowardsPosition(player.position);
+            RotateTowardsPosition(player.position, rotateTowardsPlayerOnSpawn ? additionalAngle : 0f);
             endRotation = transform.rotation;
             transform.rotation = startRotation;
 

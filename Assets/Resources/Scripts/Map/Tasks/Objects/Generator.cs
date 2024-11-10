@@ -59,7 +59,7 @@ public sealed class Generator : UsableObject
             float dist = Vector2.Distance(transform.position, player.transform.position);
             if (dist < maxCameraShakeDistance)
             {
-                CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), cameraShakePower / dist);
+                CameraShakeManager.Instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), cameraShakePower / dist);
             }
 
             lineSpr.color = Color.Lerp(lineSpr.color, new(0, 0, 0, 0), Time.deltaTime * lineColoringSpeed);

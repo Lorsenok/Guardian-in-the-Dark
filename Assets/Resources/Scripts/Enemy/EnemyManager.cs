@@ -11,7 +11,8 @@ public sealed class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private float minDistance;
     [SerializeField] private float maxDistance;
-    [SerializeField, Range(0.001f, 1f)] private float spawnChance;
+    [SerializeField] private int spawnChance;
+    [SerializeField] private float spawnTimeM = 1f;
 
     [SerializeField] private float additionalHPLose = 2.5f;
 
@@ -25,6 +26,8 @@ public sealed class EnemyManager : MonoBehaviour
     [SerializeField] private Color vignetteColor;
     [SerializeField] private float chromaticAberrationSet;
     [SerializeField] private float bloomSet = 100;
+    [SerializeField] private float digitalGlitchSet;
+    [SerializeField] private float analogGlitchSet = 0.45f;
 
     [Header("Shake")]
     [SerializeField] private float shakeIntensity;
@@ -33,20 +36,29 @@ public sealed class EnemyManager : MonoBehaviour
 
     public bool IsEnemyAlive { get; set; } = false;
 
+    private bool isEnemyOur = false;
+
     public static Enemy LastEnemy { get; private set; }
+
+    public int SpawnChance { get; set; }
 
     private CinemachineImpulseSource shake;
 
     public void OnEnemySpawn()
     {
         IsEnemyAlive = true;
-        spawnTime += (Config.EnemySpawnRate / spawnChance) / 2;
     }
 
     public void OnEnemyDestroyed()
     {
         IsEnemyAlive = false;
+        isEnemyOur = false;
         PlayerManager.Instance.AdditionalHPLossSpeed = 0;
+    }
+
+    private void SpawnTimeExpand()
+    {
+        spawnTime += Config.EnemySpawnRate * spawnTimeM;
     }
 
     private void SpawnEnemy()
@@ -57,21 +69,31 @@ public sealed class EnemyManager : MonoBehaviour
 
             if (Input.GetMouseButton(0) && Vector2.Distance(position, player.position) >= minDistance && Vector2.Distance(position, player.position) <= maxDistance)
             {
-                LastEnemy = Instantiate(enemy, position, Quaternion.identity).GetComponent<Enemy>();
-                LastEnemy.Em = this;
-                spawnTime += Config.EnemySpawnRate / spawnChance;
+                Instantiate(enemy, position, Quaternion.identity).TryGetComponent(out Enemy lastEnemy);
+                LastEnemy = lastEnemy;
+                if (LastEnemy != null) LastEnemy.Em = this;
+                SpawnTimeExpand();
                 OnEnemySpawned -= OnEnemySpawn;
                 OnEnemySpawned?.Invoke();
                 OnEnemySpawned += OnEnemySpawn;
                 IsEnemyAlive = true;
+                isEnemyOur = true;
             }
         }
+    }
+
+    private void Awake()
+    {
+        OnEnemySpawned += OnEnemySpawn;
+        Enemy.OnEnemyDestroyed += OnEnemyDestroyed;
+
+        SpawnChance = spawnChance;
+        SpawnTimeExpand();
     }
 
     private void Start()
     {
         shake = Weapon.Instance.WeaponShake;
-        spawnTime += Config.EnemySpawnRate / spawnChance;
     }
 
     private Transform player;
@@ -91,26 +113,15 @@ public sealed class EnemyManager : MonoBehaviour
             else if (!IsEnemyAlive) SpawnEnemy();
         }
 
-        if (IsEnemyAlive)
+        if (IsEnemyAlive && isEnemyOur)
         {
             PlayerManager.Instance.AdditionalHPLossSpeed = additionalHPLose;
             PostProcessingController.Instance.VignetteSet(vignetteSet, vignetteColor, changeSpeed);
             PostProcessingController.Instance.ChromaticAberrationSet(chromaticAberrationSet, changeSpeed);
             PostProcessingController.Instance.BloomSet(bloomSet, changeSpeed);
-            CameraShakeManager.instance.Shake(shake, shakeIntensity);
+            PostProcessingController.Instance.DigitalGlitchSet(digitalGlitchSet, changeSpeed);
+            PostProcessingController.Instance.AnalogGlitchSet(analogGlitchSet, changeSpeed);
+            CameraShakeManager.Instance.Shake(shake, shakeIntensity);
         }
     }
-
-    private void OnEnable()
-    {
-        OnEnemySpawned += OnEnemySpawn;
-        Enemy.OnEnemyDestroyed += OnEnemyDestroyed;
-    }
-
-    private void OnDisable()
-    {
-        OnEnemySpawned -= OnEnemySpawn;
-        Enemy.OnEnemyDestroyed -= OnEnemyDestroyed;
-    }
-
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> objects;
+    [SerializeField] private GameObject delaySpawnObject;
+    [SerializeField] private float delaySpawnTime = 1f;
+
     [SerializeField] private GameObject debugObject;
 
     private void OnEnable()
@@ -12,19 +15,27 @@ public class Spawner : MonoBehaviour
         if (debugObject != null)
         {
             Instantiate(debugObject);
-            Destroy(gameObject);
             return;
         }
 
         if (objects == null)
         {
-            Debug.LogWarning("There is no objects!");
-            Destroy(gameObject);
+            Debug.Log("There is no objects!");
             return;
         }
 
-        Instantiate(objects[Random.Range(0, objects.Count - 1)]);
+        int rand = Random.Range(0, objects.Count);
+        Instantiate(objects[rand]);
+    }
 
-        Destroy(gameObject);
+    private void Update()
+    {
+        delaySpawnTime -= Time.deltaTime;
+
+        if (delaySpawnTime <= 0)
+        {
+            Instantiate(delaySpawnObject);
+            Destroy(gameObject);
+        }
     }
 }

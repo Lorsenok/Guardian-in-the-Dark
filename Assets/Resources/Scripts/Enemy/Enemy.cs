@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] protected float fallSpeed;
 
+    [SerializeField] protected bool rotateTowardsPlayerOnSpawn = true;
+
     public float ShakePower;
 
     public static Action OnEnemyDestroyed { get; set; }
@@ -50,10 +52,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     protected void Shake(float power)
     {
-        CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), power);
+        CameraShakeManager.Instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), power);
     }
 
-    private void OnDestroy()
+    public virtual void OnDestroy()
     {
         OnEnemyDestroyed?.Invoke();
     }
@@ -63,6 +65,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (collision.transform == player && PlayerManager.Instance.HP > 0)
         {
             PlayerManager.Instance.HP = 0;
+            PlayerManager.Instance.IsDeadByEnemy = true;
             Shake(ShakePower);
         }
     }
@@ -79,9 +82,9 @@ public class Enemy : MonoBehaviour, IDamageable
         timeBeforeDeathStart = timeBeforeDeath;
         isDeadFromWeapon = fromWeapon;
 
-        backlit.enabled = false;
+        if (backlit != null) backlit.enabled = false;
         lightSet = GetComponentsInChildren<LightSet3D>();
-        follow.enabled = false;
+        if (follow != null) follow.enabled = false;
 
         if (backlit != null) startLightingIntensity = backlit.Lighting.intensity;
 
@@ -91,11 +94,11 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    protected void RotateTowardsPosition(Vector3 position)
+    protected void RotateTowardsPosition(Vector3 position, float _additionalAngle)
     {
-        Vector3 _diference = player.position - transform.position;
+        Vector3 _diference = position - transform.position;
         float _rotateZ = Mathf.Atan2(_diference.y, _diference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, _rotateZ + additionalAngle);
+        transform.rotation = Quaternion.Euler(0, 0, _rotateZ + _additionalAngle);
     }
 
     protected void SmoothRotateTowardsPosition(float speed, Vector3 pos)
@@ -122,9 +125,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
         rg = GetComponent<Rigidbody2D>();
         follow = GetComponent<AIPath>();
-        follow.enabled = false;
+        if (follow != null) follow.enabled = false;
         destinationSetter = GetComponent<AIDestinationSetter>();
-        destinationSetter.enabled = false;
+        if (destinationSetter != null) destinationSetter.enabled = false;
         backlit = GetComponent<Backlit3D>();
 
         foreach (Material mat in materials)
@@ -135,7 +138,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         player = PlayerManager.Instance.GetPlayerPosition();
 
-        if (player != null) RotateTowardsPosition(player.position);
+        if (player != null) RotateTowardsPosition(player.position, rotateTowardsPlayerOnSpawn ? additionalAngle : 0f);
     }
 
     protected float timeBeforeDeathStart;
@@ -148,7 +151,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (isDead)
         {
-            backlit.Lighting.intensity = startLightingIntensity / timeBeforeDeathStart * timeBeforeDeath;
+            if (backlit != null) backlit.Lighting.intensity = startLightingIntensity / timeBeforeDeathStart * timeBeforeDeath;
 
             if (timeBeforeDeath <= -0.35f)
             {

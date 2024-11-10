@@ -11,6 +11,8 @@ public abstract class Task : MonoBehaviour
 
     public string Name;
 
+    private bool hasCompleted = false;
+
     public virtual bool Check()
     {
         return false;
@@ -18,11 +20,11 @@ public abstract class Task : MonoBehaviour
 
     public virtual void Update()
     {
-        AdditionalLoadingTime -= Time.deltaTime;
-        if (AdditionalLoadingTime <= 0)
+        if (Time.deltaTime < 1f) AdditionalLoadingTime -= Time.deltaTime;
+        if (AdditionalLoadingTime <= 0 && !hasCompleted)
         {
             OnComplete?.Invoke();
-            enabled = false;
+            hasCompleted = true;
         }
     }
 }

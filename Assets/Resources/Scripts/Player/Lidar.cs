@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class Lidar : MonoBehaviour
 {
     [Header("Lidar setup")]
     [SerializeField] private float speedS;
+    [SerializeField] private float speedByScrollMultiplier;
+    [SerializeField] private float additionalScrollDifference;
     [SerializeField] private float speedDecreaser;
     [SerializeField] private float minDifference;
     [SerializeField] private float maxDifference;
@@ -15,10 +18,12 @@ public class Lidar : MonoBehaviour
     [SerializeField] private float differenceMultiplier;
 
     [SerializeField] private LayerMask collideLayer;
+    [SerializeField] private LayerMask blockCollideLayer;
     [SerializeField] private GameObject pointPrefab;
     [SerializeField] private Transform pointDirection;
 
     [SerializeField] private float minDistance;
+    [SerializeField] private float minDistanceForPoints;
 
     [Header("Points Color")]
     [SerializeField] private List<Color> startColorList;
@@ -35,10 +40,19 @@ public class Lidar : MonoBehaviour
     [SerializeField] private float scannerScaleYMultiplier;
     [SerializeField] private float scannerAppearSpeed;
 
+    [Header("Lidar Bomb Setup")]
+    [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private float bombSpawnDelay;
+
+    public float CurBombSpawnDelay { get; set; } = 0f;
+    public float BombSpawnDelay { get; set; } = 0f;
+
     public bool IsWorking { get; set; } = true;
     public float TimeSinceLastRay { get; set; } = 0f;
 
     private SpriteRenderer scannerSpr;
+
+    private float curSpeedS = 0f;
 
     private float delay = 0;
 
@@ -46,28 +60,44 @@ public class Lidar : MonoBehaviour
     private float currectDifferenceSet;
     private float differenceDistance;
 
+    public static Action<Vector3, bool> OnPointSpawn { get; set; }
+
+    private List<Vector3> points = new List<Vector3>();
+
+    private float bombReloadSpeedMultiplier;
+    private int pointsSpawnAtTheSameTime;
+
     private void Start()
     {
+        bombReloadSpeedMultiplier = Config.BombReloadSpeedMultiplier;
+        pointsSpawnAtTheSameTime = Config.RaysAtTheSameTime;
+
         scannerSpr = scanner.GetComponentInChildren<SpriteRenderer>();
 
         differenceDistance = maxDifference - minDifference;
         currectDifference = minDifference + differenceDistance;
-        curPointColor = startColorList[Random.Range(0, startColorList.Count)];
+        curPointColor = startColorList[UnityEngine.Random.Range(0, startColorList.Count)];
         currectDifferenceSet = minDifference + differenceDistance / 2;
         currectDifference = currectDifferenceSet;
+
+        BombSpawnDelay = bombSpawnDelay;
     }
 
     public RaycastHit2D CurrectRay { get; set; }
 
     Color curPointColor;
-    private void SpawnRay()
+    public void SpawnRay(Vector3 startPos, Vector3 dir, bool spawnRay = true)
     {
         TimeSinceLastRay = 0f;
 
-        Vector3 direction = -(transform.position - pointDirection.position);
+        Vector3 direction = -(startPos - dir);
         float diff = currectDifference * differenceMultiplier;
-        direction += new Vector3(Random.Range(-diff, diff), Random.Range(-diff, diff), 0);
-        RaycastHit2D raycast = Physics2D.Raycast(pointDirection.position, direction.normalized, Mathf.Infinity, collideLayer);
+        direction += new Vector3(UnityEngine.Random.Range(-diff, diff), UnityEngine.Random.Range(-diff, diff), 0);
+        RaycastHit2D raycast = Physics2D.Raycast(startPos, direction.normalized, Mathf.Infinity, collideLayer);
+
+        RaycastHit2D raycastBlock = Physics2D.Raycast(startPos, direction.normalized, Mathf.Infinity, blockCollideLayer);
+
+        if (Vector2.Distance(startPos, raycast.point) > Vector2.Distance(startPos, raycastBlock.point)) return;
 
         CurrectRay = raycast;
 
@@ -80,15 +110,15 @@ public class Lidar : MonoBehaviour
         GameObject point = Instantiate(pointPrefab, pos, Quaternion.identity);
         point.GetComponent<SpriteRenderer>().color = curPointColor;
 
-        if (Vector2.Distance(point.transform.position, pointDirection.position) < minDistance)
+        if (Vector2.Distance(point.transform.position, startPos) < minDistance)
         {
             Destroy(point);
             return;
         }
-        
+
         if (curPointColor != Color.white)
         {
-            int rgbChoose = Random.Range(1, 3);
+            int rgbChoose = UnityEngine.Random.Range(1, 3);
 
             if (rgbChoose == 1) curPointColor.r += colorChangeSpeed;
             if (rgbChoose == 2) curPointColor.g += colorChangeSpeed;
@@ -102,34 +132,54 @@ public class Lidar : MonoBehaviour
         raycast.collider.gameObject.TryGetComponent(out Backlit backlit);
         raycast.collider.gameObject.TryGetComponent(out Backlit3D backlit3d);
 
+        bool hasBacklit = false;
+
         if (backlit != null)
         {
             backlit.Light();
             point.GetComponent<SpriteRenderer>().color = backlit.color;
+
+            hasBacklit = true;
         }
         if (backlit3d != null)
         {
             backlit3d.Light();
             point.GetComponent<SpriteRenderer>().color = backlit3d.color;
+
+            hasBacklit = true;
         }
 
         Vector3 pointPos = point.transform.position;
-        
-        Transform rayToPointStart = Instantiate(pointRay, pointDirection.position, Quaternion.identity).transform;
-        Transform rayToPoint = rayToPointStart.GetComponentInChildren<SpriteRenderer>().transform;
+
+        if (spawnRay)
+        {
+            Transform rayToPointStart = Instantiate(pointRay, dir, Quaternion.identity).transform;
+            Transform rayToPoint = rayToPointStart.GetComponentInChildren<SpriteRenderer>().transform;
 
 
-        //Rotate ray to point
-        Vector3 diference = pointPos - rayToPointStart.position;
-        float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
-        rayToPointStart.transform.rotation = Quaternion.Euler(0, 0, rotateZ);
+            Vector3 diference = pointPos - rayToPointStart.position;
+            float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
+            rayToPointStart.transform.rotation = Quaternion.Euler(0, 0, rotateZ);
 
 
-        //Ray transform setup
-        float distance = Vector2.Distance(rayToPointStart.position, pointPos);
+            float distance = Vector2.Distance(rayToPointStart.position, pointPos);
 
-        rayToPoint.localScale = new Vector2(distance, rayWidth);
-        rayToPoint.localPosition = new Vector2(distance / 2, 0);
+            rayToPoint.localScale = new Vector2(distance, rayWidth);
+            rayToPoint.localPosition = new Vector2(distance / 2, 0);
+        }
+
+        foreach (Vector3 p in points)
+        {
+            if (Vector2.Distance(p, pointPos) < minDistanceForPoints)
+            {
+                Destroy(point);
+                return;
+            }
+        }
+
+        points.Add(pointPos);
+
+        OnPointSpawn?.Invoke(pointPos, hasBacklit);
     }
 
     private void Update()
@@ -138,11 +188,13 @@ public class Lidar : MonoBehaviour
 
         TimeSinceLastRay += Time.deltaTime;
 
+        curSpeedS = speedS + speedByScrollMultiplier / (currectDifference + 0.1f);
+
         //Shooting
         if (delay <= 0 & Input.GetMouseButton(0) && IsWorking && PlayerManager.Instance.IsMenuClosed)
         {
-            delay = speedS + currectDifference * speedDecreaser;
-            SpawnRay();
+            delay = curSpeedS + currectDifference * speedDecreaser;
+            for (int i = 0; i < pointsSpawnAtTheSameTime; i++) SpawnRay(transform.position, pointDirection.position);
         }
         if (delay > 0) delay -= Time.deltaTime;
 
@@ -156,14 +208,23 @@ public class Lidar : MonoBehaviour
 
         if (Input.GetMouseButton(0) && IsWorking && PlayerManager.Instance.IsMenuClosed)
             scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 1, Time.deltaTime * scannerAppearSpeed));
-        else 
+        else
             scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 0, Time.deltaTime * scannerAppearSpeed));
 
         //Scanner
         if (Input.GetMouseButton(0))
         {
             scanner.localScale = new Vector2(maxDistance, currectDifference * scannerScaleYMultiplier);
-            scanner.localPosition = new Vector2(-maxDistance/2, 0);
+            scanner.localPosition = new Vector2(-maxDistance / 2, 0);
         }
+
+        //Bomb
+        if (Input.GetKey(KeyCode.Space) && IsWorking && CurBombSpawnDelay <= 0)
+        {
+            Instantiate(bombPrefab, transform.position, transform.rotation);
+            CurBombSpawnDelay = bombSpawnDelay;
+        }
+
+        if (CurBombSpawnDelay > 0) CurBombSpawnDelay -= Time.deltaTime * bombReloadSpeedMultiplier;
     }
 }

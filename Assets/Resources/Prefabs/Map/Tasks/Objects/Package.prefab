@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6860316068704260328}
   - component: {fileID: 6048511154200308912}
   - component: {fileID: 5091054830597412831}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Package
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.18212426, g: 1, b: 0, a: 1}
   colorSet: {r: 1, g: 1, b: 1, a: 1}
+  appearOnMap: 1
   speed: 1
   appearSpeed: 5
   dissapearSpeed: 0
@@ -167,9 +168,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ea89a8582ed844ba4f6096d087cb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 1, b: 0, a: 0}
+  color: {r: 0, g: 1, b: 0, a: 1}
   speed: 5
   lightTimeSet: 999
+  appearOnMap: 1
   Lighting: {fileID: 6451260104037560525}
 --- !u!114 &5091054830597412831
 MonoBehaviour:
@@ -191,7 +193,6 @@ MonoBehaviour:
   speed: 5
   distance: 2
   minDistanceToSpot: 0.5
-  playerSpeedSet: 3
 --- !u!1 &1569735080687341358
 GameObject:
   m_ObjectHideFlags: 0

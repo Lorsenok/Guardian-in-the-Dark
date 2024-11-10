@@ -5,20 +5,25 @@ using UnityEngine;
 
 public class Lever : UsableObject
 {
-    private bool hasWorked = false;
-
     public List<Rails> Rails { get; set; } = new();
 
+    [Header("Lever")]
+    [SerializeField] private float workTime;
+
+    private float curWorkTime = 0f;
 
     [Header("Visuals")]
     [SerializeField] private Transform[] model;
     [SerializeField] private float speed;
     [SerializeField] private Vector3 rotate;
-
+    [SerializeField] private Vector3 startRotate;
+    
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private float textColoringSpeed;
      
     private Color startTextColor;
+
+    private bool isWorking = false;
 
     private void Start()
     {
@@ -31,7 +36,17 @@ public class Lever : UsableObject
 
     private void Update()
     {
-        if (canBeTaked && !hasWorked)
+        if (isWorking)
+        {
+            curWorkTime -= Time.deltaTime;
+
+            if (curWorkTime < 0f)
+            {
+                isWorking = false;
+            }
+        }
+
+        if (canBeTaked && !isWorking)
         {
             text.color = Color.Lerp(text.color, startTextColor, Time.deltaTime * textColoringSpeed);
 
@@ -41,18 +56,17 @@ public class Lever : UsableObject
                 {
                     r.IsWork = true;
                 }
-                hasWorked = true;
+                isWorking = true;
+
+                curWorkTime = workTime;
             }
         }
         else
             text.color = Color.Lerp(text.color, new(0, 0, 0, 0), Time.deltaTime * textColoringSpeed);
 
-        if (hasWorked)
+        foreach (Transform t in model)
         {
-            foreach(Transform t in model)
-            {
-                t.transform.rotation = Quaternion.Lerp(t.transform.rotation, Quaternion.Euler(rotate), Time.deltaTime * speed);
-            }
+            t.transform.rotation = Quaternion.Lerp(t.transform.rotation, isWorking ? Quaternion.Euler(rotate) : Quaternion.Euler(startRotate), Time.deltaTime * speed);
         }
     }
 }

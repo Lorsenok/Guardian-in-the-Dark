@@ -52,8 +52,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93b3f8569677694458bd479b41e491f8, type: 2}
   - {fileID: 11400000, guid: 8ac6551dda64b4642b12c94b0907d730, type: 2}
   EndTemplates: {fileID: 11400000, guid: 8ac6551dda64b4642b12c94b0907d730, type: 2}
+  spawnedTamplatesRateMin: 50
   maxSpawnCount: 999
-  defaultSpawnCount: 1
   SpawnTime: 0.1
   enableObjects:
   - {fileID: 0}

@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseButton: 0
-  OnClick: 2
+  OnClick: 3
   index: main
   animator: {fileID: 7759129713538325008}
   IsClicking: work

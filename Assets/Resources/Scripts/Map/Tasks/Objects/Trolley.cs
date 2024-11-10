@@ -26,7 +26,7 @@ public sealed class Trolley : UsableObject
 
     [Header("Visuals")]
     [SerializeField] private float additionalRotation;
-    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI[] text;
     [SerializeField] private Transform canvas;
     [SerializeField] private float textColoringSpeed;
     [SerializeField] private Transform model;
@@ -44,16 +44,8 @@ public sealed class Trolley : UsableObject
 
     public void OnCollide(Rails rails)
     {
-        if (!curRails.Contains(rails) && rails.IsWork)
+        if (!curRails.Contains(rails))
         {
-            if (!rails.IsWork)
-            {
-                curRails.Clear();
-                curSpeed = 0f;
-
-                return;
-            }
-
             curRails.Add(rails);
             direction += rails.Direction;
         }
@@ -70,8 +62,11 @@ public sealed class Trolley : UsableObject
 
     private void Start()
     {
-        textStartColor = text.color;
-        text.color = new Color(0, 0, 0, 0);
+        foreach (TextMeshProUGUI text in text)
+        {
+            textStartColor = text.color;
+            text.color = new Color(0, 0, 0, 0);
+        }
         startTextRotation = canvas.transform.localRotation;
 
         Instantiate(railsSpawnerPrefab, transform.position, railsSpawnerPrefab.transform.rotation);
@@ -107,13 +102,31 @@ public sealed class Trolley : UsableObject
 
         curRotation = ProjMath.RotateTowardsPosition(transform.position, transform.position + (Vector3)direction) + additionalRotation;
 
-        transform.position += (Vector3)direction * curSpeed;
+        bool canMove = true;
+        bool canMoveBackwards = true;
+
+        foreach (Rails r in curRails)
+        {
+            if (!r.IsWork)
+            {
+                canMove = false;
+            }
+
+            if (r.IsTheFirst)
+            {
+                canMoveBackwards = false;
+            }
+        }
+
+        if (canMove) transform.position += (Vector3)direction * curSpeed * (Input.GetKey(KeyCode.F) & canMoveBackwards ? -1 : 1);
+        else if (canMoveBackwards && Input.GetKey(KeyCode.F)) transform.position += (Vector3)direction * curSpeed * -1;
 
         if (canBeTaked)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.F) & canMoveBackwards)
             {
-                text.color = Color.Lerp(text.color, new Color(0, 0, 0, 0), Time.deltaTime * textColoringSpeed);
+                foreach (TextMeshProUGUI text in text)
+                    text.color = Color.Lerp(text.color, new Color(0, 0, 0, 0), Time.deltaTime * textColoringSpeed);
                 takeTime += Time.deltaTime * accelerationSpeed;
                 curSpeed = Mathf.Lerp(curSpeed, speed, Time.deltaTime * ProjMath.EaseOutQuint(takeTime) * accelerationSpeed);
 
@@ -121,7 +134,8 @@ public sealed class Trolley : UsableObject
             }
             else
             {
-                text.color = Color.Lerp(text.color, textStartColor, Time.deltaTime * textColoringSpeed);
+                foreach (TextMeshProUGUI text in text)
+                    text.color = Color.Lerp(text.color, textStartColor, Time.deltaTime * textColoringSpeed);
                 takeTime = 0;
                 curSpeed = Mathf.Lerp(curSpeed, 0, Time.deltaTime * deccelerationSpeed);
             }
@@ -129,8 +143,31 @@ public sealed class Trolley : UsableObject
         else
         {
             curSpeed = Mathf.Lerp(curSpeed, 0, Time.deltaTime * deccelerationSpeed);
-            text.color = Color.Lerp(text.color, new Color(0, 0, 0, 0), Time.deltaTime * textColoringSpeed);
+            foreach (TextMeshProUGUI text in text)
+                text.color = Color.Lerp(text.color, new Color(0, 0, 0, 0), Time.deltaTime * textColoringSpeed);
             takeTime = 0;
+        }
+
+        Rails railsToSpawn = null;
+
+        if (curRails.Count == 0)
+        {
+            float curDist = 1000f;
+
+            foreach (Rails r in curRails)
+            {
+                float dist = Vector2.Distance(r.transform.position, transform.position);
+                if (dist < curDist)
+                {
+                    railsToSpawn = r;
+                    curDist = dist;
+                }
+            }
+        }
+
+        if (railsToSpawn != null)
+        {
+            transform.position = railsToSpawn.transform.position;
         }
     }
 }

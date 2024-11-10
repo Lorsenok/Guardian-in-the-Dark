@@ -294,6 +294,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opacity: 1
   aliveTime: 10
+  spr: {fileID: 9083740515443457173}
+  img: {fileID: 0}
+  appearByAnotherSctipt: 0
+  appearSpeed: 0
 --- !u!1 &8840603071776883450
 GameObject:
   m_ObjectHideFlags: 0

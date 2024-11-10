@@ -42,5 +42,6 @@ public class Loading : MonoBehaviour
         if (!hasCompleted) return;
 
         text.color = Color.Lerp(text.color, new Color(0, 0, 0, 0), Time.deltaTime * textChangeSpeed);
+        if (text.color.a < 0.01f) Destroy(gameObject);
     }
 }

@@ -12,7 +12,7 @@ public sealed class WormSection : MonoBehaviour
         if (collision.transform == PlayerManager.Instance.GetPlayerPosition() && PlayerManager.Instance.HP > 0)
         {
             PlayerManager.Instance.HP = 0;
-            CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), Enemy.ShakePower);
+            CameraShakeManager.Instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), Enemy.ShakePower);
         }
     }
 }

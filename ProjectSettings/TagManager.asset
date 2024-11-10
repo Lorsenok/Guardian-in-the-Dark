@@ -13,13 +13,13 @@ TagManager:
   - UI
   - Enemy
   - Border
-  - Not Solid
+  - Not Solid For Player
   - Template
   - GameUI
-  - 
-  - 
-  - 
-  - 
+  - Ignore Player And Raycast
+  - Raycast Block
+  - Ignore Borders
+  - Task Object
   - 
   - 
   - 

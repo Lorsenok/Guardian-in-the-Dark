@@ -1,0 +1,19 @@
+Map 1:
+
+Generator - 14:00
+Package - 4:00 - 11:00
+PC - 9:00
+
+
+Map 2:
+
+Generator - 22:00
+Package - 10:00
+PC - 18:00
+
+
+Map 3: (with full upgraded lidar)
+
+Generator - 15:00
+Package - 12:00
+PC - 17:00

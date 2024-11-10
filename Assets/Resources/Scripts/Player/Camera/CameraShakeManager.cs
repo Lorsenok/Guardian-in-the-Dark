@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class CameraShakeManager : MonoBehaviour
 {
-    public static CameraShakeManager instance;
+    public static CameraShakeManager Instance { get; private set; }
 
     private float power;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
 
         power = Config.ShakePower;

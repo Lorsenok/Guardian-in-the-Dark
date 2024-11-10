@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 5521687413427799814}
   - component: {fileID: 2320075336431836899}
   - component: {fileID: 4959377241837595524}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.18212426, g: 1, b: 0, a: 1}
   colorSet: {r: 1, g: 1, b: 1, a: 1}
+  appearOnMap: 1
   speed: 1
   appearSpeed: 5
   dissapearSpeed: 0
@@ -284,9 +285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ea89a8582ed844ba4f6096d087cb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 1, b: 0, a: 0}
+  color: {r: 0, g: 1, b: 0, a: 1}
   speed: 5
   lightTimeSet: 999
+  appearOnMap: 1
   Lighting: {fileID: 3589069132172738212}
 --- !u!114 &4959377241837595524
 MonoBehaviour:
@@ -300,12 +302,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c05bedfe63d5743bf4ccce68d9827f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rails: {fileID: 0}
+  workTime: 5
   model:
   - {fileID: 1574668193058186630}
   - {fileID: 9114689917642424183}
-  speed: 5
-  rotate: {x: -90, y: 0, z: 0}
+  speed: 15
+  rotate: {x: 180, y: 0, z: 0}
+  startRotate: {x: 270, y: 0, z: 0}
   text: {fileID: 1120120798378429801}
   textColoringSpeed: 5
 --- !u!1 &6867313816936393412

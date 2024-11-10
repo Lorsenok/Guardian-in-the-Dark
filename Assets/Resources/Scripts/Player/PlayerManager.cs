@@ -11,7 +11,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Vector2 playerSpawnPosition;
 
-    [SerializeField] private float hp;
     [SerializeField] private float hpLossSpeed;
 
     [SerializeField] private float disolveSpeed;
@@ -42,21 +41,26 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float menuSpeed;
     [SerializeField] private Vector2 menuCloseDistance;
 
+    [SerializeField] private GameObject enemyManager;
+
+    public bool IsDeadByEnemy { get; set; } = false;
+
     private void Awake()
     {
-        HP = hp;
+        HP = Config.PlayerHP;
         Instance = this;
         playerController = Instantiate(playerPrefab, playerSpawnPosition, Quaternion.identity).GetComponent<Controller>();
+
+        startMenuPos = menu.transform.localPosition;
+        menu.transform.position = startMenuPos + (Vector3)menuCloseDistance;
     }
 
     private void Start()
     {
-        foreach (GameObject em in Config.EnemyManagers)
-        {
-            Instantiate(em, Vector3.zero, Quaternion.identity);
-        }
+        Instantiate(enemyManager);
 
-        startMenuPos = menu.transform.localPosition;
+        playerMaterial.SetFloat("_Disolve", 0f);
+        playerMaterial.SetFloat("_Smoothness", 0.5f);
     }
 
     public Transform GetPlayerPosition()
@@ -101,19 +105,13 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        playerMaterial.SetFloat("_Disolve", 0f);
-        playerMaterial.SetFloat("_Smoothness", 0.5f);
-    }
-
-    private void Update() 
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) IsMenuClosed = !IsMenuClosed;
-        
+
         menu.transform.localPosition = Vector3.Lerp(menu.transform.localPosition, startMenuPos + (IsMenuClosed ? menuCloseDistance : Vector3.zero), Time.deltaTime * menuSpeed);
 
-        if (HP <= -0.01f) HP = -0.01f;
+        if (HP < -0.01f) HP = -0.01f;
 
         if (end)
         {
@@ -124,15 +122,15 @@ public class PlayerManager : MonoBehaviour
             {
                 hasDied = true;
                 SceneSwitcher.Instance.ChangeScene(dieSceneIndex);
-            } 
+            }
 
             return;
         }
 
         if (HP <= -0.01f)
         {
-            Death();
-            playerController.transform.position = startPosition;
+            if (!IsDeadByEnemy) SceneSwitcher.Instance.ChangeScene("Die");
+            else Death();
             return;
         }
 

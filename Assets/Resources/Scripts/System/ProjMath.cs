@@ -9,6 +9,11 @@ public static class ProjMath
         return x * x * x;
     }
 
+    public static float EaseInQuart(float x)
+    {
+        return x * x * x * x;
+    }
+
     public static float EaseOutBounce(float x)
     {
         float n1 = 7.5625f;
@@ -32,6 +37,29 @@ public static class ProjMath
         }
     }
 
+    public static float EaseInBounce(float x)
+    {
+        float n1 = 7.5625f;
+        float d1 = 2.75f;
+
+        if (x < 1 / d1)
+        {
+            return n1 * x * x;
+        }
+        else if (x < 2 / d1)
+        {
+            return n1 * (x -= 1.5f / d1) * x + 0.75f;
+        }
+        else if (x < 2.5 / d1)
+        {
+            return n1 * (x -= 2.25f / d1) * x + 0.9375f;
+        }
+        else
+        {
+            return n1 * (x -= 2.625f / d1) * x + 0.984375f;
+        }
+    }
+
     public static float EaseInOutBounce(float x)
     {
         return x < 0.5 
@@ -50,8 +78,14 @@ public static class ProjMath
         return Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
     }
 
-    public static float SinTime(float m = 1f)
+    public static void MoveTowardsAngle(Transform pos, float angle, float speed)
     {
-        return Mathf.Sin(Time.timeSinceLevelLoad) * m * (Mathf.Sin(Time.timeSinceLevelLoad) * m > 0 ? 1f : -1f);
+        pos.position += new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad), 0) * speed;
+    }
+
+    public static float SinTime(float m = 1f, bool canBeNegative = false)
+    {
+        if (!canBeNegative) return Mathf.Sin(Time.timeSinceLevelLoad * m) * (Mathf.Sin(Time.timeSinceLevelLoad * m) > 0 ? 1f : -1f);
+        else return Mathf.Sin(Time.timeSinceLevelLoad * m);
     }
 }

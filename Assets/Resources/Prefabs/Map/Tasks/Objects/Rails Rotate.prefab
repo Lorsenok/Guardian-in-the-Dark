@@ -161,9 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ea89a8582ed844ba4f6096d087cb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 1, b: 0, a: 0}
+  color: {r: 0, g: 1, b: 0, a: 1}
   speed: 5
   lightTimeSet: 999
+  appearOnMap: 1
   Lighting: {fileID: 4388066781722366119}
 --- !u!1 &7704731278215977532
 GameObject:

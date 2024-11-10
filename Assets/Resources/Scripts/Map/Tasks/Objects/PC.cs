@@ -61,6 +61,12 @@ public class PC : UsableObject
         startBackgroundColor = background.color;
 
         startDefaultVolumeWeight = defaultVolume.weight;
+
+        Volume v = CameraSetup.Instance.gameObject.AddComponent<Volume>();
+        v.profile = volumePC.profile;
+
+        volumePC.enabled = false;
+        volumePC = v;
     }
 
     private void OnDisable()
@@ -97,7 +103,7 @@ public class PC : UsableObject
             isOpen = false;
         }
 
-        time += Time.deltaTime;
+        if (time < 1f) time += Time.deltaTime;
 
         if (canBeTaked && !HasUsed) text.color = Color.Lerp(text.color, startTextColor, Time.deltaTime * textChangeSpeed);
         else text.color = Color.Lerp(text.color, new(0, 0, 0, 0), Time.deltaTime * textChangeSpeed);
@@ -117,10 +123,7 @@ public class PC : UsableObject
             {
                 inputField.gameObject.SetActive(true);
 
-                CameraSetup.Instance.Camera2D.GetUniversalAdditionalCameraData().renderPostProcessing = false;
-                CameraSetup.Instance.Camera3D.GetUniversalAdditionalCameraData().renderPostProcessing = true;
-
-                backgroundSetTime += Time.deltaTime * backgroundAppearSpeed;
+                if (backgroundSetTime < 1f) backgroundSetTime += Time.deltaTime * backgroundAppearSpeed;
                 background.color = new Color(background.color.r, background.color.g, background.color.b, ProjMath.EaseInOutBounce(backgroundSetTime));
 
                 if (Input.GetKeyDown(KeyCode.Return))
@@ -135,7 +138,7 @@ public class PC : UsableObject
                     else
                     {
                         background.color = Color.red;
-                        CameraShakeManager.instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), shakePower);
+                        CameraShakeManager.Instance.Shake(PlayerManager.Instance.GetPlayerPosition().GetComponentInChildren<CinemachineImpulseSource>(), shakePower);
                     }
                 }
             }
@@ -144,9 +147,6 @@ public class PC : UsableObject
         else
         {
             inputField.gameObject.SetActive(false);
-
-            CameraSetup.Instance.Camera2D.GetUniversalAdditionalCameraData().renderPostProcessing = true;
-            CameraSetup.Instance.Camera3D.GetUniversalAdditionalCameraData().renderPostProcessing = false;
 
             fade.color = new Color(0, 0, 0, Mathf.Lerp(fade.color.a, 0, Time.deltaTime * fadeChangeSpeed));
 

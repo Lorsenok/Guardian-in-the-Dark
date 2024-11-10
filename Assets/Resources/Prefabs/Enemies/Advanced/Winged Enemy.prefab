@@ -447,7 +447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 923ae0b5c2a95dd469099c3961d42c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 4759641673123971086}
+  destroyWithOwner: 0
+  followZPosition: 0
 --- !u!114 &4684423695415423676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,8 +461,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552860fac85e91a488f0277f6364a996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
   colorSet: {r: 1, g: 1, b: 1, a: 0}
+  appearOnMap: 0
   speed: 2
   appearSpeed: 16
   dissapearSpeed: 4
@@ -565,7 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 923ae0b5c2a95dd469099c3961d42c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 4759641673123971086}
+  destroyWithOwner: 0
+  followZPosition: 0
 --- !u!114 &2248207702138586419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,8 +581,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552860fac85e91a488f0277f6364a996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
   colorSet: {r: 1, g: 1, b: 1, a: 0}
+  appearOnMap: 0
   speed: 2
   appearSpeed: 16
   dissapearSpeed: 4
@@ -1039,6 +1043,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bc4ac23c87bb01847acbe8d03f7a5059, type: 2}
   additionalAngle: -90
   fallSpeed: 0.5
+  rotateTowardsPlayerOnSpawn: 1
   ShakePower: 6
   attackTime: 0.5
   attackForce: 8
@@ -1062,8 +1067,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552860fac85e91a488f0277f6364a996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 0}
-  colorSet: {r: 1, g: 1, b: 1, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  colorSet: {r: 1, g: 1, b: 1, a: 1}
+  appearOnMap: 0
   speed: 2
   appearSpeed: 16
   dissapearSpeed: 4
@@ -1179,7 +1185,7 @@ MonoBehaviour:
   - {x: 0.10780239, y: -0.507094, z: 0}
   m_ShapePathHash: 1889948295
   m_Mesh: {fileID: 0}
-  m_InstanceId: 49250
+  m_InstanceId: 62138
   m_LocalBounds:
     m_Center: {x: 0.0041071177, y: -0.0055286884, z: 0}
     m_Extent: {x: 0.51450145, y: 0.51839674, z: 0}

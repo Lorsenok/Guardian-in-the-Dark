@@ -15,14 +15,14 @@ public class GeneratorTask : Task
         count--;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         for (int i = 0; i < generatorsQuantity; i++)
         {
             generators.Add(TaskObjectSpawner.Spawn(generatorPrefab));
         }
 
-        count = generators.Count; 
+        count = generators.Count;
 
         Generator.OnUse += OnGeneratorUsed;
     }

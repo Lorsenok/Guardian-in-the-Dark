@@ -10,10 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1797425672039163479}
   - component: {fileID: 3246458960157426658}
-  - component: {fileID: 5993555420728642918}
-  - component: {fileID: 7233316980521406055}
-  - component: {fileID: 7765873352321225288}
   - component: {fileID: 6342062570434476483}
+  - component: {fileID: -8525901563445636871}
   m_Layer: 0
   m_Name: Hunt Task Manager
   m_TagString: Untagged
@@ -51,52 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 2572931808610062702}
   endTask: {fileID: 6342062570434476483}
-  showTaskTime: 10
---- !u!114 &5993555420728642918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6479004462105509994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6b98bfcbaf59d49a11b618dd9b82c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AdditionalLoadingTime: 5
-  Name: Kill 1 enemy
-  enemiesCount: 1
---- !u!114 &7233316980521406055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6479004462105509994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6b98bfcbaf59d49a11b618dd9b82c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AdditionalLoadingTime: 5
-  Name: Kill 2 enemies
-  enemiesCount: 2
---- !u!114 &7765873352321225288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6479004462105509994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6b98bfcbaf59d49a11b618dd9b82c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AdditionalLoadingTime: 5
-  Name: Kill 3 enemies
-  enemiesCount: 3
+  additionalStartShowTime: 5
 --- !u!114 &6342062570434476483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +65,20 @@ MonoBehaviour:
   AdditionalLoadingTime: 5
   Name: Go back to hub
   completeObject: {fileID: 7530990305564420235, guid: 3cde00bbcbe9c3e40b568eb3439be5ec, type: 3}
+  sceneID: 0
+--- !u!114 &-8525901563445636871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479004462105509994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acf21e22f90c6141a1593047c006671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEnemiesCount: 3
 --- !u!1001 &8266196475401306299
 PrefabInstance:
   m_ObjectHideFlags: 0

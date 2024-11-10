@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public enum ButtonFunction
 {
+    Nothing,
     Start,
     Exit,
     MenuOpen,
@@ -17,41 +18,41 @@ public class GameButton : MonoBehaviour
     public static bool CanBeToched { get; set; } = true;
 
     [Header("Tech")]
-    [SerializeField] private int mouseButton;
-    [SerializeField] private ButtonFunction OnClick;
-    [SerializeField] private string index;
+    [SerializeField] protected int mouseButton;
+    [SerializeField] protected ButtonFunction OnClick;
+    [SerializeField] protected string index;
 
     [Header("Animations")]
-    [SerializeField] private Animator animator;
+    [SerializeField] protected Animator animator;
 
-    [SerializeField] private string IsClicking;
-    [SerializeField] private string IsPointing;
-    [SerializeField] private string IsNotPointing;
+    [SerializeField] protected string IsClicking;
+    [SerializeField] protected string IsPointing;
+    [SerializeField] protected string IsNotPointing;
 
-    [SerializeField] private float moveDistance;
-    [SerializeField] private Vector3 moveDirection;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] protected float moveDistance;
+    [SerializeField] protected Vector3 moveDirection;
+    [SerializeField] protected float moveSpeed;
 
-    private bool isMousePointing = false;
+    protected bool isMousePointing = false;
 
-    private Vector3 startPos;
+    protected Vector3 startPos;
 
-    public void OnMouseOver()
+    public virtual void OnMouseOver()
     {
         isMousePointing = true;
     }
 
-    public void OnMouseExit()
+    public virtual void OnMouseExit()
     {
         isMousePointing = false;
     }
 
-    private void Awake()
+    public virtual void Awake()
     {
         startPos = transform.localPosition;
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (!CanBeToched)
         {

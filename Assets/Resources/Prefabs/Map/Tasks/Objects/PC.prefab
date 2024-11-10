@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 9173140768070374576}
   - component: {fileID: 7809599878540652936}
   - component: {fileID: 8453403065364236226}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -764,6 +764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0.94248676, b: 1, a: 1}
   colorSet: {r: 1, g: 1, b: 1, a: 1}
+  appearOnMap: 1
   speed: 1
   appearSpeed: 5
   dissapearSpeed: 0
@@ -789,6 +790,7 @@ MonoBehaviour:
   color: {r: 0, g: 0.9411765, b: 1, a: 1}
   speed: 5
   lightTimeSet: 999
+  appearOnMap: 1
   Lighting: {fileID: 7907002064601389815}
 --- !u!114 &7809599878540652936
 MonoBehaviour:

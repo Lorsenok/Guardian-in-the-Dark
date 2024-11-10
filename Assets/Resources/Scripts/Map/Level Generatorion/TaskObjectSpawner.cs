@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TaskObjectSpawner : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class TaskObjectSpawner : MonoBehaviour
     {
         if (Spawners.Count == 0)
         {
-            Debug.LogWarning("There is no spawners!");
+            Debug.Log("There is no place to spawn task object!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             return null;
         }
 

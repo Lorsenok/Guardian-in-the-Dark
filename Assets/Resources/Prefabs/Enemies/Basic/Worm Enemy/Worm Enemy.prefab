@@ -410,6 +410,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 726304b8052df1142a43ae1a9794ba17, type: 2}
   additionalAngle: -90
   fallSpeed: 0
+  rotateTowardsPlayerOnSpawn: 1
   ShakePower: 12
   force: 40
   impulseDelay: 2
@@ -435,8 +436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552860fac85e91a488f0277f6364a996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 0}
-  colorSet: {r: 1, g: 1, b: 1, a: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  colorSet: {r: 1, g: 1, b: 1, a: 1}
+  appearOnMap: 0
   speed: 2
   appearSpeed: 16
   dissapearSpeed: 7

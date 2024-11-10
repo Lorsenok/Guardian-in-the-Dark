@@ -17,6 +17,17 @@ public class Controller : MonoBehaviour
 
     private Rigidbody2D rg;
 
+    [SerializeField] private Transform[] objectsWithoutRotation;
+
+    [SerializeField] private Material decoMaterial;
+    [SerializeField] private float rotationMultiplierForMat;
+    [SerializeField] private float additionalRotationForMat;
+
+    private void Awake()
+    {
+        CanMove = true;
+    }
+
     private void Start()
     {
         speedMultiplier = Config.SpeedMultiplier;
@@ -38,13 +49,30 @@ public class Controller : MonoBehaviour
     {
         float rotation = ProjMath.RotateTowardsPosition(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, rotation + additionalRotate), Time.deltaTime * speed / 2f * speedMultiplier);
+        decoMaterial.SetFloat("_Rotation", additionalRotationForMat + rotationMultiplierForMat * (transform.eulerAngles.z / 90));
+
+        foreach (Transform t in objectsWithoutRotation)
+        {
+            t.rotation = Quaternion.identity;
+        }
     }
+
+    private Vector3 startPositionWhileCantMove = Vector3.zero;
 
     private void Update()
     {
+        if (CanMove) startPositionWhileCantMove = Vector3.zero;
+        else if (startPositionWhileCantMove == Vector3.zero) startPositionWhileCantMove = transform.position;
+
         if (!CanMove)
         {
-            rg.velocity = Vector2.zero;
+            transform.position = startPositionWhileCantMove;
+
+            foreach (Transform t in objectsWithoutRotation)
+            {
+                t.rotation = Quaternion.identity;
+            }
+
             return;
         }
         CurrectSpeed = Mathf.Lerp(CurrectSpeed, speed, Time.deltaTime * acceleration);
@@ -53,7 +81,11 @@ public class Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!CanMove) return;
+        if (!CanMove || !PlayerManager.Instance.IsMenuClosed)
+        {
+            rg.velocity = Vector2.zero;
+            return;
+        }
         Move();
     }
 

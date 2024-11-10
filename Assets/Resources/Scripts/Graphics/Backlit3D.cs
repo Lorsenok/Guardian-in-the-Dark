@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,15 @@ using UnityEngine.Rendering.Universal;
 
 public class Backlit3D : MonoBehaviour
 {
+    public static Action<Vector3, bool> OnAppear;
+
     public Color color;
 
     private bool hasBeenToched = false;
 
     public Color colorSet;
+
+    [SerializeField] private bool appearOnMap = true;
 
     [SerializeField] private float speed;
     [SerializeField] private float appearSpeed;
@@ -30,37 +35,48 @@ public class Backlit3D : MonoBehaviour
 
     public List<Material> Materials { get; private set; } = new();
 
+    private bool hasAppearedOnMap = false;
+
     public void Light()
     {
         lightTime += lightTimeSet / divisions;
         lightTime = Mathf.Clamp(lightTime, 0f, lightTimeSet);
         hasBeenToched = true;
+
+        if (!hasAppearedOnMap)
+        {
+            hasAppearedOnMap = true;
+            OnAppear?.Invoke(transform.position, appearOnMap);
+        }
     }
 
     private void Awake()
     {
-        Materials.Add(material);
-        foreach (Material m in additionalMaterials)
+        if (material != null)
         {
-            Materials.Add(m);
+            Materials.Add(material);
+            foreach (Material m in additionalMaterials)
+            {
+                Materials.Add(m);
+            }
         }
     }
 
     private void OnDestroy()
     {
-        material.SetFloat("_Smoothness", startSmoothness);
+        if (material != null) material.SetFloat("_Smoothness", startSmoothness);
     }
 
     private void Start()
     {
         Lighting.intensity = 0;
-        material.color = Color.black;
+        if (material != null) material.color = Color.black;
 
         if (startSmoothness == 0f && !hasStartSmoothnessSetted)
         {
             hasStartSmoothnessSetted = true;
             startSmoothness = material.GetFloat("_Smoothness");
-            material.SetFloat("_Smoothness", 0);
+            if (material != null) material.SetFloat("_Smoothness", 0);
         }
 
         if (additionalMaterials != null)
@@ -80,8 +96,11 @@ public class Backlit3D : MonoBehaviour
 
         if (!isColoringByLight)
         {
-            material.color = Color.Lerp(material.color, colorSet, Time.deltaTime * appearSpeed);
-            material.SetFloat("_Smoothness", Mathf.Lerp(material.GetFloat("_Smoothness"), startSmoothness, Time.deltaTime * appearSpeed));
+            if (material != null)
+            {
+                material.color = Color.Lerp(material.color, colorSet, Time.deltaTime * appearSpeed);
+                material.SetFloat("_Smoothness", Mathf.Lerp(material.GetFloat("_Smoothness"), startSmoothness, Time.deltaTime * appearSpeed));
+            }
 
             if (additionalMaterials != null)
             {
@@ -94,8 +113,11 @@ public class Backlit3D : MonoBehaviour
         }
         else
         {
-            material.color = Color.Lerp(material.color, colorSet / lightTimeSet * lightTime, Time.deltaTime * appearSpeed);
-            material.SetFloat("_Smoothness", Mathf.Lerp(material.GetFloat("_Smoothness"), startSmoothness / lightTimeSet * lightTime, Time.deltaTime * appearSpeed));
+            if (material != null)
+            {
+                material.color = Color.Lerp(material.color, colorSet / lightTimeSet * lightTime, Time.deltaTime * appearSpeed);
+                material.SetFloat("_Smoothness", Mathf.Lerp(material.GetFloat("_Smoothness"), startSmoothness / lightTimeSet * lightTime, Time.deltaTime * appearSpeed));
+            }
 
             if (additionalMaterials != null)
             {

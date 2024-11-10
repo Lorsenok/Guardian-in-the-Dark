@@ -67,10 +67,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Code:
 
-    4126'
+    idk bruh'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2cf02acb2b8599141a29dbeedce8c64e, type: 2}
+  m_sharedMaterial: {fileID: 7503048747775901609, guid: 2cf02acb2b8599141a29dbeedce8c64e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71.9
+  m_fontSize: 100.3
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 2572931808610062702}
   endTask: {fileID: 6342062570434476483}
-  showTaskTime: 10
+  additionalStartShowTime: 5
 --- !u!114 &3720285762729786733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   AdditionalLoadingTime: 5
   Name: Go back to hub
   completeObject: {fileID: 7530990305564420235, guid: 3cde00bbcbe9c3e40b568eb3439be5ec, type: 3}
+  sceneID: 0
 --- !u!1001 &8266196475401306299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269,10 +270,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5837665934585631189, guid: 54f010d76f821f241af1765f4489287e, type: 3}
       propertyPath: additionalPanels.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5837665934585631189, guid: 54f010d76f821f241af1765f4489287e, type: 3}
-      propertyPath: additionalPanels.Array.data[0]
+      propertyPath: additionalPanels.Array.data[1]
       value: 
       objectReference: {fileID: 43022349095776346}
     - target: {fileID: 7966870257171592938, guid: 54f010d76f821f241af1765f4489287e, type: 3}

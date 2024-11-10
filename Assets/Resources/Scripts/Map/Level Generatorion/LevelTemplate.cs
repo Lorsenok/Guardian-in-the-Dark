@@ -40,7 +40,7 @@ public class LevelTemplate : MonoBehaviour
         }
     }
 
-    public List<AdditionalTaskObjectSpawner> TaskObjectSpawners { get; private set; } = new();
+    public List<AdditionalTaskObjectSpawner> TaskObjectSpawners { get; set; } = new();
 
     private void OnTriggerStay2D(Collider2D collision)
     {

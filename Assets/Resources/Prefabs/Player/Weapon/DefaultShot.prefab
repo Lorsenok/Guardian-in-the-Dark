@@ -271,3 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opacity: 0
   aliveTime: 0.08
+  spr: {fileID: 9083740515443457173}
+  img: {fileID: 0}
+  appearByAnotherSctipt: 0
+  appearSpeed: 0

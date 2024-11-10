@@ -47,7 +47,6 @@ MonoBehaviour:
   menu: {fileID: 0}
   playerPrefab: {fileID: 1537089990809303965, guid: cf549e9b71195b34f9496121a1d7a20e, type: 3}
   playerSpawnPosition: {x: 0, y: 0}
-  hp: 1200
   hpLossSpeed: 1
   disolveSpeed: 0.2
   lightDisolveSpeed: 0.8
@@ -59,3 +58,4 @@ MonoBehaviour:
   dieSceneIndex: Die
   menuSpeed: 5
   menuCloseDistance: {x: -15, y: 0}
+  enemyManager: {fileID: 7569143857056752479, guid: 0a305e3e33ae2f94b8ccc5d402d998b9, type: 3}

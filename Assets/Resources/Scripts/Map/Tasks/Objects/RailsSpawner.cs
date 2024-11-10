@@ -2,6 +2,7 @@ using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RailsSpawner : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class RailsSpawner : MonoBehaviour
     [SerializeField] private float spawnAdditionalRotation;
     [SerializeField] private int leverRailsQuantity;
 
+    [SerializeField] private int minRailsCount;
+
+    private int railsCount = 0;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (canWork)
@@ -33,19 +38,22 @@ public class RailsSpawner : MonoBehaviour
             {
                 if (temp.TaskObjectSpawners.Count > 0)
                 {
-                    Instantiate(leverPrefab, temp.TaskObjectSpawners[0].transform.position, leverPrefab.transform.rotation).TryGetComponent(out Lever lever);
-                    Destroy(temp.TaskObjectSpawners[0]);
-                    Vector3 leverPos = lever.transform.position;
-                    
-                    Transform wireTrans = Instantiate(wirePrefab, (leverPos + lastRails.transform.position) / 2, Quaternion.Euler(0, 0, ProjMath.RotateTowardsPosition(leverPos, lastRails.transform.position))).transform;
-
-                    wireTrans.localScale = new(Vector2.Distance(leverPos, lastRails.transform.position), wireTrans.localScale.y);
-
-                    Rails irails = lastRails;
-                    for (int i = 0; i < leverRailsQuantity; i++)
+                    if (temp.TaskObjectSpawners[0] != null)
                     {
-                        lever.Rails.Add(irails); 
-                        irails = lastRails.LastRails;
+                        Instantiate(leverPrefab, temp.TaskObjectSpawners[0].transform.position, leverPrefab.transform.rotation).TryGetComponent(out Lever lever);
+                        Destroy(temp.TaskObjectSpawners[0]);
+                        Vector3 leverPos = lever.transform.position;
+
+                        Transform wireTrans = Instantiate(wirePrefab, (leverPos + lastRails.transform.position) / 2, Quaternion.Euler(0, 0, ProjMath.RotateTowardsPosition(leverPos, lastRails.transform.position))).transform;
+
+                        wireTrans.localScale = new(Vector2.Distance(leverPos, lastRails.transform.position), wireTrans.localScale.y);
+
+                        Rails irails = lastRails;
+                        for (int i = 0; i < leverRailsQuantity; i++)
+                        {
+                            lever.Rails.Add(irails);
+                            irails = lastRails.LastRails;
+                        }
                     }
                 }
             }
@@ -60,7 +68,7 @@ public class RailsSpawner : MonoBehaviour
         }
     }
 
-    private void Spawn(Vector2 dir, bool rotate = false, Vector3 position = new())
+    private void Spawn(Vector2 dir, bool rotate = false, Vector3 position = new(), bool isTheFirst = false)
     {
         Rails obj;
 
@@ -73,11 +81,15 @@ public class RailsSpawner : MonoBehaviour
 
         lastRails = obj;
         obj.Direction = dir;
+
+        railsCount++;
+
+        obj.IsTheFirst = isTheFirst;
     }
 
     private void Start()
     {
-        pathfinding.destination = HubArea.Instance.GetComponent<LevelTemplate>().Joints[0].transform.position;
+        pathfinding.destination = HubArea.Instance.GetComponentInParent<LevelTemplate>().Joints[0].transform.position;
     }
 
     private bool onSpawnedStartRails = false;
@@ -87,13 +99,14 @@ public class RailsSpawner : MonoBehaviour
 
         if (Vector2.Distance(transform.position, pathfinding.destination) < 1)
         {
+            if (railsCount < minRailsCount) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Instantiate(railsEnd, transform.position, railsEnd.transform.rotation);
             Destroy(gameObject);
         }
 
         if (!onSpawnedStartRails)
         {
-            Spawn(startDir);
+            Spawn(startDir, isTheFirst:true);
             onSpawnedStartRails = true;
         }
 

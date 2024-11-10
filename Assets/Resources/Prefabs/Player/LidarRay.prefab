@@ -129,4 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda31aead9197274bb49fa4daace5751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aliveTime: 0.05
+  opacity: 1
+  aliveTime: 0.3
+  spr: {fileID: 8586490140987227243}
+  img: {fileID: 0}
+  appearByAnotherSctipt: 0
+  appearSpeed: 0

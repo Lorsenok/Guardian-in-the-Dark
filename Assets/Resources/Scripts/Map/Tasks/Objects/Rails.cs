@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rails : MonoBehaviour
 {
     public bool IsWork { get; set; } = true;
+    public bool IsTheFirst { get; set; } = false;
 
     public Rails LastRails { get; set; }
     public Vector2 Direction { get; set; } = Vector2.zero;

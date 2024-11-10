@@ -16,7 +16,7 @@ public sealed class PackageTask : Task
         hasDelivered = true;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         TaskObjectSpawner.Spawn(packageSpotPrefab);
         TaskObjectSpawner.Spawn(packagePrefab);
