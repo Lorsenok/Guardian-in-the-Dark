@@ -21,10 +21,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.15
+    m_Value: 0.3
   smoothness:
-    m_OverrideState: 0
-    m_Value: 0.2
+    m_OverrideState: 1
+    m_Value: 1
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   active: 1
   scanLineJitter:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.35
   verticalJump:
     m_OverrideState: 1
     m_Value: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Value: 0
   colorDrift:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.2
 --- !u!114 &-3605315872193041342
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
   scale:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
 --- !u!114 &-1595210129804159984
 MonoBehaviour:
@@ -96,7 +96,23 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.35
+--- !u!114 &-1117261413866836571
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d536c364ebc24dd6b769ef6affde936a, type: 3}
+  m_Name: DigitalGlitchVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.001
 --- !u!114 &-779588462066668761
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -127,7 +143,7 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.7647059, g: 1, b: 1, a: 1}
+    m_Value: {r: 1, g: 0.6697191, b: 0.6556604, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -154,7 +170,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Menu Profile
+  m_Name: Death Menu Profile
   m_EditorClassIdentifier: 
   components:
   - {fileID: -779588462066668761}
@@ -162,3 +178,4 @@ MonoBehaviour:
   - {fileID: -1595210129804159984}
   - {fileID: -7561464619620937800}
   - {fileID: -7221559550897744988}
+  - {fileID: -1117261413866836571}

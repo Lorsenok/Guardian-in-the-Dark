@@ -33,12 +33,12 @@ public class EnemyManagersManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Enemy.OnEnemyDied += OnEnemyDestroyed;
+        Enemy.OnEnemyDestroyed += OnEnemyDestroyed;
     }
 
     private void OnDisable()
     {
-        Enemy.OnEnemyDied -= OnEnemyDestroyed;
+        Enemy.OnEnemyDestroyed -= OnEnemyDestroyed;
     }
 
     private void Update()

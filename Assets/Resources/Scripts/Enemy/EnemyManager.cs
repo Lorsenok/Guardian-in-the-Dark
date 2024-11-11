@@ -12,7 +12,6 @@ public sealed class EnemyManager : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private float maxDistance;
     [SerializeField] private int spawnChance;
-    [SerializeField] private float spawnTimeM = 1f;
 
     [SerializeField] private float additionalHPLose = 2.5f;
 
@@ -58,7 +57,7 @@ public sealed class EnemyManager : MonoBehaviour
 
     private void SpawnTimeExpand()
     {
-        spawnTime += Config.EnemySpawnRate * spawnTimeM;
+        spawnTime += Config.EnemySpawnRate + UnityEngine.Random.Range(-Config.EnemySpawnRateBias, Config.EnemySpawnRateBias);
     }
 
     private void SpawnEnemy()
