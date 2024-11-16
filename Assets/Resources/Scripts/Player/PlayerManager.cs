@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(enemyManager);
+        if (enemyManager != null) Instantiate(enemyManager);
 
         playerMaterial.SetFloat("_Disolve", 0f);
         playerMaterial.SetFloat("_Smoothness", 0.5f);

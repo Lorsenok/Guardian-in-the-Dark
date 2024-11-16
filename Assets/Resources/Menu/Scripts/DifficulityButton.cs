@@ -20,6 +20,8 @@ public class DifficulityButton : GameButton
 
     public override void Awake()
     {
+        canBePicked = true;
+
         if (PlayerPrefs.HasKey("prog")) Config.Progress = PlayerPrefs.GetInt("prog");
 
         text.gameObject.SetActive(Config.Progress < progressSet - 1);

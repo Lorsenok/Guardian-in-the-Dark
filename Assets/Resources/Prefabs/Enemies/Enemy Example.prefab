@@ -248,8 +248,15 @@ MonoBehaviour:
   hp: 5
   speed: 3.5
   acceleration: 4
+  speedAcceleration: 0
   timeBeforeAgr: 2
   timeBeforeDeath: 3
+  lights: []
+  materials: []
+  additionalAngle: 0
+  fallSpeed: 0
+  rotateTowardsPlayerOnSpawn: 1
+  ShakePower: 0
 --- !u!114 &5635107188039661209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +272,7 @@ MonoBehaviour:
   color: {r: 1, g: 0.25, b: 0.25, a: 0}
   speed: 1
   lightTimeSet: 5
+  appearOnMap: 1
   Lighting: {fileID: 4485083672680508250}
 --- !u!114 &1123753484959711687
 MonoBehaviour:
@@ -386,7 +394,7 @@ MonoBehaviour:
   - {x: 0.10780239, y: -0.507094, z: 0}
   m_ShapePathHash: 1889948295
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38252
+  m_InstanceId: -116798
   m_LocalBounds:
     m_Center: {x: 0.0041071177, y: -0.0055286884, z: 0}
     m_Extent: {x: 0.51450145, y: 0.51839674, z: 0}

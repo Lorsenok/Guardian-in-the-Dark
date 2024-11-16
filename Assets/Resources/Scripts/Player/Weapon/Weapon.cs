@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     public static ShootVariation shootVariation;
 
     public bool IsHoldingWeapon { get; private set; } = false;
+    public bool AllowSwitching { get; set; } = true;
 
     public Lidar Lidar { get; private set; }
 
@@ -84,7 +85,7 @@ public class Weapon : MonoBehaviour
         Lidar.IsWorking = !IsHoldingWeapon & Delay <= 0;
         lidar3DModel.SetActive(Lidar.IsWorking);
 
-        if (Input.GetKeyDown(KeyCode.Q) & Delay <= 0 && PlayerManager.Instance.IsMenuClosed)
+        if (Input.GetKeyDown(KeyCode.Q) & Delay <= 0 && PlayerManager.Instance.IsMenuClosed && AllowSwitching)
         {
             Delay = delaySet;
             switchOnce = true;
