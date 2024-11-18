@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 2572931808610062702}
   endTask: {fileID: 6342062570434476483}
-  showTaskTime: 10
+  additionalStartShowTime: 5
 --- !u!114 &5022721247508844526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +66,7 @@ MonoBehaviour:
   Name: Fix all generators
   generatorPrefab: {fileID: 2920103459692652259, guid: 1a07c037afd17b5478e652347e31969b, type: 3}
   generatorsQuantity: 5
+  tutorialSceneName: Tutorial
 --- !u!114 &6342062570434476483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +82,7 @@ MonoBehaviour:
   AdditionalLoadingTime: 5
   Name: Go back to hub
   completeObject: {fileID: 7530990305564420235, guid: 3cde00bbcbe9c3e40b568eb3439be5ec, type: 3}
+  sceneID: 0
 --- !u!1001 &8266196475401306299
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,14 +10,21 @@ public class MoneyGiver : MonoBehaviour
 
     private void Start()
     {
+        if (Config.CurrectCompleteAward == 0)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         GameButton.CanBeToched = false;
     }
 
     private void Update()
     {
+        textObj.text = text + Config.CurrectCompleteAward.ToString();
+
         if (Input.GetMouseButton(0))
         {
-            textObj.text = text + Config.CurrectCompleteAward.ToString();
             GameButton.CanBeToched = true;
             Config.Money += Config.CurrectCompleteAward;
             Destroy(gameObject);

@@ -42,7 +42,7 @@ public class Shot : MonoBehaviour
         {
             damageable.GetDamage(Damage);
             GetComponent<BoxCollider2D>().size = Vector2.zero;
-            Instantiate(bloodParticles, collision.transform.position, Quaternion.identity);
+            if (Config.Particles) Instantiate(bloodParticles, collision.transform.position, Quaternion.identity);
         }
     }
 
@@ -133,7 +133,7 @@ public class Shot : MonoBehaviour
         spr.color = new Color(spr.color.r, spr.color.g, spr.color.b, 0);
 
         particlesSpawner.localPosition = new Vector3(particlesDistance, 0, particlesZ);
-        Instantiate(particles, particlesSpawner.position, Quaternion.identity);
+        if (Config.Particles) Instantiate(particles, particlesSpawner.position, Quaternion.identity);
 
         shooted = false;
     }

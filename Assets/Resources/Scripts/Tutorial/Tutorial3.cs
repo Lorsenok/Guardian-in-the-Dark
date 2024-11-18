@@ -15,14 +15,13 @@ public class Tutorial3: MonoBehaviour
     private bool isWorking = false;
     private bool canWork = false;
 
-    private Vector3 playerPosSet;
+    [SerializeField] private Transform playerPosSet;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform == PlayerManager.Instance.GetPlayerPosition())
         {
             canWork = true;
-            playerPosSet = PlayerManager.Instance.GetPlayerPosition().position;
         }
     }
 
@@ -47,7 +46,7 @@ public class Tutorial3: MonoBehaviour
 
         if (canWork & !isWorking)
         {
-            PlayerManager.Instance.GetPlayerPosition().position = playerPosSet;
+            PlayerManager.Instance.GetPlayerPosition().position = playerPosSet.position;
         }
 
         Weapon.Instance.AllowSwitching = canWork;

@@ -44,6 +44,7 @@ public class WeaponUpgradeButton : GameButton
         base.Awake();
 
         if (PlayerPrefs.HasKey("money")) Config.Money = PlayerPrefs.GetInt("money");
+        else PlayerPrefs.SetInt("money", Config.Money);
 
         if (!PlayerPrefs.HasKey("upg_" + saveID)) return;
 
@@ -58,7 +59,7 @@ public class WeaponUpgradeButton : GameButton
         textUpg.text = upgradesCurAmount.ToString() + "/" + upgradesMaxAmount.ToString();
         textCoast.text = upgradesCurAmount == upgradesMaxAmount ? "Max" : coast.ToString();
 
-        if (!(isMousePointing && Input.GetMouseButtonUp(mouseButton) && Config.Money > coast && upgradesCurAmount < upgradesMaxAmount)) return;
+        if (!(isMousePointing && Input.GetMouseButtonUp(mouseButton) && Config.Money >= coast && upgradesCurAmount < upgradesMaxAmount)) return;
 
         Config.Money -= coast;
         upgradesCurAmount += 1;

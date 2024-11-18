@@ -11,6 +11,8 @@ public class EnemyManagersManager : MonoBehaviour
 
     private void OnEnemyDestroyed()
     {
+        if (this == null) return;
+
         List<AffiliationPoint> points = new List<AffiliationPoint>();
 
         foreach (EnemyManager em in enemyManagers)

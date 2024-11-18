@@ -57,7 +57,7 @@ public class Papers : UsableObject
             {
                 OnTake?.Invoke();
                 hasTaken = true;
-                Instantiate(particles, transform.position, Quaternion.identity);
+                if (Config.Particles) Instantiate(particles, transform.position, Quaternion.identity);
             }
         }
         else text.color = new(text.color.r, text.color.g, text.color.b, Mathf.Lerp(text.color.a, 0, Time.deltaTime * textAppearSpeed));

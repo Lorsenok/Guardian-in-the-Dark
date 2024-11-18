@@ -10,7 +10,9 @@ public enum ButtonFunction
     Start,
     Exit,
     MenuOpen,
-    MenuClose
+    MenuClose,
+    DeleteAllData,
+    DefaultSettings
 }
 
 public class GameButton : MonoBehaviour
@@ -49,6 +51,7 @@ public class GameButton : MonoBehaviour
 
     public virtual void Awake()
     {
+        CanBeToched = true;
         startPos = transform.localPosition;
     }
 
@@ -83,6 +86,14 @@ public class GameButton : MonoBehaviour
 
                 case ButtonFunction.MenuClose:
                     PlayerManager.Instance.IsMenuClosed = true;
+                    break;
+                case ButtonFunction.DeleteAllData:
+                    PlayerPrefs.DeleteAll();
+                    SceneSwitcher.Instance.ChangeScene(index);
+                    CanBeToched = false;
+                    break;
+                case ButtonFunction.DefaultSettings:
+                    SettingsSetup.Instance.ClearSettings();
                     break;
             }
         }

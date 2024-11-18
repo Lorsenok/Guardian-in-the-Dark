@@ -5,8 +5,6 @@ using UnityEngine;
 public class Config
 {
     // Game settings
-    public static float Volume { get; set; } = 1.0f;
-    public static bool PostProcessing { get; set; } = true;
     public static float ShakePower { get; set; } = 1f;
     public static int DifficulityMultiplier { get; set; } = 1;
 
@@ -36,6 +34,36 @@ public class Config
 
 
 
-    public static int Money { get; set; } = 1000;
+    public static int Money { get; set; } = 1;
     public static int Progress { get; set; } = 0;
+
+
+    //Settings
+    public static float Sound { get; set; } = 1.0f;
+    public static float Music { get; set; } = 1.0f;
+
+    public static bool CameraShake { get; set; } = true;
+    public static bool Particles { get; set; } = true;
+
+    public static float PostProcessingPower { get; set; } = 1.0f;
+
+    public static bool AnalogGlitchEffect { get; set; } = true;
+    public static bool FisheyeEffect { get; set; } = true;
+
+    public static int Pixelization { get; set; } = 140;
+
+
+    //Default Settings
+    public static float SoundDefault { get; set; } = 1.0f;
+    public static float MusicDefault { get; set; } = 1.0f;
+
+    public static bool CameraShakeDefault { get; set; } = true;
+    public static bool ParticlesDefault { get; set; } = true;
+
+    public static float PostProcessingPowerDefault { get; set; } = 1.0f;
+
+    public static bool AnalogGlitchEffectDefault { get; set; } = true;
+    public static bool FisheyeEffectDefault { get; set; } = true;
+
+    public static int PixelizationDefault { get; set; } = 140;
 }

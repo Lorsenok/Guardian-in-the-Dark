@@ -12,6 +12,7 @@ public class PostProcessingController : MonoBehaviour
     public bool IsVolumeChanging { get; set; } = false; 
 
     [SerializeField] private float changeToNormalSpeed;
+    [SerializeField] private Material[] pixelizationMaterials;
 
     private Volume volume;
 
@@ -111,6 +112,19 @@ public class PostProcessingController : MonoBehaviour
 
     private void LateUpdate()
     {
+        foreach (Material mat in pixelizationMaterials)
+        {
+            mat.SetInt("_Power", Config.Pixelization);
+        }
+
+        if (!IsVolumeChanging)
+        {
+            volume.weight = Mathf.Lerp(volume.weight, Config.PostProcessingPower, Time.deltaTime * changeToNormalSpeed);
+        }
+
+        analogGlitch.active = Config.AnalogGlitchEffect;
+        lensDistortion.active = Config.FisheyeEffect;
+
         if (!isBloomChanges)
         {
             bloom.intensity.value = Mathf.Lerp(bloom.intensity.value, startBloomIntensity, Time.deltaTime * changeToNormalSpeed);
