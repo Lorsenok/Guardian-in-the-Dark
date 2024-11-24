@@ -14,6 +14,8 @@ public class PC : UsableObject
 
     private bool isOpen = false;
 
+    [SerializeField] private AudioSource sound;
+
     [SerializeField] private Image fade;
     [SerializeField] private TextMeshProUGUI text;
 
@@ -74,6 +76,8 @@ public class PC : UsableObject
 
     private void Update()
     {
+        sound.volume = Config.Sound;
+
         if (player != null)
         {
             foreach (Transform t in canvas)
@@ -110,6 +114,8 @@ public class PC : UsableObject
 
         if (isOpen)
         {
+            if (!sound.isPlaying) sound.Play();
+
             inputField.characterLimit = CodeLength;
 
             fade.color = new Color(0, 0, 0, ProjMath.EaseInCubic(time));
@@ -144,6 +150,8 @@ public class PC : UsableObject
 
         else
         {
+            sound.Stop();
+
             inputField.gameObject.SetActive(false);
 
             fade.color = new Color(0, 0, 0, Mathf.Lerp(fade.color.a, 0, Time.deltaTime * fadeChangeSpeed));

@@ -35,6 +35,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] protected bool rotateTowardsPlayerOnSpawn = true;
 
+    [SerializeField] protected AudioSource music;
+    [SerializeField] protected float musicSpeed = 1f;
+
     public float ShakePower;
 
     public static Action OnEnemyDestroyed { get; set; }
@@ -62,7 +65,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform == player && PlayerManager.Instance.HP > 0)
+        if (collision.transform == player && PlayerManager.Instance.HP > 0 && hp > 0)
         {
             PlayerManager.Instance.HP = 0;
             PlayerManager.Instance.IsDeadByEnemy = true;
@@ -121,6 +124,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public virtual void Start()
     {
+        if (music != null)
+        {
+            music.Play();
+            music.volume = 0f;
+        }
+
         currectSpeed = speed;
 
         rg = GetComponent<Rigidbody2D>();
@@ -149,8 +158,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public virtual void Update()
     {
+        if (music != null && !isDead) music.volume = Mathf.Lerp(music.volume, Config.Music, Time.deltaTime * musicSpeed);
+
         if (isDead)
         {
+            if (music != null) music.volume = Mathf.Lerp(music.volume, 0f, Time.deltaTime * musicSpeed);
+
             if (backlit != null) backlit.Lighting.intensity = startLightingIntensity / timeBeforeDeathStart * timeBeforeDeath;
 
             if (timeBeforeDeath <= -0.35f)

@@ -34,12 +34,14 @@ public class Config
 
 
 
-    public static int Money { get; set; } = 1;
+    public static int Money { get; set; } = 10;
+    public static int StartMoney { get; set; } = 10;
     public static int Progress { get; set; } = 0;
 
 
     //Settings
     public static float Sound { get; set; } = 1.0f;
+    public static bool LidarPointSounds { get; set; } = true;
     public static float Music { get; set; } = 1.0f;
 
     public static bool CameraShake { get; set; } = true;
@@ -50,11 +52,12 @@ public class Config
     public static bool AnalogGlitchEffect { get; set; } = true;
     public static bool FisheyeEffect { get; set; } = true;
 
-    public static int Pixelization { get; set; } = 140;
+    public static int Pixelization { get; set; } = 180;
 
 
     //Default Settings
     public static float SoundDefault { get; set; } = 1.0f;
+    public static bool LidarPointSoundsDefault { get; set; } = true;
     public static float MusicDefault { get; set; } = 1.0f;
 
     public static bool CameraShakeDefault { get; set; } = true;
@@ -65,5 +68,5 @@ public class Config
     public static bool AnalogGlitchEffectDefault { get; set; } = true;
     public static bool FisheyeEffectDefault { get; set; } = true;
 
-    public static int PixelizationDefault { get; set; } = 140;
+    public static int PixelizationDefault { get; set; } = 180; 
 }

@@ -1303,6 +1303,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8837748936725424014}
     m_Modifications:
+    - target: {fileID: 189915097832468361, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
+      propertyPath: overSound
+      value: 
+      objectReference: {fileID: 6263731463475027596}
+    - target: {fileID: 189915097832468361, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
+      propertyPath: clickSound
+      value: 
+      objectReference: {fileID: 736774107219688388}
     - target: {fileID: 329845005016095552, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -1403,11 +1411,32 @@ PrefabInstance:
       propertyPath: menus.Array.data[2]
       value: 
       objectReference: {fileID: 4899243143273410625}
+    - target: {fileID: 8637077542246420920, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
+      propertyPath: overSound
+      value: 
+      objectReference: {fileID: 6263731463475027596}
+    - target: {fileID: 8637077542246420920, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
+      propertyPath: clickSound
+      value: 
+      objectReference: {fileID: 736774107219688388}
+    - target: {fileID: 8945516219141688263, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
+      propertyPath: overSound
+      value: 
+      objectReference: {fileID: 6263731463475027596}
+    - target: {fileID: 8945516219141688263, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
+      propertyPath: clickSound
+      value: 
+      objectReference: {fileID: 736774107219688388}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
+--- !u!82 &736774107219688388 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 880107740361529436, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
+  m_PrefabInstance: {fileID: 436648460852847512}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4899243143273410625 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5040322759340495833, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
@@ -1419,6 +1448,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf739edff874034c836fe1863a955fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &6263731463475027596 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5828352681928244500, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}
+  m_PrefabInstance: {fileID: 436648460852847512}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6848474884853616089 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6414782735893179969, guid: 01bb63c218c2b4f4e94c9f8ca5a4976c, type: 3}

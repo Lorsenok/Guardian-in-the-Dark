@@ -7,6 +7,7 @@ public sealed class StunnerEnemy : Enemy
     [Header("Stunner")]
     [SerializeField] private float speedSet;
     [SerializeField] private float startShakePower;
+    [SerializeField] private AudioSource appearSound;
 
     private bool hasStunnedPlayer = false;
 
@@ -18,6 +19,9 @@ public sealed class StunnerEnemy : Enemy
 
     public override void Start()
     {
+        appearSound.volume = Config.Sound;
+        appearSound.Play();
+
         base.Start();
     }
 

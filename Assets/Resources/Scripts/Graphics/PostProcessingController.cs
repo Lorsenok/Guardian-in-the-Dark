@@ -112,6 +112,9 @@ public class PostProcessingController : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (volume.weight < 0.001f) volume.weight = 0.001f;
+        else volume.enabled = true;
+
         foreach (Material mat in pixelizationMaterials)
         {
             mat.SetInt("_Power", Config.Pixelization);

@@ -6,6 +6,8 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource deathsound;
+
     [SerializeField] private GameObject menu;
 
     [SerializeField] private GameObject playerPrefab;
@@ -76,6 +78,7 @@ public class PlayerManager : MonoBehaviour
         {
             Instantiate(bloodParticles, playerController.transform.position + new Vector3(0, 0, particlesZ), Quaternion.identity);
             startPosition = playerController.transform.position;
+            deathsound.Play();
         }
 
         Controller.CanMove = false;

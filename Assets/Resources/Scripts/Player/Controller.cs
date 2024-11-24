@@ -8,6 +8,8 @@ public class Controller : MonoBehaviour
 
     public static bool CanMove { get; set; } = true;
 
+    [SerializeField] private AudioSource sound;
+
     [SerializeField] private float speed;
     [SerializeField] private float acceleration;
     public float CurrectSpeed { get; set; }
@@ -66,6 +68,8 @@ public class Controller : MonoBehaviour
 
         if (!CanMove)
         {
+            sound.Stop();
+
             transform.position = startPositionWhileCantMove;
 
             foreach (Transform t in objectsWithoutRotation)
@@ -77,6 +81,14 @@ public class Controller : MonoBehaviour
         }
         CurrectSpeed = Mathf.Lerp(CurrectSpeed, speed, Time.deltaTime * acceleration);
         Rotate();
+
+        sound.volume = Config.Sound;
+
+        if (rg.velocity.x > 0.1f | rg.velocity.x < -0.1f | rg.velocity.y > 0.1f | rg.velocity.y < -0.1f)
+        {
+            if (!sound.isPlaying) sound.Play();
+        }
+        else sound.Stop();
     }
 
     private void FixedUpdate()

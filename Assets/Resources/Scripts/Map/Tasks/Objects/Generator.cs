@@ -11,6 +11,8 @@ public sealed class Generator : UsableObject
 
     public static Action OnUse;
 
+    [SerializeField] private AudioSource sound;
+
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Transform line;
     [SerializeField] private SpriteRenderer lineSpr;
@@ -54,6 +56,8 @@ public sealed class Generator : UsableObject
 
     private void Update()
     {
+        sound.volume = Config.Sound;
+
         if (hasUsed)
         {
             float dist = Vector2.Distance(transform.position, player.transform.position);
@@ -81,6 +85,7 @@ public sealed class Generator : UsableObject
 
         if (curHoldTime > holdTime)
         {
+            sound.Play();
             hasUsed = true;
             OnUse?.Invoke();
         }

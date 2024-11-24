@@ -5,6 +5,8 @@ using UnityEngine;
 public sealed class WingedEnemy : Enemy
 {
     [Header("Winged")]
+    [SerializeField] private AudioSource attackSound;
+
     [SerializeField] private float attackTime;
 
     [SerializeField] private float attackForce;
@@ -87,6 +89,9 @@ public sealed class WingedEnemy : Enemy
 
         if (curAdditionalAttackDelay <= 0 && curAttackQuantity > 0)
         {
+            attackSound.volume = Config.Sound;
+            attackSound.Play();
+
             curAdditionalAttackDelay = additionalAttackDelay;
             curAttackQuantity -= 1;
             attackSwitch = !attackSwitch;

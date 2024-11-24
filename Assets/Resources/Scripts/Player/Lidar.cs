@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Lidar : MonoBehaviour
 {
+    [SerializeField] private AudioSource lidarWorkSound;
+    [SerializeField] private GameObject soundObject;
+    [SerializeField] private float soundMultiplier;
+
     [Header("Lidar setup")]
     [SerializeField] private float speedS;
     [SerializeField] private float speedByScrollMultiplier;
@@ -110,6 +114,13 @@ public class Lidar : MonoBehaviour
         GameObject point = Instantiate(pointPrefab, pos, Quaternion.identity);
         point.GetComponent<SpriteRenderer>().color = curPointColor;
 
+        if (Config.LidarPointSounds)
+        {
+            Instantiate(soundObject, point.transform.position, Quaternion.identity).TryGetComponent(out AudioSource sound);
+            sound.volume = Config.Sound * soundMultiplier;
+            sound.Play();
+        }
+
         if (Vector2.Distance(point.transform.position, startPos) < minDistance)
         {
             Destroy(point);
@@ -207,9 +218,15 @@ public class Lidar : MonoBehaviour
         currectDifference = Mathf.Lerp(currectDifference, currectDifferenceSet, Time.deltaTime * differenceChangeSpeed);
 
         if (Input.GetMouseButton(0) && IsWorking && PlayerManager.Instance.IsMenuClosed)
+        {
             scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 1, Time.deltaTime * scannerAppearSpeed));
+            if (!lidarWorkSound.isPlaying) lidarWorkSound.Play();
+        }
         else
+        {
             scannerSpr.color = new Color(scannerSpr.color.r, scannerSpr.color.g, scannerSpr.color.b, Mathf.Lerp(scannerSpr.color.a, 0, Time.deltaTime * scannerAppearSpeed));
+            lidarWorkSound.Stop();
+        }
 
         //Scanner
         if (Input.GetMouseButton(0))

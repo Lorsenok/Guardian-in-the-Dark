@@ -11,6 +11,7 @@ public class SettingsSetup : MonoBehaviour
     [SerializeField] private Menu menu;
 
     [SerializeField] private Slider sound;
+    [SerializeField] private SettingsButton pointSounds;
     [SerializeField] private Slider music;
 
     [SerializeField] private SettingsButton cameraShake;
@@ -26,6 +27,7 @@ public class SettingsSetup : MonoBehaviour
     public void ClearSettings()
     {
         PlayerPrefs.SetFloat("sound", Config.SoundDefault);
+        PlayerPrefs.SetInt("points", Config.LidarPointSoundsDefault ? 1 : 0);
         PlayerPrefs.SetFloat("music", Config.MusicDefault);
 
         PlayerPrefs.SetInt("shake", Config.CameraShakeDefault ? 1 : 0);
@@ -46,6 +48,7 @@ public class SettingsSetup : MonoBehaviour
         if (PlayerPrefs.HasKey("sound"))
         {
             sound.value = PlayerPrefs.GetFloat("sound");
+            pointSounds.IsOn = PlayerPrefs.GetInt("points") == 1;
             music.value = PlayerPrefs.GetFloat("music");
 
             cameraShake.IsOn = PlayerPrefs.GetInt("shake") == 1;
@@ -73,6 +76,7 @@ public class SettingsSetup : MonoBehaviour
     private void Update()
     {
         Config.Sound = sound.value;
+        Config.LidarPointSounds = pointSounds.IsOn;
         Config.Music = music.value;
 
         Config.CameraShake = cameraShake.IsOn;
@@ -83,11 +87,12 @@ public class SettingsSetup : MonoBehaviour
         Config.AnalogGlitchEffect = analogGlitchEffect.IsOn;
         Config.FisheyeEffect = fisheyeEffect.IsOn;
 
-        if (pixelizationPower.text != string.Empty && pixelizationPower.text != "") Config.Pixelization = int.Parse(pixelizationPower.text);
+        if (pixelizationPower.text != string.Empty && pixelizationPower.text != "" && pixelizationPower.text != "-") Config.Pixelization = int.Parse(pixelizationPower.text);
 
         if (!menu.Open) return;
 
         PlayerPrefs.SetFloat("sound", sound.value);
+        PlayerPrefs.SetInt("points", pointSounds.IsOn ? 1 : 0);
         PlayerPrefs.SetFloat("music", music.value);
 
         PlayerPrefs.SetInt("shake", cameraShake.IsOn ? 1 : 0);
@@ -98,6 +103,6 @@ public class SettingsSetup : MonoBehaviour
         PlayerPrefs.SetInt("analog", analogGlitchEffect.IsOn ? 1 : 0);
         PlayerPrefs.SetInt("fisheye", fisheyeEffect.IsOn ? 1 : 0);
 
-        if (pixelizationPower.text != string.Empty && pixelizationPower.text != "") PlayerPrefs.SetInt("pixelization", int.Parse(pixelizationPower.text));
+        if (pixelizationPower.text != string.Empty && pixelizationPower.text != "" && pixelizationPower.text != "-") PlayerPrefs.SetInt("pixelization", int.Parse(pixelizationPower.text));
     }
 }

@@ -13,6 +13,8 @@ public class Weapon : MonoBehaviour
 
     public Lidar Lidar { get; private set; }
 
+    [SerializeField] private AudioSource sound;
+
     [SerializeField] private float accuracy;
     [SerializeField] private float spreadDecrease;
     [SerializeField] private float minSpread;
@@ -119,6 +121,9 @@ public class Weapon : MonoBehaviour
                 shootDelay += shootVariation.Shoot(shootPosition, shootDirection);
                 LastSpread = CurrectSpread;
                 CurrectSpread += accuracy;
+
+                sound.volume = Config.Sound;
+                sound.Play();
             }
         }
         else

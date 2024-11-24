@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Papers : UsableObject
 {
+    [SerializeField] private AudioSource sound;
+
     [SerializeField] private Backlit3D backlit;
 
     [SerializeField] private GameObject firstModel;
@@ -58,6 +60,9 @@ public class Papers : UsableObject
                 OnTake?.Invoke();
                 hasTaken = true;
                 if (Config.Particles) Instantiate(particles, transform.position, Quaternion.identity);
+
+                sound.volume = Config.Sound;
+                sound.Play();
             }
         }
         else text.color = new(text.color.r, text.color.g, text.color.b, Mathf.Lerp(text.color.a, 0, Time.deltaTime * textAppearSpeed));

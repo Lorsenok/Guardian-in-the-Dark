@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,7 @@ public class GameButton : MonoBehaviour
     [SerializeField] protected int mouseButton;
     [SerializeField] protected ButtonFunction OnClick;
     [SerializeField] protected string index;
+    [SerializeField] protected int ignoreSoundsSceneId = 1;
 
     [Header("Animations")]
     [SerializeField] protected Animator animator;
@@ -35,28 +37,51 @@ public class GameButton : MonoBehaviour
     [SerializeField] protected Vector3 moveDirection;
     [SerializeField] protected float moveSpeed;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource overSound;
+    private bool onOverSound = true;
+    [SerializeField] private AudioSource clickSound;
+    private bool onClickSound = true;
+
     protected bool isMousePointing = false;
 
     protected Vector3 startPos;
 
+    private bool ignoreSounds = true;
+
     public virtual void OnMouseOver()
     {
         isMousePointing = true;
+
+        if (onOverSound && CanBeToched && !ignoreSounds)
+        {
+            overSound.Play();
+            onOverSound = false;
+        }
     }
 
     public virtual void OnMouseExit()
     {
         isMousePointing = false;
+
+        onOverSound = true;
     }
 
     public virtual void Awake()
     {
         CanBeToched = true;
         startPos = transform.localPosition;
+        ignoreSounds = SceneManager.GetActiveScene().buildIndex == ignoreSoundsSceneId;
     }
 
     public virtual void Update()
     {
+        if (!ignoreSounds)
+        {
+            overSound.volume = Config.Sound;
+            clickSound.volume = Config.Sound;
+        }
+
         if (!CanBeToched)
         {
             isMousePointing = false;
@@ -67,6 +92,11 @@ public class GameButton : MonoBehaviour
         animator.SetBool(IsPointing, isMousePointing && !Input.GetMouseButton(mouseButton));
         animator.SetBool(IsClicking, isMousePointing && Input.GetMouseButton(mouseButton));
         animator.SetBool(IsNotPointing, !isMousePointing);
+
+        if (isMousePointing && Input.GetMouseButtonDown(mouseButton))
+        {
+            onClickSound = false;
+        }
 
         if (isMousePointing && Input.GetMouseButtonUp(mouseButton))
         {
@@ -89,6 +119,8 @@ public class GameButton : MonoBehaviour
                     break;
                 case ButtonFunction.DeleteAllData:
                     PlayerPrefs.DeleteAll();
+                    Config.Money = Config.StartMoney;
+                    Config.Progress = 0;
                     SceneSwitcher.Instance.ChangeScene(index);
                     CanBeToched = false;
                     break;
@@ -96,6 +128,13 @@ public class GameButton : MonoBehaviour
                     SettingsSetup.Instance.ClearSettings();
                     break;
             }
+        }
+
+
+        if (!onClickSound && !ignoreSounds)
+        {
+            clickSound.Play();
+            onClickSound = true;
         }
     }
 }
