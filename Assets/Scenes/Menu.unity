@@ -9321,7 +9321,7 @@ MonoBehaviour:
   enemySpawnRate: 84
   enemySpawnRateBias: 10
   difficulityMultiplier: 2
-  hp: 1260
+  hp: 1638
   progressSet: 5
   text: {fileID: 1814388461}
 --- !u!1 &1609011715
