@@ -94,7 +94,6 @@ public sealed class Package : UsableObject
                 if (curTimeForSoundExpire <= 0f)
                 {
                     curTimeForSoundExpire = timeForSoundExpire;
-                    Debug.Log("+");
                 }
             }
 

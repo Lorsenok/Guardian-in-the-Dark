@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Door : UsableObject
 {
+    [SerializeField] private AudioSource sound;
+
+    [SerializeField] private float openSpeed = 1.0f;
+
     [SerializeField] private TextMeshProUGUI text;
 
     [SerializeField] private float textColorChangeSpeed;
@@ -34,15 +38,17 @@ public class Door : UsableObject
     {
         text.color = canBeTaked && !hasTaken ? Color.Lerp(text.color, startTextColor, Time.deltaTime * textColorChangeSpeed) : Color.Lerp(text.color, new(0, 0, 0, 0), Time.deltaTime * textColorChangeSpeed);
 
-        if (canBeTaked && Input.GetKeyDown(KeyCode.E)) 
+        if (canBeTaked && Input.GetKeyDown(KeyCode.E) && !hasTaken) 
         {
             hasTaken = true;
+            sound.volume = Config.Sound;
+            sound.Play();
         }
 
         if (!hasTaken) return;
 
 
-        time += Time.deltaTime;
+        time += Time.deltaTime * openSpeed;
         if (time > 1) time = 1;
 
         firstHalf.localPosition = new Vector3(firstHalf.localPosition.x, firstStartY + ProjMath.EaseInBounce(time), firstHalf.position.z);

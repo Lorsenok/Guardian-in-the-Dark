@@ -15,6 +15,10 @@ public sealed class EnemyManager : MonoBehaviour
 
     [SerializeField] private float additionalHPLose = 2.5f;
 
+    [SerializeField] private float timeChangeSpeed = 1.0f;
+    [SerializeField] private float timeSet = 0.5f;
+    [SerializeField] private float timeChangeMultiplier = 2.0f;
+
     public static Action OnEnemySpawned;
 
     [SerializeField] private float spawnTime;
@@ -53,6 +57,7 @@ public sealed class EnemyManager : MonoBehaviour
         IsEnemyAlive = false;
         isEnemyOur = false;
         PlayerManager.Instance.AdditionalHPLossSpeed = 0;
+        PlayerManager.Instance.IsGameTimeChanging = false;
     }
 
     private void SpawnTimeExpand()
@@ -68,6 +73,7 @@ public sealed class EnemyManager : MonoBehaviour
 
             if (Input.GetMouseButton(0) && Vector2.Distance(position, player.position) >= minDistance && Vector2.Distance(position, player.position) <= maxDistance)
             {
+                hasTimeChanged = false;
                 Instantiate(enemy, position, Quaternion.identity).TryGetComponent(out Enemy lastEnemy);
                 LastEnemy = lastEnemy;
                 if (LastEnemy != null) LastEnemy.Em = this;
@@ -97,6 +103,8 @@ public sealed class EnemyManager : MonoBehaviour
 
     private Transform player;
 
+    private bool hasTimeChanged = false;
+
     private void LateUpdate()
     {
         if (player == null & PlayerManager.Instance.GetPlayerPosition() == null) return;
@@ -114,6 +122,12 @@ public sealed class EnemyManager : MonoBehaviour
 
         if (IsEnemyAlive && isEnemyOur)
         {
+            PlayerManager.Instance.IsGameTimeChanging = true;
+
+            Time.timeScale = Mathf.Lerp(Time.timeScale, hasTimeChanged ? 1.0f : timeSet, timeChangeSpeed * (Time.deltaTime * Time.timeScale) * (hasTimeChanged ? timeChangeMultiplier : 1.0f));
+
+            if (Time.timeScale <= timeSet + 0.1f) hasTimeChanged = true;
+
             PlayerManager.Instance.AdditionalHPLossSpeed = additionalHPLose;
             PostProcessingController.Instance.VignetteSet(vignetteSet, vignetteColor, changeSpeed);
             PostProcessingController.Instance.ChromaticAberrationSet(chromaticAberrationSet, changeSpeed);

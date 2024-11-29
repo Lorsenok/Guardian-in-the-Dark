@@ -165,12 +165,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 6479004462105509994, guid: 448b0db6c3fbcca43a5b2c1b0cfe25a4, type: 3}
-  - {fileID: 6479004462105509994, guid: a61e408fb2d4de14781fcebad10d1eec, type: 3}
   - {fileID: 6479004462105509994, guid: 6b9c6ac79e9e6c0438a3dd5f336f2e59, type: 3}
   - {fileID: 6479004462105509994, guid: 89fad51a83d99fe4a999be9da1c030de, type: 3}
   delaySpawnObject: {fileID: 8736238065036640220, guid: 1739e31fc88d11e4f984552c641364b2, type: 3}
   delaySpawnTime: 1
-  debugObject: {fileID: 6479004462105509994, guid: 6b9c6ac79e9e6c0438a3dd5f336f2e59, type: 3}
+  debugObject: {fileID: 0}
 --- !u!4 &1135550319
 Transform:
   m_ObjectHideFlags: 0
@@ -377,10 +376,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 845b31dcc994e4d4fbba74847dd2283b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -473,10 +472,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f2f52c958eccc4943b3ebf7edbccde55, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -569,10 +568,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 72fc6af53bfd182469183d4669baf4da, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

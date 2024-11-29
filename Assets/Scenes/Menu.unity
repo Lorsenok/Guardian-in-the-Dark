@@ -9310,13 +9310,12 @@ MonoBehaviour:
   award: 25
   mapSize: 3
   enemyManagersPull:
-  - {fileID: 3052656559874876729, guid: 2f4d7ce8a2271574a9bcf61bae8c6c13, type: 3}
-  - {fileID: 3052656559874876729, guid: a4e258642a9b50f4babc2fc61452c719, type: 3}
-  - {fileID: 3052656559874876729, guid: f97c77b14642f384e88160ab0375e0d3, type: 3}
-  - {fileID: 3052656559874876729, guid: fb438bdf4ae7a7947b6c44ea882ce7b0, type: 3}
-  - {fileID: 3052656559874876729, guid: c8ebd5a8628a27946a9a08fd43e1cf03, type: 3}
+  - {fileID: 3052656559874876729, guid: f5a474b11419d5249af895a92cde8ec5, type: 3}
+  - {fileID: 3052656559874876729, guid: 3b40b262a3e0862448c4a5612386b1b9, type: 3}
+  - {fileID: 3052656559874876729, guid: d31252d7f06dfb04cbce63665c02e289, type: 3}
+  - {fileID: 3052656559874876729, guid: 61bdf589d4217a44bbc716f27e068b33, type: 3}
+  - {fileID: 3052656559874876729, guid: cd5dcacfbf1729a4390bfdc2a5d27fad, type: 3}
   - {fileID: 3052656559874876729, guid: ec39006a329016a4db61c85d5c8ab47d, type: 3}
-  - {fileID: 3052656559874876729, guid: c8ebd5a8628a27946a9a08fd43e1cf03, type: 3}
   - {fileID: 3052656559874876729, guid: ec55b825ca87db24b8b95c4306f9018f, type: 3}
   - {fileID: 3052656559874876729, guid: 039f1eb97c66a7045aab162182a66004, type: 3}
   enemySpawnRate: 84

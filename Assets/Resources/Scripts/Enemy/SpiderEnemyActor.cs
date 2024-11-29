@@ -28,6 +28,7 @@ public class SpiderEnemyActor : Enemy
 
     public override void OnDestroy()
     {
+        fakeSpiders.Clear();
         if (!isFake) base.OnDestroy();
     }
 

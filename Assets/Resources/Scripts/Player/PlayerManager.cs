@@ -45,6 +45,10 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private GameObject enemyManager;
 
+    [SerializeField] private float gameTimeReturnSpeed = 1.0f;
+
+    public bool IsGameTimeChanging { get; set; } = false; 
+
     public bool IsDeadByEnemy { get; set; } = false;
 
     private void Awake()
@@ -78,6 +82,7 @@ public class PlayerManager : MonoBehaviour
         {
             Instantiate(bloodParticles, playerController.transform.position + new Vector3(0, 0, particlesZ), Quaternion.identity);
             startPosition = playerController.transform.position;
+            deathsound.volume = Config.Sound;
             deathsound.Play();
         }
 
@@ -110,6 +115,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        if (!IsGameTimeChanging) Time.timeScale = Mathf.Lerp(Time.timeScale, 1.0f, Time.deltaTime * gameTimeReturnSpeed);
+
         if (Input.GetKeyDown(KeyCode.Escape)) IsMenuClosed = !IsMenuClosed;
 
         menu.transform.localPosition = Vector3.Lerp(menu.transform.localPosition, startMenuPos + (IsMenuClosed ? menuCloseDistance : Vector3.zero), Time.deltaTime * menuSpeed);

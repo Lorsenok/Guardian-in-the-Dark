@@ -29,7 +29,7 @@ public class EnemyManagersManager : MonoBehaviour
 
         foreach (EnemyManager em in enemyManagers)
         {
-            if (em != enemy) em.enabled = false;
+            if (em != enemy && em != null) em.enabled = false;
         }
     }
 
@@ -67,7 +67,6 @@ public class EnemyManagersManager : MonoBehaviour
 
             foreach (EnemyManager em in enemyManagers)
             {
-                Debug.Log(em.ToString());
                 em.enabled = false;
             }
 

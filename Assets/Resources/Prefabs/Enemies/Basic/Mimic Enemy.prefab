@@ -551,10 +551,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5803e6bda43cea146a9c8695fa158cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 9
+  hp: 7
   speed: 7
-  acceleration: 6
-  speedAcceleration: 0.5
+  acceleration: 2
+  speedAcceleration: 0.3
   timeBeforeAgr: 0.6
   timeBeforeDeath: 3
   lights:

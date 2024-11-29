@@ -9,6 +9,9 @@ public class Controller : MonoBehaviour
     public static bool CanMove { get; set; } = true;
 
     [SerializeField] private AudioSource sound;
+    [SerializeField] private float soundBlockTimeSet;
+
+    private float curSoundBlockTime = 0f;
 
     [SerializeField] private float speed;
     [SerializeField] private float acceleration;
@@ -63,6 +66,8 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
+        if (curSoundBlockTime > 0) curSoundBlockTime -= Time.deltaTime;
+
         if (CanMove) startPositionWhileCantMove = Vector3.zero;
         else if (startPositionWhileCantMove == Vector3.zero) startPositionWhileCantMove = transform.position;
 
@@ -86,7 +91,11 @@ public class Controller : MonoBehaviour
 
         if (rg.velocity.x > 0.1f | rg.velocity.x < -0.1f | rg.velocity.y > 0.1f | rg.velocity.y < -0.1f)
         {
-            if (!sound.isPlaying) sound.Play();
+            if (!sound.isPlaying && curSoundBlockTime <= 0)
+            {
+                sound.Play();
+                curSoundBlockTime = soundBlockTimeSet;
+            }
         }
         else sound.Stop();
     }

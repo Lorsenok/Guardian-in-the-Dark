@@ -48,8 +48,10 @@ MonoBehaviour:
   minDistance: 6
   maxDistance: 12
   spawnChance: 3
-  spawnTimeM: 1
   additionalHPLose: 25
+  timeChangeSpeed: 4
+  timeSet: 0.35
+  timeChangeMultiplier: 2
   spawnTime: 0
   changeSpeed: 1
   vignetteSet: 0.5

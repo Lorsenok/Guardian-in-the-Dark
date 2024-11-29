@@ -58,4 +58,10 @@ public class OctopusEnemy : Enemy
         
         base.Die(fromWeapon);
     }
+
+    public override void OnDestroy()
+    {
+        Destroy(fadeT.gameObject);
+        base.OnDestroy();
+    }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1081323697528450623}
   - component: {fileID: 4453010591913844071}
   m_Layer: 0
-  m_Name: RUN Enemy Manager
+  m_Name: Necromancer Enemy Manager Hard Ver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,20 +44,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0921b40b3b769d438a0df37a519c020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 8704038940415561809, guid: 9fe05079812da2d4f824bdba73c9ccdf, type: 3}
+  enemy: {fileID: 8704038940415561809, guid: ec3d08dd33257d14faa0e463bafe39e6, type: 3}
   minDistance: 4
   maxDistance: 5
-  spawnChance: 2
-  additionalHPLose: 5
-  timeChangeSpeed: 4
-  timeSet: 0.35
+  spawnChance: 3
+  additionalHPLose: 25
+  timeChangeSpeed: 1
+  timeSet: 0.5
   timeChangeMultiplier: 2
   spawnTime: 0
   changeSpeed: 1
   vignetteSet: 0.5
-  vignetteColor: {r: 1, g: 0, b: 0, a: 0}
+  vignetteColor: {r: 0.72569805, g: 0, b: 0.8490566, a: 0}
   chromaticAberrationSet: 1
   bloomSet: 100
-  digitalGlitchSet: 0.01
-  analogGlitchSet: 0.6
-  shakeIntensity: 0.1
+  digitalGlitchSet: 0
+  analogGlitchSet: 0.45
+  shakeIntensity: 0.02

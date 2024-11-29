@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: {fileID: 6893105161910327959}
+  soundBlockTimeSet: 1
   speed: 5
   acceleration: 1
   additionalRotate: 0

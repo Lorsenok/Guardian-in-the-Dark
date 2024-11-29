@@ -57,7 +57,7 @@ Material:
     - _LinesRotationSpeed: 0.001
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Rotation: 2.8190825
+    - _Rotation: 1.6553553
     - _StartTime: 500
     m_Colors:
     - _BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
