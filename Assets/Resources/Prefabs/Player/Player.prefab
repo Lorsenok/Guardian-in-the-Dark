@@ -251,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lidarWorkSound: {fileID: 3853619746256701965}
   soundObject: {fileID: 9001468137860730297, guid: e4b102ca8a977714dbca910fcd322e6e, type: 3}
-  soundMultiplier: 0.4
+  soundMultiplier: 0.25
   speedS: 0.001
   speedByScrollMultiplier: 0.0035
   additionalScrollDifference: 0.2

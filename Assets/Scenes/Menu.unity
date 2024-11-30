@@ -5877,6 +5877,8 @@ MonoBehaviour:
   hp: 1100
   progressSet: 3
   text: {fileID: 2038303149}
+  hasEnd: 0
+  endSceneID: 0
 --- !u!114 &955253473 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 562401468516593617, guid: 7861539ca2b3ceb4ca1c7ebe1f904343, type: 3}
@@ -6121,6 +6123,8 @@ MonoBehaviour:
   hp: 1500
   progressSet: 4
   text: {fileID: 2079936854}
+  hasEnd: 0
+  endSceneID: 0
 --- !u!1 &1163129492
 GameObject:
   m_ObjectHideFlags: 0
@@ -7120,6 +7124,8 @@ MonoBehaviour:
   hp: 1000
   progressSet: 1
   text: {fileID: 1520078044}
+  hasEnd: 0
+  endSceneID: 0
 --- !u!222 &1276053412
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8163,6 +8169,8 @@ MonoBehaviour:
   hp: 10000
   progressSet: 2
   text: {fileID: 2040775229}
+  hasEnd: 0
+  endSceneID: 0
 --- !u!1 &1373460578
 GameObject:
   m_ObjectHideFlags: 0
@@ -9324,6 +9332,8 @@ MonoBehaviour:
   hp: 1638
   progressSet: 5
   text: {fileID: 1814388461}
+  hasEnd: 1
+  endSceneID: 4
 --- !u!1 &1609011715
 GameObject:
   m_ObjectHideFlags: 0

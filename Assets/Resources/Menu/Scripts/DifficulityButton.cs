@@ -18,6 +18,9 @@ public class DifficulityButton : GameButton
     [SerializeField] private int progressSet;
     [SerializeField] private TextMeshProUGUI text;
 
+    [SerializeField] private bool hasEnd = false;
+    [SerializeField] private int endSceneID;
+
     public override void Awake()
     {
         canBePicked = true;
@@ -44,6 +47,9 @@ public class DifficulityButton : GameButton
             Config.EnemySpawnRateBias = enemySpawnRateBias;
             Config.DifficulityMultiplier = difficulityMultiplier;
             Config.PlayerHP = hp;
+
+            Config.HasEnd = hasEnd;
+            Config.EndSceneID = endSceneID;
 
             if (progressSet > Config.Progress)
             {

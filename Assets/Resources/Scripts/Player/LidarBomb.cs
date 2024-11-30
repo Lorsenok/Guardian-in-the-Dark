@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LidarBomb : MonoBehaviour
 {
+    [SerializeField] private AudioSource sound;
+
     [SerializeField] private Rigidbody2D rg;
 
     [SerializeField] private Transform directon;
@@ -42,6 +44,8 @@ public class LidarBomb : MonoBehaviour
 
     private void Update()
     {
+        sound.volume = Config.Sound;
+
         beforeExplodeTime -= Time.deltaTime;
 
         beforeExplodeSpr.color = new Color(beforeExplodeSpr.color.r, beforeExplodeSpr.color.g, beforeExplodeSpr.color.b, ProjMath.SinTime(m: sineTimeSpeed));
@@ -55,8 +59,10 @@ public class LidarBomb : MonoBehaviour
             for (int i = 0; i < points; i++)
             {
                 pointsDirSet.rotation = Quaternion.Euler(0, 0, 360f / points * i);
-                Weapon.Instance.Lidar.SpawnRay(transform.position, pointsDir.position, spawnRay: spawnRays);
+                Weapon.Instance.Lidar.SpawnRay(transform.position, pointsDir.position, spawnRay: spawnRays, playSound: false);
             }
+
+            sound.Play();
         }
 
         rg.velocity = Vector3.zero;

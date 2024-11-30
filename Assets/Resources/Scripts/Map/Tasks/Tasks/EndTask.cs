@@ -12,7 +12,7 @@ public sealed class EndTask : Task
         if (HubArea.IsOnPlayer)
         {
             SceneSwitcher.SpawnObjectsOnStart.Add(completeObject);
-            SceneSwitcher.Instance.ChangeScene(sceneID);
+            SceneSwitcher.Instance.ChangeScene(Config.HasEnd ? Config.EndSceneID : sceneID);
             enabled = false;
         }
         return HubArea.IsOnPlayer;

@@ -90,7 +90,7 @@ public class Lidar : MonoBehaviour
     public RaycastHit2D CurrectRay { get; set; }
 
     Color curPointColor;
-    public void SpawnRay(Vector3 startPos, Vector3 dir, bool spawnRay = true)
+    public void SpawnRay(Vector3 startPos, Vector3 dir, bool spawnRay = true, bool playSound = true)
     {
         TimeSinceLastRay = 0f;
 
@@ -114,7 +114,7 @@ public class Lidar : MonoBehaviour
         GameObject point = Instantiate(pointPrefab, pos, Quaternion.identity);
         point.GetComponent<SpriteRenderer>().color = curPointColor;
 
-        if (Config.LidarPointSounds)
+        if (Config.LidarPointSounds && playSound)
         {
             Instantiate(soundObject, point.transform.position, Quaternion.identity).TryGetComponent(out AudioSource sound);
             sound.volume = Config.Sound * soundMultiplier;
@@ -195,6 +195,8 @@ public class Lidar : MonoBehaviour
 
     private void Update()
     {
+        lidarWorkSound.volume = Config.Sound;
+
         if (!Controller.CanMove) return;
 
         TimeSinceLastRay += Time.deltaTime;

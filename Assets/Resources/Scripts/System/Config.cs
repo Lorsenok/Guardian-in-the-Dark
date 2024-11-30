@@ -14,6 +14,8 @@ public class Config
     public static float EnemySpawnRateBias { get; set; } = 10f;
     public static GameObject[] EnemyManagers { get; set; }
     public static int CurrectCompleteAward { get; set; } = 1;
+    public static bool HasEnd { get; set; } = false;
+    public static int EndSceneID { get; set; } = 0;
 
     //Player settings
     public static float PlayerHP { get; set; } = 12000f;
