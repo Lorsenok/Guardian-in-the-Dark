@@ -27,6 +27,7 @@ public class MoneyGiver : MonoBehaviour
         {
             GameButton.CanBeToched = true;
             Config.Money += Config.CurrectCompleteAward;
+            PlayerPrefs.SetInt("money", Config.Money);
             Destroy(gameObject);
         }
     }

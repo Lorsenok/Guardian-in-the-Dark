@@ -26,11 +26,13 @@ public class WeaponMenuManager : MonoBehaviour
             startDecoXPositions.Add(t.position.x);
             hideDecoXPositions.Add(t.position.x + decoHideX);
         }
+
+        Config.HasUsedCheats = PlayerPrefs.GetInt("cheats") == 1;
     }
 
     private void Update()
     {
-        text.text = "Money: " + Config.Money.ToString();
+        text.text = (Config.HasUsedCheats ? "(Cheated) " : "") + "Money: " + Config.Money.ToString();
 
         bool isMenuHiding = false;
 
@@ -55,6 +57,14 @@ public class WeaponMenuManager : MonoBehaviour
             deco[i].position = Vector3.Lerp(deco[i].position, 
                 new Vector3(startDecoXPositions[i], deco[i].position.y, deco[i].position.z), 
                 decoReturnSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.K) && Input.GetKey(KeyCode.H) && Input.GetKey(KeyCode.Y) && Input.GetKey(KeyCode.U) && Input.GetKey(KeyCode.L) && !Config.HasUsedCheats)
+        {
+            Config.HasUsedCheats = true;
+            PlayerPrefs.SetInt("cheats", 1);
+            Config.Money = 9999;
+            PlayerPrefs.SetInt("money", 9999);
         }
     }
 }

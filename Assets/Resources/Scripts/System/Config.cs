@@ -41,6 +41,9 @@ public class Config
     public static int Progress { get; set; } = 0;
 
 
+    public static bool HasUsedCheats { get; set; } = false;
+
+
     //Settings
     public static float Sound { get; set; } = 1.0f;
     public static bool LidarPointSounds { get; set; } = true;
