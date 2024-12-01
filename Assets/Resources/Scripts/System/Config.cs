@@ -10,7 +10,7 @@ public class Config
 
     // Map settings
     public static int MapSize { get; set; } = 1;
-    public static float EnemySpawnRate { get; set; } = 20f;
+    public static float EnemySpawnRate { get; set; } = 99999f;
     public static float EnemySpawnRateBias { get; set; } = 10f;
     public static GameObject[] EnemyManagers { get; set; }
     public static int CurrectCompleteAward { get; set; } = 1;

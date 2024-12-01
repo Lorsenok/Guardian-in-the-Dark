@@ -105,7 +105,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Disolve: 0
+    - _Disolve: 1.1779025
     - _Disolve_Weight: 0.8
     - _DstBlend: 0
     - _DstBlendAlpha: 0
@@ -122,7 +122,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Scale: 40
-    - _Smoothness: 0.5
+    - _Smoothness: -0.035410196
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

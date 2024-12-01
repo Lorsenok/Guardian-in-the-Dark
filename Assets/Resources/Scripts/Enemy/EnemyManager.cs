@@ -21,6 +21,7 @@ public sealed class EnemyManager : MonoBehaviour
 
     public static Action OnEnemySpawned;
 
+    [SerializeField] private bool setSpawnTimeAtStart = true;
     [SerializeField] private float spawnTime;
 
     [Header("Post Processing")]
@@ -93,12 +94,7 @@ public sealed class EnemyManager : MonoBehaviour
         Enemy.OnEnemyDestroyed += OnEnemyDestroyed;
 
         SpawnChance = spawnChance;
-        SpawnTimeExpand();
-    }
-
-    private void Start()
-    {
-        shake = Weapon.Instance.WeaponShake;
+        if (setSpawnTimeAtStart) SpawnTimeExpand();
     }
 
     private Transform player;
@@ -111,6 +107,7 @@ public sealed class EnemyManager : MonoBehaviour
         else if (player == null)
         {
             player = PlayerManager.Instance.GetPlayerPosition();
+            shake = Weapon.Instance.WeaponShake;
             lidar = player.gameObject.GetComponent<Lidar>();
         }
 
